@@ -33,7 +33,7 @@ export const Label = ({ isRequired, tooltip, tooltipDescription, className, ...p
             {tooltip && (
                 <Tooltip title={tooltip} description={tooltipDescription} placement="top">
                     <TooltipTrigger
-                        // `TooltipTrigger` inherts the disabled state from the parent form field
+                        // `TooltipTrigger` inherits the disabled state from the parent form field
                         // but we don't that. We want the tooltip be enabled even if the parent
                         // field is disabled.
                         isDisabled={false}

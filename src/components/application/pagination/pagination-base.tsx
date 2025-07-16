@@ -4,8 +4,11 @@ import type { CSSProperties, FC, HTMLAttributes, ReactNode } from "react";
 import React, { cloneElement, createContext, isValidElement, useContext, useEffect, useState } from "react";
 
 type PaginationPage = {
+    /** The type of the pagination item. */
     type: "page";
+    /** The value of the pagination item. */
     value: number;
+    /** Whether the pagination item is the current page. */
     isCurrent: boolean;
 };
 
@@ -17,9 +20,13 @@ type PaginationEllipsisType = {
 type PaginationItemType = PaginationPage | PaginationEllipsisType;
 
 interface PaginationContextType {
+    /** The pages of the pagination. */
     pages: PaginationItemType[];
+    /** The current page of the pagination. */
     currentPage: number;
+    /** The total number of pages. */
     total: number;
+    /** The function to call when the page changes. */
     onPageChange: (page: number) => void;
 }
 
@@ -259,11 +266,17 @@ interface PaginationItemRenderProps {
 }
 
 export interface PaginationItemProps {
+    /** The value of the pagination item. */
     value: number;
+    /** Whether the pagination item is the current page. */
     isCurrent: boolean;
+    /** The children of the pagination item. Can be a render prop or a valid element. */
     children?: ReactNode | ((props: PaginationItemRenderProps) => ReactNode);
+    /** The style object of the pagination item. */
     style?: CSSProperties;
+    /** The class name of the pagination item. */
     className?: string | ((args: { isSelected: boolean }) => string);
+    /** The aria label of the pagination item. */
     ariaLabel?: string;
     /** If true, the child element will be cloned and passed down the prop of the item. */
     asChild?: boolean;

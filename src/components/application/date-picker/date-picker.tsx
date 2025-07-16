@@ -13,7 +13,9 @@ import { Calendar } from "./calendar";
 const highlightedDates = [today(getLocalTimeZone())];
 
 interface DatePickerProps extends AriaDatePickerProps<DateValue> {
+    /** The function to call when the apply button is clicked. */
     onApply?: () => void;
+    /** The function to call when the cancel button is clicked. */
     onCancel?: () => void;
 }
 

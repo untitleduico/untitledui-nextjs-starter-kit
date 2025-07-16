@@ -3,7 +3,7 @@
 import { type ComponentType, type HTMLAttributes, type ReactNode, type Ref, createContext, useContext } from "react";
 import { HelpCircle, InfoCircle } from "@untitledui/icons";
 import type { InputProps as AriaInputProps, TextFieldProps as AriaTextFieldProps } from "react-aria-components";
-import { Input as AriaInput, TextField as AriaTextField, Group } from "react-aria-components";
+import { Group as AriaGroup, Input as AriaInput, TextField as AriaTextField } from "react-aria-components";
 import { HintText } from "@/components/base/input/hint-text";
 import { Label } from "@/components/base/input/label";
 import { Tooltip, TooltipTrigger } from "@/components/base/tooltip/tooltip";
@@ -77,7 +77,7 @@ export const InputBase = ({
     });
 
     return (
-        <Group
+        <AriaGroup
             {...{ isDisabled, isInvalid }}
             ref={groupRef}
             className={({ isFocusWithin, isDisabled, isInvalid }) =>
@@ -177,7 +177,7 @@ export const InputBase = ({
                     </span>
                 </div>
             )}
-        </Group>
+        </AriaGroup>
     );
 };
 
@@ -240,13 +240,27 @@ export const Input = ({
 }: InputProps) => {
     return (
         <TextField aria-label={!label ? placeholder : undefined} {...props} className={className}>
-            {label && <Label isRequired={hideRequiredIndicator ? !hideRequiredIndicator : undefined}>{label}</Label>}
-
-            <InputBase
-                {...{ ref, groupRef, size, placeholder, icon: Icon, shortcut, iconClassName, inputClassName, wrapperClassName, tooltipClassName, tooltip }}
-            />
-
-            {hint && <HintText>{hint}</HintText>}
+            {({ isInvalid }) => (
+                <>
+                    {label && <Label isRequired={hideRequiredIndicator ? !hideRequiredIndicator : undefined}>{label}</Label>}
+                    <InputBase
+                        {...{
+                            ref,
+                            groupRef,
+                            size,
+                            placeholder,
+                            icon: Icon,
+                            shortcut,
+                            iconClassName,
+                            inputClassName,
+                            wrapperClassName,
+                            tooltipClassName,
+                            tooltip,
+                        }}
+                    />
+                    {hint && <HintText isInvalid={isInvalid}>{hint}</HintText>}
+                </>
+            )}
         </TextField>
     );
 };

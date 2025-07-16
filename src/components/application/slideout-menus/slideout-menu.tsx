@@ -112,7 +112,7 @@ const SlideoutMenu = Menu as typeof Menu & {
     Header: typeof Header;
     Footer: typeof Footer;
 };
-SlideoutMenu.displayName = "SlideoutMenuContext";
+SlideoutMenu.displayName = "SlideoutMenu";
 
 SlideoutMenu.Trigger = AriaDialogTrigger;
 SlideoutMenu.Content = Content;

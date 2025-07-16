@@ -9,6 +9,7 @@ import type { PaginationRootProps } from "./pagination-base";
 import { Pagination } from "./pagination-base";
 
 interface PaginationProps extends Partial<Omit<PaginationRootProps, "children">> {
+    /** Whether the pagination buttons are rounded. */
     rounded?: boolean;
 }
 
@@ -31,9 +32,13 @@ const PaginationItem = ({ value, rounded, isCurrent }: { value: number; rounded?
 };
 
 interface MobilePaginationProps {
+    /** The current page. */
     page?: number;
+    /** The total number of pages. */
     total?: number;
+    /** The class name of the pagination component. */
     className?: string;
+    /** The function to call when the page changes. */
     onPageChange?: (page: number) => void;
 }
 
@@ -228,10 +233,15 @@ export const PaginationCardDefault = ({ rounded, page = 1, total = 10, ...props 
 };
 
 interface PaginationCardMinimalProps {
+    /** The current page. */
     page?: number;
+    /** The total number of pages. */
     total?: number;
+    /** The alignment of the pagination. */
     align?: "left" | "center" | "right";
+    /** The class name of the pagination component. */
     className?: string;
+    /** The function to call when the page changes. */
     onPageChange?: (page: number) => void;
 }
 
@@ -268,6 +278,7 @@ export const PaginationCardMinimal = ({ page = 1, total = 10, align = "left", on
 };
 
 interface PaginationButtonGroupProps extends Partial<Omit<PaginationRootProps, "children">> {
+    /** The alignment of the pagination. */
     align?: "left" | "center" | "right";
 }
 

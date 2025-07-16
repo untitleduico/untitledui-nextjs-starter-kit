@@ -25,8 +25,11 @@ export interface CommonProps {
     size?: "xs" | "sm";
     /** The color variant of the button */
     color?: "secondary" | "tertiary";
+    /** The icon to display in the button */
     icon?: FC<{ className?: string }> | ReactNode;
+    /** The tooltip to display when hovering over the button */
     tooltip?: string;
+    /** The placement of the tooltip */
     tooltipPlacement?: Placement;
 }
 
@@ -57,16 +60,35 @@ export const ButtonUtility = ({
     tooltipPlacement = "top",
     ...otherProps
 }: Props) => {
-    const Component = "href" in otherProps ? AriaLink : AriaButton;
+    const href = "href" in otherProps ? otherProps.href : undefined;
+    const Component = href ? AriaLink : AriaButton;
+
+    let props = {};
+
+    if (href) {
+        props = {
+            ...otherProps,
+
+            href: isDisabled ? undefined : href,
+
+            // Since anchor elements do not support the `disabled` attribute and state,
+            // we need to specify `data-rac` and `data-disabled` in order to be able
+            // to use the `disabled:` selector in classes.
+            ...(isDisabled ? { "data-rac": true, "data-disabled": true } : {}),
+        };
+    } else {
+        props = {
+            ...otherProps,
+
+            type: otherProps.type || "button",
+            isDisabled,
+        };
+    }
 
     const content = (
         <Component
-            type="button"
             aria-label={tooltip}
-            isDisabled={isDisabled}
-            // Remove `any` type assertion after splitting
-            // Component into Link and Button.
-            {...(otherProps as any)}
+            {...props}
             className={cx(
                 "group relative inline-flex h-max cursor-pointer items-center justify-center rounded-md p-1.5 outline-focus-ring transition duration-100 ease-linear focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:text-fg-disabled_subtle",
                 styles[color],

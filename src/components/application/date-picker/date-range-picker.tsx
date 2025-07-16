@@ -18,7 +18,9 @@ const now = today(getLocalTimeZone());
 const highlightedDates = [today(getLocalTimeZone())];
 
 interface DateRangePickerProps extends AriaDateRangePickerProps<DateValue> {
+    /** The function to call when the apply button is clicked. */
     onApply?: () => void;
+    /** The function to call when the cancel button is clicked. */
     onCancel?: () => void;
 }
 

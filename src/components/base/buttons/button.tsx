@@ -199,8 +199,8 @@ export const Button = ({
 
             href: disabled ? undefined : href,
 
-            // Since anchor elements do not support the `disabled` attirbute and state,
-            // we need to spefiify `data-rac` and `data-disabled` in order to be able
+            // Since anchor elements do not support the `disabled` attribute and state,
+            // we need to specify `data-rac` and `data-disabled` in order to be able
             // to use the `disabled:` selector in classes.
             ...(disabled ? { "data-rac": true, "data-disabled": true } : {}),
         };

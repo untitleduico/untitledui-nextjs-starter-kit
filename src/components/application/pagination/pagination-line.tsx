@@ -5,7 +5,9 @@ import type { PaginationRootProps } from "./pagination-base";
 import { Pagination } from "./pagination-base";
 
 interface PaginationLineProps extends Omit<PaginationRootProps, "children"> {
+    /** The size of the pagination line. */
     size?: "md" | "lg";
+    /** Whether the pagination is displayed in a card. */
     framed?: boolean;
 }
 

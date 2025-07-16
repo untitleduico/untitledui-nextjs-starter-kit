@@ -90,10 +90,15 @@ const getColorStyles = ({ isSelected, isHovered }: Partial<AriaTabRenderProps>) 
 });
 
 interface TabListComponentProps<T extends object, K extends Orientation> extends AriaTabListProps<T> {
+    /** The size of the tab list. */
     size?: keyof typeof sizes;
+    /** The type of the tab list. */
     type?: TabTypeColors<K>;
+    /** The orientation of the tab list. */
     orientation?: K;
+    /** The items of the tab list. */
     items: T[];
+    /** Whether the tab list is full width. */
     fullwidth?: boolean;
 }
 
@@ -160,8 +165,11 @@ export const TabPanel = (props: ComponentPropsWithRef<typeof AriaTabPanel>) => {
 };
 
 interface TabComponentProps extends AriaTabProps {
+    /** The label of the tab. */
     label?: ReactNode;
+    /** The children of the tab. */
     children?: ReactNode | ((props: AriaTabRenderProps) => ReactNode);
+    /** The badge displayed next to the label. */
     badge?: number | string;
 }
 

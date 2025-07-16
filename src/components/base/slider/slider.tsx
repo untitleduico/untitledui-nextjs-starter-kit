@@ -1,7 +1,13 @@
 "use client";
 
 import type { SliderProps as AriaSliderProps } from "react-aria-components";
-import { Slider as AriaSlider, Label, SliderOutput, SliderThumb, SliderTrack } from "react-aria-components";
+import {
+    Label as AriaLabel,
+    Slider as AriaSlider,
+    SliderOutput as AriaSliderOutput,
+    SliderThumb as AriaSliderThumb,
+    SliderTrack as AriaSliderTrack,
+} from "react-aria-components";
 import { cx, sortCx } from "@/utils/cx";
 
 const styles = sortCx({
@@ -25,8 +31,8 @@ export const Slider = ({ labelPosition = "default", minValue = 0, maxValue = 100
 
     return (
         <AriaSlider {...rest} {...{ minValue, maxValue }} formatOptions={formatOptions ?? defaultFormatOptions}>
-            <Label />
-            <SliderTrack className="relative h-2 w-full rounded-full bg-quaternary">
+            <AriaLabel />
+            <AriaSliderTrack className="relative h-2 w-full rounded-full bg-quaternary">
                 {({ state: { values, getThumbValue, getThumbPercent, getFormattedValue } }) => {
                     const left = values.length === 1 ? 0 : getThumbPercent(0);
                     const width = values.length === 1 ? getThumbPercent(0) : getThumbPercent(1) - left;
@@ -42,7 +48,7 @@ export const Slider = ({ labelPosition = "default", minValue = 0, maxValue = 100
                             />
                             {values.map((_, index) => {
                                 return (
-                                    <SliderThumb
+                                    <AriaSliderThumb
                                         key={index}
                                         index={index}
                                         className={({ isFocusVisible, isDragging }) =>
@@ -53,16 +59,16 @@ export const Slider = ({ labelPosition = "default", minValue = 0, maxValue = 100
                                             )
                                         }
                                     >
-                                        <SliderOutput className={cx("whitespace-nowrap", styles[labelPosition])}>
+                                        <AriaSliderOutput className={cx("whitespace-nowrap", styles[labelPosition])}>
                                             {labelFormatter ? labelFormatter(getThumbValue(index)) : getFormattedValue(getThumbValue(index) / 100)}
-                                        </SliderOutput>
-                                    </SliderThumb>
+                                        </AriaSliderOutput>
+                                    </AriaSliderThumb>
                                 );
                             })}
                         </>
                     );
                 }}
-            </SliderTrack>
+            </AriaSliderTrack>
         </AriaSlider>
     );
 };

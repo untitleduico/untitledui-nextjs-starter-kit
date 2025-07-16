@@ -58,6 +58,7 @@ const PresetButton = ({ value, children, ...props }: HTMLAttributes<HTMLButtonEl
 };
 
 interface CalendarProps extends AriaCalendarProps<DateValue> {
+    /** The dates to highlight. */
     highlightedDates?: DateValue[];
 }
 

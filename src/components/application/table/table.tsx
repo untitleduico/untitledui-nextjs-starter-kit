@@ -60,10 +60,15 @@ const TableCardRoot = ({ children, className, size = "md", ...props }: HTMLAttri
 };
 
 interface TableCardHeaderProps {
+    /** The title of the table card header. */
     title: string;
+    /** The badge displayed next to the title. */
     badge?: ReactNode;
+    /** The description of the table card header. */
     description?: string;
+    /** The content displayed after the title and badge. */
     contentTrailing?: ReactNode;
+    /** The class name of the table card header. */
     className?: string;
 }
 

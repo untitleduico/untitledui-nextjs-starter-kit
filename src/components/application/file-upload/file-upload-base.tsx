@@ -27,6 +27,7 @@ export const getReadableFileSize = (bytes: number) => {
 };
 
 interface FileUploadDropZoneProps {
+    /** The class name of the drop zone. */
     className?: string;
     /**
      * A hint text explaining what files can be dropped.
@@ -237,14 +238,23 @@ export const FileUploadDropZone = ({
 };
 
 export interface FileListItemProps {
+    /** The name of the file. */
     name: string;
+    /** The size of the file. */
     size: number;
+    /** The upload progress of the file. */
     progress: number;
+    /** Whether the file failed to upload. */
     failed?: boolean;
+    /** The type of the file. */
     type?: ComponentProps<typeof FileIcon>["type"];
+    /** The class name of the file list item. */
     className?: string;
+    /** The variant of the file icon. */
     fileIconVariant?: ComponentProps<typeof FileTypeIcon>["variant"];
+    /** The function to call when the file is deleted. */
     onDelete?: () => void;
+    /** The function to call when the file upload is retried. */
     onRetry?: () => void;
 }
 
