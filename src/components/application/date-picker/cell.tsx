@@ -6,7 +6,9 @@ import { CalendarCell as AriaCalendarCell, RangeCalendarContext, useLocale, useS
 import { cx } from "@/utils/cx";
 
 interface CalendarCellProps extends AriaCalendarCellProps {
+    /** Whether the calendar is a range calendar. */
     isRangeCalendar?: boolean;
+    /** Whether the cell is highlighted. */
     isHighlighted?: boolean;
 }
 

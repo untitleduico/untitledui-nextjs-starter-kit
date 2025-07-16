@@ -70,11 +70,15 @@ export const TextArea = ({
             value={value as string}
             defaultValue={defaultValue as string}
         >
-            {label && <Label tooltip={tooltip}>{label}</Label>}
+            {({ isInvalid }) => (
+                <>
+                    {label && <Label tooltip={tooltip}>{label}</Label>}
 
-            <TextAreaBase {...textAreaProps} />
+                    <TextAreaBase {...textAreaProps} />
 
-            {hint && <HintText>{hint}</HintText>}
+                    {hint && <HintText isInvalid={isInvalid}>{hint}</HintText>}
+                </>
+            )}
         </TextField>
     );
 };

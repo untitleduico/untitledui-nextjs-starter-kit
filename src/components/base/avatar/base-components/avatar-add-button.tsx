@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "@untitledui/icons";
-import type { ButtonProps } from "react-aria-components";
+import type { ButtonProps as AriaButtonProps } from "react-aria-components";
 import { Tooltip as AriaTooltip, TooltipTrigger as AriaTooltipTrigger } from "@/components/base/tooltip/tooltip";
 import { cx } from "@/utils/cx";
 
@@ -11,7 +11,7 @@ const sizes = {
     md: { root: "size-10", icon: "size-5" },
 };
 
-interface AvatarAddButtonProps extends ButtonProps {
+interface AvatarAddButtonProps extends AriaButtonProps {
     size: "xs" | "sm" | "md";
     title?: string;
     className?: string;

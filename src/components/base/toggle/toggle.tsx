@@ -1,8 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { SwitchProps } from "react-aria-components";
-import { Switch } from "react-aria-components";
+import type { SwitchProps as AriaSwitchProps } from "react-aria-components";
+import { Switch as AriaSwitch } from "react-aria-components";
 import { cx } from "@/utils/cx";
 
 interface ToggleBaseProps {
@@ -76,7 +76,7 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
     );
 };
 
-interface ToggleProps extends SwitchProps {
+interface ToggleProps extends AriaSwitchProps {
     size?: "sm" | "md";
     label?: string;
     hint?: ReactNode;
@@ -100,7 +100,7 @@ export const Toggle = ({ label, hint, className, size = "sm", slim, ...ariaSwitc
     };
 
     return (
-        <Switch
+        <AriaSwitch
             {...ariaSwitchProps}
             className={(renderProps) =>
                 cx(
@@ -135,6 +135,6 @@ export const Toggle = ({ label, hint, className, size = "sm", slim, ...ariaSwitc
                     )}
                 </>
             )}
-        </Switch>
+        </AriaSwitch>
     );
 };
