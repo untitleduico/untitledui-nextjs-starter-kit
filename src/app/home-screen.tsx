@@ -61,7 +61,7 @@ export const HomeScreen = () => {
                     </Button>
                     <div className="h-px w-4 bg-brand-solid" />
                     <Button
-                        href="https://github.com/untitledui/react/issues"
+                        href="https://github.com/untitleduico/react/issues"
                         target="_blank"
                         rel="noopener noreferrer"
                         color="link-color"
