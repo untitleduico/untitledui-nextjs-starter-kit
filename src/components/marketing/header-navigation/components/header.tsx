@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
 import { ChevronDown } from "@untitledui/icons";
-import { Button as AriaButton, Dialog, DialogTrigger, Popover } from "react-aria-components";
+import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
@@ -126,14 +126,14 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                 {items.map((navItem) => (
                                     <li key={navItem.label}>
                                         {navItem.menu ? (
-                                            <DialogTrigger>
+                                            <AriaDialogTrigger>
                                                 <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-1.5 py-1 text-md font-semibold text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-secondary_hover focus-visible:outline-2 focus-visible:outline-offset-2">
                                                     <span className="px-0.5">{navItem.label}</span>
 
                                                     <ChevronDown className="size-4 rotate-0 stroke-[2.625px] text-fg-quaternary transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
                                                 </AriaButton>
 
-                                                <Popover
+                                                <AriaPopover
                                                     className={({ isEntering, isExiting }) =>
                                                         cx(
                                                             "hidden origin-top will-change-transform md:block",
@@ -147,7 +147,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                                     triggerRef={(isFloating && isFullWidth) || isFullWidth ? headerRef : undefined}
                                                 >
                                                     {({ isEntering, isExiting }) => (
-                                                        <Dialog
+                                                        <AriaDialog
                                                             className={cx(
                                                                 "mx-auto origin-top outline-hidden",
                                                                 isFloating && "max-w-7xl px-8 pt-3",
@@ -158,10 +158,10 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                                             )}
                                                         >
                                                             {navItem.menu}
-                                                        </Dialog>
+                                                        </AriaDialog>
                                                     )}
-                                                </Popover>
-                                            </DialogTrigger>
+                                                </AriaPopover>
+                                            </AriaDialogTrigger>
                                         ) : (
                                             <a
                                                 href={navItem.href}
@@ -186,7 +186,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                     </div>
 
                     {/* Mobile menu and menu trigger */}
-                    <DialogTrigger>
+                    <AriaDialogTrigger>
                         <AriaButton
                             aria-label="Toggle navigation menu"
                             className={({ isFocusVisible, isHovered }) =>
@@ -216,7 +216,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                                 />
                             </svg>
                         </AriaButton>
-                        <Popover
+                        <AriaPopover
                             triggerRef={headerRef}
                             className="h-calc(100%-72px) scrollbar-hide w-full overflow-y-auto shadow-lg md:hidden"
                             offset={0}
@@ -224,7 +224,7 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
                             containerPadding={0}
                             placement="bottom left"
                         >
-                            <Dialog className="outline-hidden">
+                            <AriaDialog className="outline-hidden">
                                 <nav className="w-full bg-primary shadow-lg">
                                     <ul className="flex flex-col gap-0.5 py-5">
                                         {items.map((navItem) =>
@@ -240,9 +240,9 @@ export const Header = ({ items = headerNavItems, isFullWidth, isFloating, classN
 
                                     <MobileFooter />
                                 </nav>
-                            </Dialog>
-                        </Popover>
-                    </DialogTrigger>
+                            </AriaDialog>
+                        </AriaPopover>
+                    </AriaDialogTrigger>
                 </div>
             </div>
         </header>
