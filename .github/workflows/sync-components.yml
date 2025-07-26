@@ -1,0 +1,360 @@
+name: Sync Components from Main Repository
+
+on:
+    workflow_dispatch:
+        inputs:
+            sync_directories:
+                description: "Directories to sync (comma-separated)"
+                required: false
+                default: "components,hooks,utils,styles"
+                type: string
+            sync_mode:
+                description: "Sync mode"
+                required: false
+                default: "all"
+                type: choice
+                options:
+                    - all
+                    - existing-only
+
+jobs:
+    sync-components:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  fetch-depth: 0
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Configure git
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Fetch main repository and get commit info
+              id: fetch-main-repo
+              run: |
+                  echo "Fetching main repository..."
+
+                  # Create a temporary directory for cloning
+                  mkdir -p /tmp/main-repo
+                  cd /tmp/main-repo
+
+                  # Clone the main repository
+                  git clone https://github.com/untitleduico/react.git .
+
+                  # Get latest commit info
+                  LATEST_COMMIT_HASH=$(git rev-parse HEAD)
+                  LATEST_COMMIT_SHORT=$(git rev-parse --short HEAD)
+                  LATEST_COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+                  LATEST_COMMIT_AUTHOR=$(git log -1 --pretty=format:"%an")
+                  LATEST_COMMIT_DATE=$(git log -1 --pretty=format:"%ci")
+
+                  echo "LATEST_COMMIT_HASH=$LATEST_COMMIT_HASH" >> $GITHUB_ENV
+                  echo "LATEST_COMMIT_SHORT=$LATEST_COMMIT_SHORT" >> $GITHUB_ENV
+                  echo "LATEST_COMMIT_MESSAGE=$LATEST_COMMIT_MESSAGE" >> $GITHUB_ENV
+                  echo "LATEST_COMMIT_AUTHOR=$LATEST_COMMIT_AUTHOR" >> $GITHUB_ENV
+                  echo "LATEST_COMMIT_DATE=$LATEST_COMMIT_DATE" >> $GITHUB_ENV
+
+                  echo "Latest commit: $LATEST_COMMIT_SHORT - $LATEST_COMMIT_MESSAGE"
+
+                  # Get the directory structure (main repo has directories at root level, not in src/)
+                  # Exclude demo and story files
+                  find components hooks utils styles -type f ! -name "*.demo.tsx" ! -name "*.story.tsx" ! -name "*.stories.tsx" 2>/dev/null | sort > /tmp/main-repo-files.txt || echo "Some directories may not exist"
+
+                  echo "Files to sync:"
+                  cat /tmp/main-repo-files.txt
+
+            - name: Get last synced commit
+              id: get-last-sync
+              run: |
+                  cd $GITHUB_WORKSPACE
+
+                  # Check if we have a previous sync record
+                  if [ -f ".github/last-sync-commit" ] && [ -s ".github/last-sync-commit" ]; then
+                    # Read the first line and trim whitespace, ignore comments
+                    LAST_SYNC_COMMIT=$(head -n 1 .github/last-sync-commit | xargs | grep -v '^#' || echo "")
+                    
+                    if [ -n "$LAST_SYNC_COMMIT" ] && [ "$LAST_SYNC_COMMIT" != "" ]; then
+                      echo "LAST_SYNC_COMMIT=$LAST_SYNC_COMMIT" >> $GITHUB_ENV
+                      echo "Found previous sync commit: $LAST_SYNC_COMMIT"
+                    else
+                      echo "LAST_SYNC_COMMIT=" >> $GITHUB_ENV
+                      echo "Sync file exists but no valid commit hash found"
+                    fi
+                  else
+                    echo "LAST_SYNC_COMMIT=" >> $GITHUB_ENV
+                    echo "No previous sync record found"
+                  fi
+
+            - name: Get commits since last sync
+              id: get-commits-since-sync
+              run: |
+                  cd /tmp/main-repo
+
+                  if [ -n "$LAST_SYNC_COMMIT" ]; then
+                    echo "Getting commits since $LAST_SYNC_COMMIT..."
+                    
+                    # Get commit log since last sync
+                    git log --oneline "$LAST_SYNC_COMMIT".."$LATEST_COMMIT_HASH" > /tmp/commits-since-sync.txt || echo "Could not get commit range"
+                    
+                    # Count commits
+                    COMMIT_COUNT=$(wc -l < /tmp/commits-since-sync.txt)
+                    echo "COMMIT_COUNT=$COMMIT_COUNT" >> $GITHUB_ENV
+                    
+                    echo "Commits since last sync ($COMMIT_COUNT):"
+                    cat /tmp/commits-since-sync.txt
+                  else
+                    echo "COMMIT_COUNT=unknown" >> $GITHUB_ENV
+                    echo "No previous sync - this is the first sync"
+                    echo "First sync - syncing from latest commit" > /tmp/commits-since-sync.txt
+                  fi
+
+            - name: Create sync branch
+              run: |
+                  cd $GITHUB_WORKSPACE
+                  BRANCH_NAME="sync/$(date +%Y-%m-%d-%H%M%S)-$LATEST_COMMIT_SHORT"
+                  echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+                  # Delete branch if it exists locally
+                  git branch -D "$BRANCH_NAME" 2>/dev/null || true
+
+                  # Delete branch if it exists remotely
+                  git push origin --delete "$BRANCH_NAME" 2>/dev/null || true
+
+                  # Create fresh branch
+                  git checkout -b "$BRANCH_NAME"
+                  echo "Created branch: $BRANCH_NAME"
+
+            - name: Sync files from main repository
+              run: |
+                  cd /tmp/main-repo
+
+                  # Read the sync directories from input
+                  IFS=',' read -ra DIRS <<< "${{ github.event.inputs.sync_directories }}"
+
+                  # Create sync summary file
+                  echo "# Sync Summary" > /tmp/sync-summary.md
+                  echo "" >> /tmp/sync-summary.md
+
+                  for dir in "${DIRS[@]}"; do
+                    dir=$(echo "$dir" | xargs) # trim whitespace
+                    echo "## Syncing $dir directory" >> /tmp/sync-summary.md
+                    
+                    # Main repo has directories at root level, target repo has them in src/
+                    if [ -d "$dir" ]; then
+                      # Create directory in target repo if it doesn't exist
+                      mkdir -p "$GITHUB_WORKSPACE/src/$dir"
+                      
+                      # Find all files in the directory from main repo, excluding demo and story files
+                      find "$dir" -type f ! -name "*.demo.tsx" ! -name "*.story.tsx" ! -name "*.stories.tsx" | while read -r file; do
+                        target_file="$GITHUB_WORKSPACE/src/$file"
+                        
+                        # Check sync mode
+                        if [ "${{ github.event.inputs.sync_mode }}" = "existing-only" ]; then
+                          # Only process if target file already exists
+                          if [ ! -f "$target_file" ]; then
+                            echo "Skipping new file: $file (existing-only mode)"
+                            continue
+                          fi
+                        fi
+                        
+                        echo "Processing $file..."
+                        
+                        # Target file goes in src/ directory
+                        target_dir=$(dirname "$target_file")
+                        mkdir -p "$target_dir"
+                        
+                        # Copy file directly without processing
+                        cp "$file" "$target_file"
+                        
+                        echo "- src/$file" >> /tmp/sync-summary.md
+                      done
+                      
+                      # Log skipped files for transparency
+                      DEMO_STORY_SKIPPED=$(find "$dir" -type f \( -name "*.demo.tsx" -o -name "*.story.tsx" -o -name "*.stories.tsx" \) | wc -l)
+                      
+                      if [ "${{ github.event.inputs.sync_mode }}" = "existing-only" ]; then
+                        # Count new files that were skipped
+                        NEW_FILES_SKIPPED=0
+                        find "$dir" -type f ! -name "*.demo.tsx" ! -name "*.story.tsx" ! -name "*.stories.tsx" | while read -r file; do
+                          target_file="$GITHUB_WORKSPACE/src/$file"
+                          if [ ! -f "$target_file" ]; then
+                            NEW_FILES_SKIPPED=$((NEW_FILES_SKIPPED + 1))
+                          fi
+                        done
+                        
+                        if [ "$NEW_FILES_SKIPPED" -gt 0 ]; then
+                          echo "Skipped $NEW_FILES_SKIPPED new files (existing-only mode)"
+                          echo "- Skipped $NEW_FILES_SKIPPED new files (existing-only mode)" >> /tmp/sync-summary.md
+                        fi
+                      fi
+                      
+                      if [ "$DEMO_STORY_SKIPPED" -gt 0 ]; then
+                        echo "Skipped $DEMO_STORY_SKIPPED demo/story files"
+                        echo "- Skipped $DEMO_STORY_SKIPPED demo/story files" >> /tmp/sync-summary.md
+                      fi
+                    else
+                      echo "Directory $dir not found in main repository" >> /tmp/sync-summary.md
+                    fi
+                  done
+
+            - name: Check for changes
+              id: check-changes
+              run: |
+                  cd $GITHUB_WORKSPACE
+                  if git diff --quiet; then
+                    echo "changes=false" >> $GITHUB_OUTPUT
+                    echo "No changes detected"
+                  else
+                    echo "changes=true" >> $GITHUB_OUTPUT
+                    echo "Changes detected"
+                  fi
+
+            - name: Generate detailed diff summary
+              if: steps.check-changes.outputs.changes == 'true'
+              run: |
+                  cd $GITHUB_WORKSPACE
+
+                  echo "# Component sync changes" > /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+                  echo "This PR synchronizes components from the main repository [untitleduico/react](https://github.com/untitleduico/react)." >> /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+
+                  # Add commits since last sync section
+                  echo "## 📝 Commits since last sync" >> /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+                  if [ -n "$LAST_SYNC_COMMIT" ] && [ "$COMMIT_COUNT" != "unknown" ]; then
+                    if [ "$COMMIT_COUNT" -gt 0 ]; then
+                      echo "**$COMMIT_COUNT new commits** from [\`$LAST_SYNC_COMMIT\`](https://github.com/untitleduico/react/commit/$LAST_SYNC_COMMIT) to [\`$LATEST_COMMIT_SHORT\`](https://github.com/untitleduico/react/commit/$LATEST_COMMIT_HASH):" >> /tmp/pr-description.md
+                      echo "" >> /tmp/pr-description.md
+                      echo "<details>" >> /tmp/pr-description.md
+                      echo "<summary>View commit history</summary>" >> /tmp/pr-description.md
+                      echo "" >> /tmp/pr-description.md
+                      while IFS= read -r commit_line; do
+                        if [ -n "$commit_line" ]; then
+                          commit_hash=$(echo "$commit_line" | cut -d' ' -f1)
+                          commit_msg=$(echo "$commit_line" | cut -d' ' -f2-)
+                          echo "- [\`$commit_hash\`](https://github.com/untitleduico/react/commit/$commit_hash) $commit_msg" >> /tmp/pr-description.md
+                        fi
+                      done < /tmp/commits-since-sync.txt
+                      echo "" >> /tmp/pr-description.md
+                      echo "</details>" >> /tmp/pr-description.md
+                    else
+                      echo "✅ **Repository is up to date** - no new commits since last sync [\`$LAST_SYNC_COMMIT\`](https://github.com/untitleduico/react/commit/$LAST_SYNC_COMMIT)" >> /tmp/pr-description.md
+                    fi
+                  else
+                    echo "🎉 **First sync** - syncing from latest commit [\`$LATEST_COMMIT_SHORT\`](https://github.com/untitleduico/react/commit/$LATEST_COMMIT_HASH)" >> /tmp/pr-description.md
+                    echo "" >> /tmp/pr-description.md
+                    echo "**Latest commit**: $LATEST_COMMIT_MESSAGE" >> /tmp/pr-description.md
+                    echo "**Author**: $LATEST_COMMIT_AUTHOR" >> /tmp/pr-description.md
+                    echo "**Date**: $LATEST_COMMIT_DATE" >> /tmp/pr-description.md
+                  fi
+                  echo "" >> /tmp/pr-description.md
+
+                  echo "## 📁 Modified files" >> /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+
+                  # Get file statistics
+                  TOTAL_FILES=$(git diff --name-only | wc -l)
+                  echo "**$TOTAL_FILES files modified**" >> /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+
+                  # List all changed files
+                  git diff --name-only | while read -r file; do
+                    if [ -n "$file" ]; then
+                      echo "- \`$file\`" >> /tmp/pr-description.md
+                    fi
+                  done
+                  echo "" >> /tmp/pr-description.md
+
+                  echo "## 🔧 Sync details" >> /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+                  echo "- **Source repository**: [untitleduico/react](https://github.com/untitleduico/react)" >> /tmp/pr-description.md
+                  echo "- **Latest commit**: [\`$LATEST_COMMIT_SHORT\`](https://github.com/untitleduico/react/commit/$LATEST_COMMIT_HASH)" >> /tmp/pr-description.md
+                  echo "- **Sync date**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> /tmp/pr-description.md
+                  echo "- **Directories synced**: ${{ github.event.inputs.sync_directories }}" >> /tmp/pr-description.md
+                  echo "- **Sync mode**: ${{ github.event.inputs.sync_mode }}" >> /tmp/pr-description.md
+                  echo "- **Automated processing**: Excluded demo/story files" >> /tmp/pr-description.md
+                  echo "" >> /tmp/pr-description.md
+                  echo "---" >> /tmp/pr-description.md
+                  echo "*This PR was automatically generated by the sync-components workflow.*" >> /tmp/pr-description.md
+
+            - name: Store sync commit record
+              if: steps.check-changes.outputs.changes == 'true'
+              run: |
+                  cd $GITHUB_WORKSPACE
+
+                  # Create .github directory if it doesn't exist
+                  mkdir -p .github
+
+                  # Store the latest commit hash for next sync
+                  echo "$LATEST_COMMIT_HASH" > .github/last-sync-commit
+
+                  echo "Stored sync commit: $LATEST_COMMIT_HASH"
+
+            - name: Commit changes
+              if: steps.check-changes.outputs.changes == 'true'
+              run: |
+                  cd $GITHUB_WORKSPACE
+                  git add .
+
+                  # Create commit message
+                  if [ -n "$LAST_SYNC_COMMIT" ] && [ "$COMMIT_COUNT" != "unknown" ] && [ "$COMMIT_COUNT" -gt 0 ]; then
+                    COMMIT_MSG="sync: Update components from main repository ($COMMIT_COUNT commits)
+
+                  Synced from: $LAST_SYNC_COMMIT..$LATEST_COMMIT_SHORT
+                  Latest commit: $LATEST_COMMIT_MESSAGE
+                  Directories: ${{ github.event.inputs.sync_directories }}
+                  Source: https://github.com/untitleduico/react/commit/$LATEST_COMMIT_HASH"
+                  else
+                    COMMIT_MSG="sync: Initial sync from main repository
+
+                  Latest commit: $LATEST_COMMIT_SHORT - $LATEST_COMMIT_MESSAGE
+                  Author: $LATEST_COMMIT_AUTHOR
+                  Directories: ${{ github.event.inputs.sync_directories }}
+                  Source: https://github.com/untitleduico/react/commit/$LATEST_COMMIT_HASH"
+                  fi
+
+                  git commit -m "$COMMIT_MSG"
+
+            - name: Push changes and create PR
+              if: steps.check-changes.outputs.changes == 'true'
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  cd $GITHUB_WORKSPACE
+                  git push origin "$BRANCH_NAME"
+
+                  # Create PR title based on sync type
+                  if [ -n "$LAST_SYNC_COMMIT" ] && [ "$COMMIT_COUNT" != "unknown" ] && [ "$COMMIT_COUNT" -gt 0 ]; then
+                    PR_TITLE="🔄 Sync components ($COMMIT_COUNT commits) → $LATEST_COMMIT_SHORT"
+                  else
+                    PR_TITLE="🎉 Initial sync from main repository → $LATEST_COMMIT_SHORT"
+                  fi
+
+                  # Create PR using GitHub CLI
+                  gh pr create \
+                    --title "$PR_TITLE" \
+                    --body-file /tmp/pr-description.md \
+                    --head "$BRANCH_NAME" \
+                    --base main
+
+            - name: Output results
+              run: |
+                  if [ "${{ steps.check-changes.outputs.changes }}" == "true" ]; then
+                    echo "✅ Sync completed successfully. PR created."
+                    echo "Branch: $BRANCH_NAME"
+                  else
+                    echo "ℹ️ No changes detected. Repository is already in sync."
+                  fi
