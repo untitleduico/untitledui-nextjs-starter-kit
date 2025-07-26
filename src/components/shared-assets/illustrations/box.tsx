@@ -10,7 +10,7 @@ interface IllustrationProps extends HTMLAttributes<HTMLDivElement> {
     childrenClassName?: string;
 }
 
-export const BoxIllustration = ({ size = "lg", svgClassName, childrenClassName, ...otherProps }: IllustrationProps) => {
+export const BoxIllustration = ({ size = "lg", ...otherProps }: IllustrationProps) => {
     const Pattern = sizes[size];
 
     return <Pattern {...otherProps} />;
@@ -24,8 +24,8 @@ export const sm = ({
     ...otherProps
 }: Omit<IllustrationProps, "size">) => {
     return (
-        <div {...otherProps} className={cx("relative", className)}>
-            <svg width="152" height="126" viewBox="0 0 152 126" fill="none" className={cx("size-full stroke-inherit text-inherit", svgClassName)}>
+        <div {...otherProps} className={cx("relative h-31.5 w-38", className)}>
+            <svg viewBox="0 0 152 126" fill="none" className={cx("size-full stroke-inherit text-inherit", svgClassName)}>
                 <circle cx="76" cy="60" r="52" className="fill-utility-gray-100" />
                 <circle cx="21" cy="27" r="5" className="fill-utility-gray-100" />
                 <circle cx="18" cy="111" r="7" className="fill-utility-gray-100" />
@@ -105,8 +105,8 @@ export const md = ({
     ...otherProps
 }: Omit<IllustrationProps, "size">) => {
     return (
-        <div {...otherProps} className={cx("relative", className)}>
-            <svg width="172" height="148" viewBox="0 0 172 148" fill="none" className={cx("size-full stroke-inherit text-inherit", svgClassName)}>
+        <div {...otherProps} className={cx("relative h-37 w-43", className)}>
+            <svg viewBox="0 0 172 148" fill="none" className={cx("size-full stroke-inherit text-inherit", svgClassName)}>
                 <circle cx="86" cy="74" r="64" className="fill-utility-gray-100" />
                 <circle cx="20" cy="30" r="6" className="fill-utility-gray-100" />
                 <circle cx="17" cy="122" r="8" className="fill-utility-gray-100" />
@@ -186,8 +186,8 @@ export const lg = ({
     ...otherProps
 }: Omit<IllustrationProps, "size">) => {
     return (
-        <div {...otherProps} className={cx("relative", className)}>
-            <svg width="220" height="181" viewBox="0 0 220 181" fill="none" className={cx("size-full stroke-inherit text-inherit", svgClassName)}>
+        <div {...otherProps} className={cx("relative h-45.25 w-55", className)}>
+            <svg viewBox="0 0 220 181" fill="none" className={cx("size-full stroke-inherit text-inherit", svgClassName)}>
                 <circle cx="110" cy="90" r="80" className="fill-utility-gray-100" />
                 <circle cx="26" cy="30" r="8" className="fill-utility-gray-100" />
                 <circle cx="198" cy="136" r="6" className="fill-utility-gray-100" />
