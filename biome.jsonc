@@ -1,0 +1,47 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
+  "linter": {
+    "rules": {
+      "style": {
+        // UI library uses type aliases for component props
+        "useConsistentTypeDefinitions": "off",
+        // Barrel files are common in component libraries
+        "noExportedImports": "off",
+        // Nested ternaries used for variant styling
+        "noNestedTernary": "warn",
+        // Non-null assertions used with React Aria context
+        "noNonNullAssertion": "warn"
+      },
+      "performance": {
+        // Component library uses barrel files for exports
+        "noBarrelFile": "off",
+        // Next.js Image component preferred but not always applicable
+        "noImgElement": "warn"
+      },
+      "a11y": {
+        // SVG icons in component library - aria-label provided at usage
+        "noSvgWithoutTitle": "off",
+        // Placeholder hrefs in demo components
+        "useValidAnchor": "warn"
+      },
+      "complexity": {
+        // Complex UI components may exceed default threshold
+        "noExcessiveCognitiveComplexity": {
+          "level": "warn",
+          "options": { "maxAllowedComplexity": 25 }
+        },
+        // forEach used intentionally in some places
+        "noForEach": "warn"
+      },
+      "suspicious": {
+        // Array index keys used for static lists
+        "noArrayIndexKey": "warn"
+      },
+      "correctness": {
+        // Image dimensions handled by CSS/containers
+        "useImageSize": "warn"
+      }
+    }
+  }
+}
