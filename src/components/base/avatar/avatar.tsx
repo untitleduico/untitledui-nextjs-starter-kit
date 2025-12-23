@@ -110,6 +110,9 @@ export const Avatar = ({
   const renderMainContent = () => {
     if (src && !isFailed) {
       return (
+        // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Click handled by parent container
+        // biome-ignore lint/performance/noImgElement: img used for dynamic sizing, Next.js Image not suitable
+        // biome-ignore lint/correctness/useImageSize: Dimensions controlled via CSS classes
         <img
           alt={alt}
           className="size-full rounded-full object-cover"

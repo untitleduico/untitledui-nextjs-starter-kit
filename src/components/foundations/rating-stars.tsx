@@ -92,6 +92,7 @@ export const RatingStars = ({
       {Array.from({ length: stars }).map((_, index) => (
         <StarIcon
           className={starClassName}
+          // biome-ignore lint/suspicious/noArrayIndexKey: Stars are ordered and don't have unique identifiers
           key={index}
           progress={getStarProgress(index, rating, stars)}
         />

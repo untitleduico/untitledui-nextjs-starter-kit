@@ -69,6 +69,7 @@ const PaginationRoot = ({
 }: PaginationRootProps) => {
   const [pages, setPages] = useState<PaginationItemType[]>([]);
 
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Pagination logic requires complex branching
   const createPaginationItems = useCallback((): PaginationItemType[] => {
     const items: PaginationItemType[] = [];
     // Calculate the maximum number of pagination elements (pages, potential ellipsis, first and last) to show
@@ -99,13 +100,13 @@ const PaginationRoot = ({
         const leftItemCount = siblingCount * 2 + 3;
         const leftRange = range(1, leftItemCount);
 
-        leftRange.forEach((pageNum) =>
+        for (const pageNum of leftRange) {
           items.push({
             type: "page",
             value: pageNum,
             isCurrent: pageNum === page,
-          })
-        );
+          });
+        }
 
         // Insert ellipsis after the left range and add the last page
         items.push({ type: "ellipsis", key: leftItemCount + 1 });
@@ -128,13 +129,13 @@ const PaginationRoot = ({
           isCurrent: page === 1,
         });
         items.push({ type: "ellipsis", key: total - rightItemCount });
-        rightRange.forEach((pageNum) =>
+        for (const pageNum of rightRange) {
           items.push({
             type: "page",
             value: pageNum,
             isCurrent: pageNum === page,
-          })
-        );
+          });
+        }
       }
       // Case 3: Both left and right ellipsis are needed
       else if (showLeftEllipsis && showRightEllipsis) {
@@ -149,13 +150,13 @@ const PaginationRoot = ({
 
         // Show a range of pages around the current page
         const middleRange = range(leftSiblingIndex, rightSiblingIndex);
-        middleRange.forEach((pageNum) =>
+        for (const pageNum of middleRange) {
           items.push({
             type: "page",
             value: pageNum,
             isCurrent: pageNum === page,
-          })
-        );
+          });
+        }
 
         // Insert right ellipsis and finally the last page
         items.push({ type: "ellipsis", key: rightSiblingIndex + 1 });
@@ -298,6 +299,7 @@ const Trigger: FC<TriggerProps> = ({
       disabled={isDisabled}
       onClick={handleClick}
       style={style}
+      type="button"
     >
       {children}
     </button>
@@ -406,6 +408,7 @@ const PaginationItem = ({
       className={computedClassName}
       onClick={handleClick}
       style={style}
+      type="button"
     >
       {children}
     </button>

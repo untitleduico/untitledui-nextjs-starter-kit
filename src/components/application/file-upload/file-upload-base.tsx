@@ -148,11 +148,11 @@ export const FileUploadDropZone = ({
     // If multiple files are not allowed, only process the first file
     const filesToProcess = allowsMultiple ? files : files.slice(0, 1);
 
-    filesToProcess.forEach((file) => {
+    for (const file of filesToProcess) {
       // Check file size first
       if (maxSize && file.size > maxSize) {
         oversizedFiles.push(file);
-        return;
+        continue;
       }
 
       // Then check file type
@@ -161,12 +161,14 @@ export const FileUploadDropZone = ({
       } else {
         unacceptedFiles.push(file);
       }
-    });
+    }
 
     // Handle oversized files
     if (oversizedFiles.length > 0 && typeof onSizeLimitExceed === "function") {
       const dataTransfer = new DataTransfer();
-      oversizedFiles.forEach((file) => dataTransfer.items.add(file));
+      for (const file of oversizedFiles) {
+        dataTransfer.items.add(file);
+      }
 
       setIsInvalid(true);
       onSizeLimitExceed(dataTransfer.files);
@@ -175,7 +177,9 @@ export const FileUploadDropZone = ({
     // Handle accepted files
     if (acceptedFiles.length > 0 && typeof onDropFiles === "function") {
       const dataTransfer = new DataTransfer();
-      acceptedFiles.forEach((file) => dataTransfer.items.add(file));
+      for (const file of acceptedFiles) {
+        dataTransfer.items.add(file);
+      }
       onDropFiles(dataTransfer.files);
     }
 
@@ -185,7 +189,9 @@ export const FileUploadDropZone = ({
       typeof onDropUnacceptedFiles === "function"
     ) {
       const unacceptedDataTransfer = new DataTransfer();
-      unacceptedFiles.forEach((file) => unacceptedDataTransfer.items.add(file));
+      for (const file of unacceptedFiles) {
+        unacceptedDataTransfer.items.add(file);
+      }
 
       setIsInvalid(true);
       onDropUnacceptedFiles(unacceptedDataTransfer.files);
@@ -213,6 +219,8 @@ export const FileUploadDropZone = ({
   };
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: Drop zone requires drag event handlers on div
+    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Drop zone requires drag event handlers on div
     <div
       className={cx(
         "relative flex flex-col items-center gap-3 rounded-xl bg-primary px-6 py-4 text-tertiary ring-1 ring-secondary ring-inset transition duration-100 ease-linear",

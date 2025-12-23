@@ -28,7 +28,8 @@ export const NavList = ({ activeUrl, items, className }: NavListProps) => {
       {items.map((item, index) => {
         if (item.divider) {
           return (
-            <li className="w-full px-0.5 py-2" key={index}>
+            // biome-ignore lint/suspicious/noArrayIndexKey: Dividers don't have unique identifiers
+            <li className="w-full px-0.5 py-2" key={`divider-${index}`}>
               <hr className="h-px w-full border-none bg-border-secondary" />
             </li>
           );

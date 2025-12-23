@@ -79,6 +79,7 @@ export const NavItemBase = ({
 
   if (type === "collapsible") {
     return (
+      // biome-ignore lint/a11y/noStaticElementInteractions: summary is interactive by nature in details/summary pattern
       <summary
         className={cx("px-3 py-2", styles.root, current && styles.rootSelected)}
         onClick={onClick}
@@ -106,6 +107,7 @@ export const NavItemBase = ({
           styles.root,
           current && styles.rootSelected
         )}
+        // biome-ignore lint/style/noNonNullAssertion: href is guaranteed by type narrowing from parent
         href={href!}
         onClick={onClick}
         rel="noopener noreferrer"
@@ -122,6 +124,7 @@ export const NavItemBase = ({
     <AriaLink
       aria-current={current ? "page" : undefined}
       className={cx("px-3 py-2", styles.root, current && styles.rootSelected)}
+      // biome-ignore lint/style/noNonNullAssertion: href is guaranteed by type narrowing from parent
       href={href!}
       onClick={onClick}
       rel="noopener noreferrer"

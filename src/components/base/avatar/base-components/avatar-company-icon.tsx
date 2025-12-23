@@ -22,6 +22,8 @@ export const AvatarCompanyIcon = ({
   src,
   alt,
 }: AvatarCompanyIconProps) => (
+  // biome-ignore lint/performance/noImgElement: img used for dynamic sizing, Next.js Image not suitable
+  // biome-ignore lint/correctness/useImageSize: Dimensions controlled via CSS classes
   <img
     alt={alt}
     className={cx(

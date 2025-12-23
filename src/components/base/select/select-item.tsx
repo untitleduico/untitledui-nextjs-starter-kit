@@ -1,6 +1,7 @@
 "use client";
 
 import { Check } from "@untitledui/icons";
+import type { FC, ReactNode } from "react";
 import { isValidElement, useContext } from "react";
 import type { ListBoxItemProps as AriaListBoxItemProps } from "react-aria-components";
 import {
@@ -12,6 +13,23 @@ import { cx } from "@/utils/cx";
 import { isReactComponent } from "@/utils/is-react-component";
 import type { SelectItemType } from "./select";
 import { SelectContext } from "./select";
+
+const getItemIcon = (
+  avatarUrl: string | undefined,
+  label: string | undefined,
+  Icon: FC | ReactNode | undefined
+) => {
+  if (avatarUrl) {
+    return <Avatar alt={label} aria-hidden="true" size="xs" src={avatarUrl} />;
+  }
+  if (isReactComponent(Icon)) {
+    return <Icon aria-hidden="true" data-icon />;
+  }
+  if (isValidElement(Icon)) {
+    return Icon;
+  }
+  return null;
+};
 
 const sizes = {
   sm: "p-2 pr-2.5",
@@ -81,13 +99,7 @@ export const SelectItem = ({
             sizes[size]
           )}
         >
-          {avatarUrl ? (
-            <Avatar alt={label} aria-hidden="true" size="xs" src={avatarUrl} />
-          ) : isReactComponent(Icon) ? (
-            <Icon aria-hidden="true" data-icon />
-          ) : isValidElement(Icon) ? (
-            Icon
-          ) : null}
+          {getItemIcon(avatarUrl, label, Icon)}
 
           <div className="flex w-full min-w-0 flex-1 flex-wrap gap-x-2">
             <AriaText

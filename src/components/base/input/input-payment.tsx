@@ -67,7 +67,8 @@ const detectCardType = (number: string) => {
   );
 
   // Return matching card or the last card type (Unknown) as fallback
-  return card ?? cardTypes[cardTypes.length - 1];
+  // biome-ignore lint/style/noNonNullAssertion: cardTypes is a static non-empty array
+  return card ?? cardTypes.at(-1)!;
 };
 
 /**
@@ -102,11 +103,11 @@ export const PaymentInput = ({
   const [cardNumber, setCardNumber] = useControlledState(
     value,
     defaultValue || "",
-    (value) => {
+    (rawValue) => {
       // Remove all non-numeric characters
-      value = value.replace(/\D/g, "");
+      const sanitizedValue = rawValue.replace(/\D/g, "");
 
-      onChange?.(value || "");
+      onChange?.(sanitizedValue || "");
     }
   );
 

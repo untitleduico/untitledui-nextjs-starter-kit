@@ -44,6 +44,7 @@ const Root = ({
 
   return (
     <PinInputContext.Provider value={{ size, disabled, id }}>
+      {/* biome-ignore lint/a11y/useSemanticElements: Using div with role="group" for flexible styling instead of fieldset */}
       <div
         className={cx("flex h-max flex-col gap-1.5", className)}
         role="group"
@@ -102,6 +103,32 @@ const sizes = {
   lg: "size-24 px-2 py-3 text-display-xl font-medium",
 };
 
+const FakeCaret = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
+  return (
+    <div
+      className={cx(
+        "pointer-events-none h-[1em] w-0.5 animate-caret-blink bg-fg-brand-primary",
+        size === "lg"
+          ? "font-medium text-display-xl"
+          : "font-medium text-display-lg"
+      )}
+    />
+  );
+};
+
+const getSlotContent = (
+  slot: { char: string | null; hasFakeCaret: boolean } | undefined,
+  size: "sm" | "md" | "lg"
+) => {
+  if (slot?.char) {
+    return slot.char;
+  }
+  if (slot?.hasFakeCaret) {
+    return <FakeCaret size={size} />;
+  }
+  return 0;
+};
+
 const Slot = ({
   index,
   className,
@@ -112,6 +139,7 @@ const Slot = ({
   const slot = slots[index];
 
   return (
+    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: aria-label provides context for screen readers on pin digit slots
     <div
       {...props}
       aria-label={`Enter digit ${index + 1} of ${slots.length}`}
@@ -126,34 +154,18 @@ const Slot = ({
         className
       )}
     >
-      {slot?.char ? (
-        slot.char
-      ) : slot?.hasFakeCaret ? (
-        <FakeCaret size={size} />
-      ) : (
-        0
-      )}
+      {getSlotContent(slot, size)}
     </div>
   );
 };
 Slot.displayName = "Slot";
 
-const FakeCaret = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
-  return (
-    <div
-      className={cx(
-        "pointer-events-none h-[1em] w-0.5 animate-caret-blink bg-fg-brand-primary",
-        size === "lg"
-          ? "font-medium text-display-xl"
-          : "font-medium text-display-lg"
-      )}
-    />
-  );
-};
-
 const Separator = (props: ComponentPropsWithRef<"p">) => {
   return (
+    // biome-ignore lint/a11y/useFocusableInteractive: Decorative separator between pin digits, not interactive
+    // biome-ignore lint/a11y/useSemanticElements: Using styled div for visual separator between pin digits
     <div
+      // biome-ignore lint/a11y/useAriaPropsForRole: Decorative visual separator, aria value not required
       role="separator"
       {...props}
       className={cx(
@@ -171,6 +183,7 @@ const Label = ({ className, ...props }: ComponentPropsWithRef<"label">) => {
   const { id } = usePinInputContext();
 
   return (
+    // biome-ignore lint/a11y/noLabelWithoutControl: Label content is passed via children props
     <label
       {...props}
       className={cx("font-medium text-secondary text-sm", className)}

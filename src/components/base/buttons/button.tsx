@@ -198,7 +198,8 @@ export const Button = ({
   isLoading: loading,
   showTextWhileLoading,
   ...otherProps
-}: Props) => {
+}: // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Button handles many variant combinations
+Props) => {
   const href = "href" in otherProps ? otherProps.href : undefined;
   const Component = href ? AriaLink : AriaButton;
 

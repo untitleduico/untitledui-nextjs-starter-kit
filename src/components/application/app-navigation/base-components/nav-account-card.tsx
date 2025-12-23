@@ -78,6 +78,8 @@ export const NavAccountMenu = ({
         case "ArrowUp":
           focusManager?.focusPrevious({ tabbable: true, wrap: true });
           break;
+        default:
+          break;
       }
     },
     [focusManager]
@@ -132,6 +134,7 @@ export const NavAccountMenu = ({
                   account.id === selectedAccountId && "bg-primary_hover"
                 )}
                 key={account.id}
+                type="button"
               >
                 <AvatarLabelGroup
                   size="md"

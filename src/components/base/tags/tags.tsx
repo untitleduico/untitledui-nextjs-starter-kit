@@ -127,16 +127,27 @@ export const Tag = ({
 }: PropsWithChildren<TagProps>) => {
   const context = useContext(TagGroupContext);
 
-  const leadingContent = avatarSrc ? (
-    <Avatar
-      alt="Avatar"
-      contrastBorder={avatarContrastBorder}
-      size="xxs"
-      src={avatarSrc}
-    />
-  ) : dot ? (
-    <Dot className={cx("text-fg-success-secondary", dotClassName)} size="sm" />
-  ) : null;
+  const leadingContent = (() => {
+    if (avatarSrc) {
+      return (
+        <Avatar
+          alt="Avatar"
+          contrastBorder={avatarContrastBorder}
+          size="xxs"
+          src={avatarSrc}
+        />
+      );
+    }
+    if (dot) {
+      return (
+        <Dot
+          className={cx("text-fg-success-secondary", dotClassName)}
+          size="sm"
+        />
+      );
+    }
+    return null;
+  })();
 
   return (
     <AriaTag

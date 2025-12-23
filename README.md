@@ -1,5 +1,7 @@
 # Untitled UI starter kit for Next.js
 
+[![CI](https://github.com/untitleduico/untitledui-nextjs-starter-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/untitleduico/untitledui-nextjs-starter-kit/actions/workflows/ci.yml)
+
 This is an official Untitled UI starter kit for Next.js. Kickstart your Untitled UI project with Next.js in seconds.
 
 ## Untitled UI React
@@ -27,6 +29,61 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Testing
+
+This project includes a comprehensive test suite with **179 tests** covering utilities, hooks, and components.
+
+Run tests with Vitest:
+
+```bash
+npm run test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
+
+Run tests in CI mode:
+
+```bash
+bun test:run
+```
+
+Generate coverage report:
+
+```bash
+bun test:coverage
+```
+
+**Test Coverage:**
+- 9 test files
+- 179 passing tests
+- Utilities: `cx`, `isReactComponent`
+- Hooks: `useBreakpoint`, `useClipboard`, `useResizeObserver`
+- Components: Badge, Button, Checkbox, Toggle
+
+**Testing Stack:**
+- [Vitest](https://vitest.dev/) - Fast unit test framework
+- [React Testing Library](https://testing-library.com/react) - Component testing utilities
+- [jsdom](https://github.com/jsdom/jsdom) - Browser environment for tests
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration. The CI pipeline runs on every push to `main` and on pull requests.
+
+**CI Pipeline Steps:**
+1. **Lint** - Runs Biome/Ultracite linter
+2. **Type Check** - TypeScript compiler check
+3. **Test** - Runs all 179 tests with Vitest
+4. **Build** - Production build with Next.js
+
+**Workflow Status:**
+- Triggered on: Push to `main`, Pull requests to `main`
+- Concurrency: Cancels in-progress runs for same branch
+- Required: All jobs must pass before merge
 
 ## Resources
 

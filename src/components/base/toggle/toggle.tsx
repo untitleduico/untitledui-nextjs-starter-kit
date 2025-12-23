@@ -155,6 +155,9 @@ export const Toggle = ({
                 </p>
               )}
               {hint && (
+                // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Stop propagation to prevent parent toggle switch
+                // biome-ignore lint/a11y/useKeyWithClickEvents: Click handler is only for event stopping, not user interaction
+                // biome-ignore lint/a11y/noStaticElementInteractions: Stop propagation to prevent parent toggle switch
                 <span
                   className={cx("text-tertiary", sizes[size].hint)}
                   onClick={(event) => event.stopPropagation()}

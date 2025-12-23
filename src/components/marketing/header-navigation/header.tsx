@@ -67,6 +67,7 @@ const MobileNavItem = (props: {
         aria-expanded={isOpen}
         className="flex w-full items-center justify-between px-4 py-3 font-semibold text-md text-primary hover:bg-primary_hover"
         onClick={() => setIsOpen(!isOpen)}
+        type="button"
       >
         {props.label}{" "}
         <ChevronDown

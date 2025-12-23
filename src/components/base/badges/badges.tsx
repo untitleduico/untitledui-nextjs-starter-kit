@@ -375,6 +375,8 @@ export const BadgeWithFlag = <T extends BadgeTypes>(
         colors.styles[color].root
       )}
     >
+      {/* biome-ignore lint/performance/noImgElement: img used for dynamic flag loading */}
+      {/* biome-ignore lint/correctness/useImageSize: Dimensions controlled via CSS classes */}
       <img
         alt={`${flag} flag`}
         className="size-4 max-w-none rounded-full"
@@ -431,8 +433,10 @@ export const BadgeWithImage = <T extends BadgeTypes>(
         colors.styles[color].root
       )}
     >
+      {/* biome-ignore lint/performance/noImgElement: img used for dynamic badge icon */}
+      {/* biome-ignore lint/correctness/useImageSize: Dimensions controlled via CSS classes */}
       <img
-        alt="Badge image"
+        alt="Badge icon"
         className="size-4 max-w-none rounded-full"
         src={imgSrc}
       />

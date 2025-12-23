@@ -14,6 +14,16 @@ import {
 } from "react-aria-components";
 import { cx } from "@/utils/cx";
 
+const getDotBgClass = (isDisabled: boolean, markedAsSelected: boolean) => {
+  if (isDisabled) {
+    return "bg-fg-disabled";
+  }
+  if (markedAsSelected) {
+    return "bg-fg-white";
+  }
+  return "bg-fg-brand-primary";
+};
+
 interface CalendarCellProps extends AriaCalendarCellProps {
   /** Whether the calendar is a range calendar. */
   isRangeCalendar?: boolean;
@@ -133,11 +143,7 @@ export const CalendarCell = ({
               <div
                 className={cx(
                   "absolute bottom-1 left-1/2 size-1.25 -translate-x-1/2 rounded-full",
-                  isDisabled
-                    ? "bg-fg-disabled"
-                    : markedAsSelected
-                      ? "bg-fg-white"
-                      : "bg-fg-brand-primary"
+                  getDotBgClass(isDisabled, markedAsSelected)
                 )}
               />
             )}

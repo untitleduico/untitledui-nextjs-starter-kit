@@ -64,7 +64,9 @@ const ComboboxContext = createContext<{
   size: "sm",
   selectedKeys: [],
   selectedItems: {} as ListData<SelectItemType>,
+  // biome-ignore lint/suspicious/noEmptyBlockStatements: Default no-op for context
   onRemove: () => {},
+  // biome-ignore lint/suspicious/noEmptyBlockStatements: Default no-op for context
   onInputChange: () => {},
 });
 
@@ -265,6 +267,8 @@ const InnerMultiSelect = ({
       case "ArrowRight":
         focusManager?.focusNext({ wrap: false, tabbable: false });
         break;
+      default:
+        break;
     }
   };
 
@@ -309,6 +313,8 @@ const InnerMultiSelect = ({
         break;
       case "Escape":
         comboBoxStateContext?.close();
+        break;
+      default:
         break;
     }
   };

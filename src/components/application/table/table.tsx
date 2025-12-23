@@ -124,15 +124,14 @@ const TableCardHeader = ({
           >
             {title}
           </h2>
-          {badge ? (
-            isValidElement(badge) ? (
+          {badge &&
+            (isValidElement(badge) ? (
               badge
             ) : (
               <Badge color="brand" size="sm">
                 {badge}
               </Badge>
-            )
-          ) : null}
+            ))}
         </div>
         {description && <p className="text-sm text-tertiary">{description}</p>}
       </div>

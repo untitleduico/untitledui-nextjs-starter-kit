@@ -18,6 +18,35 @@ import {
   TwitterLogo,
 } from "./social-logos";
 
+type SocialType =
+  | "google"
+  | "facebook"
+  | "apple"
+  | "twitter"
+  | "figma"
+  | "dribble";
+type ThemeType = "brand" | "color" | "gray";
+
+const getLogoClassName = (
+  theme: ThemeType,
+  social: SocialType,
+  colorStylesIcon: string
+): string => {
+  if (theme === "gray") {
+    return colorStylesIcon;
+  }
+  if (
+    theme === "brand" &&
+    (social === "facebook" || social === "apple" || social === "twitter")
+  ) {
+    return "text-white";
+  }
+  if (theme === "color" && (social === "apple" || social === "twitter")) {
+    return "text-alpha-black";
+  }
+  return "";
+};
+
 export const styles = sortCx({
   common: {
     root: "group relative inline-flex h-max cursor-pointer items-center justify-center font-semibold whitespace-nowrap outline-focus-ring transition duration-100 ease-linear before:absolute focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:stroke-fg-disabled disabled:text-fg-disabled disabled:*:text-fg-disabled",
@@ -165,17 +194,7 @@ export const SocialButton = ({
       <Logo
         className={cx(
           styles.common.icon,
-          theme === "gray"
-            ? colorStyles.icon
-            : theme === "brand" &&
-                (social === "facebook" ||
-                  social === "apple" ||
-                  social === "twitter")
-              ? "text-white"
-              : theme === "color" &&
-                  (social === "apple" || social === "twitter")
-                ? "text-alpha-black"
-                : ""
+          getLogoClassName(theme, social, colorStyles.icon)
         )}
         colorful={
           (theme === "brand" && (social === "google" || social === "figma")) ||

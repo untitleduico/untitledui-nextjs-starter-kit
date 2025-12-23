@@ -43,7 +43,7 @@ export const PaginationDot = ({
     >
       <Pagination.Context>
         {({ pages }) =>
-          pages.map((page, index) =>
+          pages.map((page) =>
             page.type === "page" ? (
               <Pagination.Item
                 {...page}
@@ -55,10 +55,10 @@ export const PaginationDot = ({
                   isBrand && "bg-fg-brand-secondary",
                   isBrand && page.isCurrent && "bg-fg-white"
                 )}
-                key={index}
+                key={`page-${page.value}`}
               />
             ) : (
-              <Pagination.Ellipsis {...page} key={index} />
+              <Pagination.Ellipsis {...page} key={page.key} />
             )
           )
         }

@@ -84,6 +84,7 @@ export const Calendar = ({
   className,
   ...props
 }: CalendarProps) => {
+  // biome-ignore lint/style/noNonNullAssertion: Context is guaranteed by React Aria's slotted context pattern
   const context = useSlottedContext(AriaCalendarContext)!;
 
   const ContextWrapper = context ? Fragment : CalendarContextProvider;

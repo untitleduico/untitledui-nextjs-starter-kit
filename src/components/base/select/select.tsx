@@ -19,6 +19,23 @@ import { ComboBox } from "./combobox";
 import { Popover } from "./popover";
 import { SelectItem } from "./select-item";
 
+const getSelectIcon = (
+  avatarUrl: string | undefined,
+  label: string | undefined,
+  Icon: FC | ReactNode | undefined
+) => {
+  if (avatarUrl) {
+    return <Avatar alt={label} size="xs" src={avatarUrl} />;
+  }
+  if (isReactComponent(Icon)) {
+    return <Icon aria-hidden="true" data-icon />;
+  }
+  if (isValidElement(Icon)) {
+    return Icon;
+  }
+  return null;
+};
+
 export interface SelectItemType {
   id: string;
   label?: string;
@@ -93,17 +110,11 @@ const SelectValue = ({
           const Icon = state.selectedItem?.icon || placeholderIcon;
           return (
             <>
-              {state.selectedItem?.avatarUrl ? (
-                <Avatar
-                  alt={state.selectedItem.label}
-                  size="xs"
-                  src={state.selectedItem.avatarUrl}
-                />
-              ) : isReactComponent(Icon) ? (
-                <Icon aria-hidden="true" data-icon />
-              ) : isValidElement(Icon) ? (
+              {getSelectIcon(
+                state.selectedItem?.avatarUrl,
+                state.selectedItem?.label,
                 Icon
-              ) : null}
+              )}
 
               {state.selectedItem ? (
                 <section className="flex w-full gap-2 truncate">

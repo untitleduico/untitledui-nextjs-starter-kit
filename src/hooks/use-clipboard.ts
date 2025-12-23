@@ -80,6 +80,7 @@ export const useClipboard = (): UseClipboardReturnType => {
       }
       return fallback(text);
     },
+    // biome-ignore lint/correctness/useExhaustiveDependencies: fallback is intentionally not stable to avoid stale closure issues
     [fallback]
   );
 

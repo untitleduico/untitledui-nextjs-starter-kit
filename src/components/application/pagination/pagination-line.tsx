@@ -40,7 +40,7 @@ export const PaginationLine = ({
     >
       <Pagination.Context>
         {({ pages }) =>
-          pages.map((page, index) =>
+          pages.map((page) =>
             page.type === "page" ? (
               <Pagination.Item
                 {...page}
@@ -50,10 +50,10 @@ export const PaginationLine = ({
                   sizes[size].button,
                   page.isCurrent && "bg-fg-brand-primary_alt"
                 )}
-                key={index}
+                key={`page-${page.value}`}
               />
             ) : (
-              <Pagination.Ellipsis {...page} key={index} />
+              <Pagination.Ellipsis {...page} key={page.key} />
             )
           )
         }

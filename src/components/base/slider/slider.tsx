@@ -76,6 +76,7 @@ export const Slider = ({
                       )
                     }
                     index={index}
+                    // biome-ignore lint/suspicious/noArrayIndexKey: Slider thumbs use index as their identifier
                     key={index}
                   >
                     <AriaSliderOutput

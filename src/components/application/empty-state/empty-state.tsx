@@ -10,6 +10,19 @@ import { BackgroundPattern } from "@/components/shared-assets/background-pattern
 import { Illustration as Illustrations } from "@/components/shared-assets/illustrations";
 import { cx } from "@/utils/cx";
 
+const getIllustrationSize = (
+  rootSize: "sm" | "md" | "lg" | undefined,
+  defaultSize: "sm" | "md" | "lg"
+) => {
+  if (rootSize === "sm") {
+    return "sm";
+  }
+  if (rootSize === "md") {
+    return "md";
+  }
+  return defaultSize;
+};
+
 interface RootContextProps {
   size?: "sm" | "md" | "lg";
 }
@@ -64,7 +77,7 @@ const Illustration = ({
       {...props}
       {...{ type, color }}
       className={cx("z-10", props.className)}
-      size={rootSize === "sm" ? "sm" : rootSize === "md" ? "md" : size}
+      size={getIllustrationSize(rootSize, size)}
     />
   );
 };

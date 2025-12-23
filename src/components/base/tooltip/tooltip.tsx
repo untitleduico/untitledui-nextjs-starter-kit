@@ -14,6 +14,16 @@ import {
 } from "react-aria-components";
 import { cx } from "@/utils/cx";
 
+const getCrossOffset = (isLeft: boolean, isRight: boolean) => {
+  if (isLeft) {
+    return -12;
+  }
+  if (isRight) {
+    return 12;
+  }
+  return 0;
+};
+
 interface TooltipProps
   extends AriaTooltipTriggerComponentProps,
     Omit<AriaTooltipProps, "children"> {
@@ -69,11 +79,10 @@ export const Tooltip = ({
     "bottom start",
   ].includes(placement);
   // Set negative cross offset for left and right placement to visually balance the tooltip.
-  const calculatedCrossOffset = isTopOrBottomLeft
-    ? -12
-    : isTopOrBottomRight
-      ? 12
-      : 0;
+  const calculatedCrossOffset = getCrossOffset(
+    isTopOrBottomLeft,
+    isTopOrBottomRight
+  );
 
   return (
     <AriaTooltipTrigger

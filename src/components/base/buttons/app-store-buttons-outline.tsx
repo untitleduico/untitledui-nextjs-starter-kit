@@ -10,6 +10,7 @@ export const GooglePlayButton = ({
   return (
     <a
       aria-label="Get it on Google Play"
+      // biome-ignore lint/a11y/useValidAnchor: Template component with placeholder href
       href="#"
       {...props}
       className={cx(
@@ -112,6 +113,7 @@ export const AppStoreButton = ({
   return (
     <a
       aria-label="Download on the App Store"
+      // biome-ignore lint/a11y/useValidAnchor: Template component with placeholder href
       href="#"
       {...props}
       className={cx(
@@ -229,6 +231,7 @@ export const GalaxyStoreButton = ({
   return (
     <a
       aria-label="Available on Galaxy Store"
+      // biome-ignore lint/a11y/useValidAnchor: Template component with placeholder href
       href="#"
       {...props}
       className={cx(
@@ -348,6 +351,7 @@ export const AppGalleryButton = ({
   return (
     <a
       aria-label="Explore it on AppGallery"
+      // biome-ignore lint/a11y/useValidAnchor: Template component with placeholder href
       href="#"
       {...props}
       className={cx(

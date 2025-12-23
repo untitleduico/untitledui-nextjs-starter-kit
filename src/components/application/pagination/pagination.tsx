@@ -126,13 +126,17 @@ export const PaginationPageDefault = ({
         {({ pages, currentPage, total }) => (
           <>
             <div className="hidden justify-center gap-0.5 md:flex">
-              {pages.map((page, index) =>
+              {pages.map((page) =>
                 page.type === "page" ? (
-                  <PaginationItem key={index} rounded={rounded} {...page} />
+                  <PaginationItem
+                    key={`page-${page.value}`}
+                    rounded={rounded}
+                    {...page}
+                  />
                 ) : (
                   <Pagination.Ellipsis
                     className="flex size-10 shrink-0 items-center justify-center text-tertiary"
-                    key={index}
+                    key={page.key}
                   >
                     &#8230;
                   </Pagination.Ellipsis>
@@ -195,13 +199,17 @@ export const PaginationPageMinimalCenter = ({
         {({ pages, currentPage, total }) => (
           <>
             <div className="hidden justify-center gap-0.5 md:flex">
-              {pages.map((page, index) =>
+              {pages.map((page) =>
                 page.type === "page" ? (
-                  <PaginationItem key={index} rounded={rounded} {...page} />
+                  <PaginationItem
+                    key={`page-${page.value}`}
+                    rounded={rounded}
+                    {...page}
+                  />
                 ) : (
                   <Pagination.Ellipsis
                     className="flex size-10 shrink-0 items-center justify-center text-tertiary"
-                    key={index}
+                    key={page.key}
                   >
                     &#8230;
                   </Pagination.Ellipsis>
@@ -255,13 +263,17 @@ export const PaginationCardDefault = ({
         {({ pages, currentPage, total }) => (
           <>
             <div className="hidden justify-center gap-0.5 md:flex">
-              {pages.map((page, index) =>
+              {pages.map((page) =>
                 page.type === "page" ? (
-                  <PaginationItem key={index} rounded={rounded} {...page} />
+                  <PaginationItem
+                    key={`page-${page.value}`}
+                    rounded={rounded}
+                    {...page}
+                  />
                 ) : (
                   <Pagination.Ellipsis
                     className="flex size-10 shrink-0 items-center justify-center text-tertiary"
-                    key={index}
+                    key={page.key}
                   >
                     &#8230;
                   </Pagination.Ellipsis>
@@ -393,9 +405,9 @@ export const PaginationButtonGroup = ({
                 </ButtonGroupItem>
               </Pagination.PrevTrigger>
 
-              {pages.map((page, index) =>
+              {pages.map((page) =>
                 page.type === "page" ? (
-                  <Pagination.Item key={index} {...page} asChild>
+                  <Pagination.Item key={`page-${page.value}`} {...page} asChild>
                     <ButtonGroupItem
                       className="size-10 items-center justify-center"
                       isSelected={page.isCurrent}
@@ -404,7 +416,7 @@ export const PaginationButtonGroup = ({
                     </ButtonGroupItem>
                   </Pagination.Item>
                 ) : (
-                  <Pagination.Ellipsis key={index}>
+                  <Pagination.Ellipsis key={page.key}>
                     <ButtonGroupItem className="pointer-events-none size-10 items-center justify-center rounded-none!">
                       &#8230;
                     </ButtonGroupItem>
