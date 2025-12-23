@@ -1,9 +1,9 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { useState } from "react";
 import { SearchLg } from "@untitledui/icons";
 import { AnimatePresence, motion } from "motion/react";
+import type { ReactNode } from "react";
+import { useState } from "react";
 import { Input } from "@/components/base/input/input";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { cx } from "@/utils/cx";
@@ -14,138 +14,179 @@ import { NavList } from "../base-components/nav-list";
 import type { NavItemType } from "../config";
 
 interface SidebarNavigationDualTierProps {
-    /** URL of the currently active item. */
-    activeUrl?: string;
-    /** Feature card to display. */
-    featureCard?: ReactNode;
-    /** List of items to display. */
-    items: NavItemType[];
-    /** List of footer items to display. */
-    footerItems?: NavItemType[];
-    /** Whether to hide the right side border. */
-    hideBorder?: boolean;
+  /** URL of the currently active item. */
+  activeUrl?: string;
+  /** Feature card to display. */
+  featureCard?: ReactNode;
+  /** List of items to display. */
+  items: NavItemType[];
+  /** List of footer items to display. */
+  footerItems?: NavItemType[];
+  /** Whether to hide the right side border. */
+  hideBorder?: boolean;
 }
 
-export const SidebarNavigationDualTier = ({ activeUrl, hideBorder, items, footerItems = [], featureCard }: SidebarNavigationDualTierProps) => {
-    const activeItem = [...items, ...footerItems].find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
-    const [currentItem, setCurrentItem] = useState(activeItem || items[1]);
-    const [isHovering, setIsHovering] = useState(false);
+export const SidebarNavigationDualTier = ({
+  activeUrl,
+  hideBorder,
+  items,
+  footerItems = [],
+  featureCard,
+}: SidebarNavigationDualTierProps) => {
+  const activeItem = [...items, ...footerItems].find(
+    (item) =>
+      item.href === activeUrl ||
+      item.items?.some((subItem) => subItem.href === activeUrl)
+  );
+  const [currentItem, setCurrentItem] = useState(activeItem || items[1]);
+  const [isHovering, setIsHovering] = useState(false);
 
-    const isSecondarySidebarVisible = isHovering && Boolean(currentItem.items?.length);
+  const isSecondarySidebarVisible =
+    isHovering && Boolean(currentItem.items?.length);
 
-    const MAIN_SIDEBAR_WIDTH = 296;
-    const SECONDARY_SIDEBAR_WIDTH = 256;
+  const MAIN_SIDEBAR_WIDTH = 296;
+  const SECONDARY_SIDEBAR_WIDTH = 256;
 
-    const mainSidebar = (
-        <aside className="group flex h-full max-h-full max-w-full overflow-y-auto bg-primary">
-            <div
-                style={
-                    {
-                        "--width": `${MAIN_SIDEBAR_WIDTH}px`,
-                    } as React.CSSProperties
-                }
-                className={cx(
-                    "relative flex w-full flex-col border-r border-secondary pt-4 transition duration-300 lg:w-(--width) lg:pt-6",
-                    hideBorder && !isSecondarySidebarVisible && "border-transparent",
-                )}
-            >
-                <div className="flex flex-col gap-5 px-4 lg:px-5">
-                    <UntitledLogo className="h-8" />
-                    <Input shortcut size="sm" aria-label="Search" placeholder="Search" icon={SearchLg} />
-                </div>
+  const mainSidebar = (
+    <aside className="group flex h-full max-h-full max-w-full overflow-y-auto bg-primary">
+      <div
+        className={cx(
+          "relative flex w-full flex-col border-secondary border-r pt-4 transition duration-300 lg:w-(--width) lg:pt-6",
+          hideBorder && !isSecondarySidebarVisible && "border-transparent"
+        )}
+        style={
+          {
+            "--width": `${MAIN_SIDEBAR_WIDTH}px`,
+          } as React.CSSProperties
+        }
+      >
+        <div className="flex flex-col gap-5 px-4 lg:px-5">
+          <UntitledLogo className="h-8" />
+          <Input
+            aria-label="Search"
+            icon={SearchLg}
+            placeholder="Search"
+            shortcut
+            size="sm"
+          />
+        </div>
 
-                <NavList activeUrl={activeUrl} items={items} className="lg:hidden" />
+        <NavList activeUrl={activeUrl} className="lg:hidden" items={items} />
 
-                <ul className="mt-4 hidden flex-col px-4 lg:flex">
-                    {items.map((item) => (
-                        <li key={item.label + item.href} className="py-0.5">
-                            <NavItemBase
-                                current={currentItem.href === item.href}
-                                href={item.href}
-                                badge={item.badge}
-                                icon={item.icon}
-                                type="link"
-                                onClick={() => setCurrentItem(item)}
-                            >
-                                {item.label}
-                            </NavItemBase>
-                        </li>
-                    ))}
-                </ul>
-                <div className="mt-auto flex flex-col gap-4 px-2 py-4 lg:px-4 lg:py-6">
-                    {footerItems.length > 0 && (
-                        <ul className="flex flex-col">
-                            {footerItems.map((item) => (
-                                <li key={item.label + item.href} className="py-0.5">
-                                    <NavItemBase
-                                        current={currentItem.href === item.href}
-                                        href={item.href}
-                                        badge={item.badge}
-                                        icon={item.icon}
-                                        type="link"
-                                        onClick={() => setCurrentItem(item)}
-                                    >
-                                        {item.label}
-                                    </NavItemBase>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+        <ul className="mt-4 hidden flex-col px-4 lg:flex">
+          {items.map((item) => (
+            <li className="py-0.5" key={item.label + item.href}>
+              <NavItemBase
+                badge={item.badge}
+                current={currentItem.href === item.href}
+                href={item.href}
+                icon={item.icon}
+                onClick={() => setCurrentItem(item)}
+                type="link"
+              >
+                {item.label}
+              </NavItemBase>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-auto flex flex-col gap-4 px-2 py-4 lg:px-4 lg:py-6">
+          {footerItems.length > 0 && (
+            <ul className="flex flex-col">
+              {footerItems.map((item) => (
+                <li className="py-0.5" key={item.label + item.href}>
+                  <NavItemBase
+                    badge={item.badge}
+                    current={currentItem.href === item.href}
+                    href={item.href}
+                    icon={item.icon}
+                    onClick={() => setCurrentItem(item)}
+                    type="link"
+                  >
+                    {item.label}
+                  </NavItemBase>
+                </li>
+              ))}
+            </ul>
+          )}
 
-                    {featureCard}
+          {featureCard}
 
-                    <NavAccountCard />
-                </div>
-            </div>
-        </aside>
-    );
+          <NavAccountCard />
+        </div>
+      </div>
+    </aside>
+  );
 
-    const secondarySidebar = (
-        <AnimatePresence initial={false}>
-            {isSecondarySidebarVisible && (
-                <motion.div
-                    initial={{ width: 0, borderColor: "var(--color-border-secondary)" }}
-                    animate={{ width: SECONDARY_SIDEBAR_WIDTH, borderColor: "var(--color-border-secondary)" }}
-                    exit={{ width: 0, borderColor: "rgba(0,0,0,0)", transition: { borderColor: { type: "tween", delay: 0.05 } } }}
-                    transition={{ type: "spring", damping: 26, stiffness: 220, bounce: 0 }}
-                    className={cx("relative h-full overflow-x-hidden overflow-y-auto bg-primary", !hideBorder && "box-content border-r-[1.5px]")}
+  const secondarySidebar = (
+    <AnimatePresence initial={false}>
+      {isSecondarySidebarVisible && (
+        <motion.div
+          animate={{
+            width: SECONDARY_SIDEBAR_WIDTH,
+            borderColor: "var(--color-border-secondary)",
+          }}
+          className={cx(
+            "relative h-full overflow-y-auto overflow-x-hidden bg-primary",
+            !hideBorder && "box-content border-r-[1.5px]"
+          )}
+          exit={{
+            width: 0,
+            borderColor: "rgba(0,0,0,0)",
+            transition: { borderColor: { type: "tween", delay: 0.05 } },
+          }}
+          initial={{ width: 0, borderColor: "var(--color-border-secondary)" }}
+          transition={{
+            type: "spring",
+            damping: 26,
+            stiffness: 220,
+            bounce: 0,
+          }}
+        >
+          <ul
+            className="flex h-full flex-col p-4 py-6"
+            style={{ width: SECONDARY_SIDEBAR_WIDTH }}
+          >
+            {currentItem.items?.map((item) => (
+              <li className="py-0.5" key={item.label + item.href}>
+                <NavItemBase
+                  badge={item.badge}
+                  current={activeUrl === item.href}
+                  href={item.href}
+                  icon={item.icon}
+                  type="link"
                 >
-                    <ul style={{ width: SECONDARY_SIDEBAR_WIDTH }} className="flex h-full flex-col p-4 py-6">
-                        {currentItem.items?.map((item) => (
-                            <li key={item.label + item.href} className="py-0.5">
-                                <NavItemBase current={activeUrl === item.href} href={item.href} icon={item.icon} badge={item.badge} type="link">
-                                    {item.label}
-                                </NavItemBase>
-                            </li>
-                        ))}
-                    </ul>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    );
+                  {item.label}
+                </NavItemBase>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
-    return (
-        <>
-            {/* Mobile header navigation */}
-            <MobileNavigationHeader>{mainSidebar}</MobileNavigationHeader>
+  return (
+    <>
+      {/* Mobile header navigation */}
+      <MobileNavigationHeader>{mainSidebar}</MobileNavigationHeader>
 
-            {/* Desktop sidebar navigation */}
-            <div
-                className="z-50 hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex"
-                onPointerEnter={() => setIsHovering(true)}
-                onPointerLeave={() => setIsHovering(false)}
-            >
-                {mainSidebar}
-                {secondarySidebar}
-            </div>
+      {/* Desktop sidebar navigation */}
+      <div
+        className="z-50 hidden lg:fixed lg:inset-y-0 lg:left-0 lg:flex"
+        onPointerEnter={() => setIsHovering(true)}
+        onPointerLeave={() => setIsHovering(false)}
+      >
+        {mainSidebar}
+        {secondarySidebar}
+      </div>
 
-            {/* Placeholder to take up physical space because the real sidebar has `fixed` position. */}
-            <div
-                style={{
-                    paddingLeft: MAIN_SIDEBAR_WIDTH,
-                }}
-                className="invisible hidden lg:sticky lg:top-0 lg:bottom-0 lg:left-0 lg:block"
-            />
-        </>
-    );
+      {/* Placeholder to take up physical space because the real sidebar has `fixed` position. */}
+      <div
+        className="invisible hidden lg:sticky lg:top-0 lg:bottom-0 lg:left-0 lg:block"
+        style={{
+          paddingLeft: MAIN_SIDEBAR_WIDTH,
+        }}
+      />
+    </>
+  );
 };
