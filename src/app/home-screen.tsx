@@ -10,13 +10,15 @@ import {
 import { Button } from "@/components/base/buttons/button";
 import { ButtonUtility } from "@/components/base/buttons/button-utility";
 import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
+import { Header } from "@/components/marketing/header-navigation/header";
 import { useClipboard } from "@/hooks/use-clipboard";
 
 export const HomeScreen = () => {
   const clipboard = useClipboard();
 
   return (
-    <div className="flex h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col">
+      <Header />
       <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
         <div className="relative flex size-28 items-center justify-center">
           <UntitledLogoMinimal className="size-10" />

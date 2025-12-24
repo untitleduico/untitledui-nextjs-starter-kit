@@ -1,11 +1,14 @@
 @theme {
   /* FONT FAMILY */
   --font-body:
-    var(--font-inter, "Inter"), -apple-system, "Segoe UI", Roboto, Arial,
-    sans-serif;
+    var(--font-instrument-sans, "Instrument Sans"), -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
   --font-display:
-    var(--font-inter, "Inter"), -apple-system, "Segoe UI", Roboto, Arial,
-    sans-serif;
+    var(--font-instrument-sans, "Instrument Sans"), -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
+  --font-serif:
+    var(--font-instrument-serif, "Instrument Serif"), Georgia, "Times New Roman",
+    serif;
   --font-mono:
     ui-monospace, "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -164,18 +167,18 @@
   --color-alpha-white: rgb(255 255 255);
   --color-alpha-black: rgb(0 0 0);
 
-  --color-brand-25: rgb(252 250 255);
-  --color-brand-50: rgb(249 245 255);
-  --color-brand-100: rgb(244 235 255);
-  --color-brand-200: rgb(233 215 254);
-  --color-brand-300: rgb(214 187 251);
-  --color-brand-400: rgb(182 146 246);
-  --color-brand-500: rgb(158 119 237);
-  --color-brand-600: rgb(127 86 217);
-  --color-brand-700: rgb(105 65 198);
-  --color-brand-800: rgb(83 56 158);
-  --color-brand-900: rgb(66 48 125);
-  --color-brand-950: rgb(44 28 95);
+  --color-brand-25: var(--color-indigo-25);
+  --color-brand-50: var(--color-indigo-50);
+  --color-brand-100: var(--color-indigo-100);
+  --color-brand-200: var(--color-indigo-200);
+  --color-brand-300: var(--color-indigo-300);
+  --color-brand-400: var(--color-indigo-400);
+  --color-brand-500: var(--color-indigo-500);
+  --color-brand-600: var(--color-indigo-600);
+  --color-brand-700: var(--color-indigo-700);
+  --color-brand-800: var(--color-indigo-800);
+  --color-brand-900: var(--color-indigo-900);
+  --color-brand-950: var(--color-indigo-950);
 
   --color-error-25: rgb(255 251 250);
   --color-error-50: rgb(254 243 242);
@@ -954,23 +957,23 @@
   /* DARK MODE VARIABLES */
 
   .dark-mode {
-    --color-alpha-white: rgb(12 14 18);
+    --color-alpha-white: rgb(15 15 15);
     --color-alpha-black: rgb(255 255 255);
 
-    /* UTILITY COLORS */
+    /* UTILITY COLORS - Using gray-true palette */
 
-    --color-gray-25: rgb(250 250 250);
-    --color-gray-50: rgb(247 247 247);
-    --color-gray-100: rgb(240 240 241);
-    --color-gray-200: rgb(236 236 237);
-    --color-gray-300: rgb(206 207 210);
-    --color-gray-400: rgb(148 151 156);
-    --color-gray-500: rgb(133 136 142);
-    --color-gray-600: rgb(97 101 108);
-    --color-gray-700: rgb(55 58 65);
-    --color-gray-800: rgb(34 38 47);
-    --color-gray-900: rgb(19 22 27);
-    --color-gray-950: rgb(12 14 18);
+    --color-gray-25: var(--color-gray-true-25);
+    --color-gray-50: var(--color-gray-true-50);
+    --color-gray-100: var(--color-gray-true-100);
+    --color-gray-200: var(--color-gray-true-200);
+    --color-gray-300: var(--color-gray-true-300);
+    --color-gray-400: var(--color-gray-true-400);
+    --color-gray-500: var(--color-gray-true-500);
+    --color-gray-600: var(--color-gray-true-600);
+    --color-gray-700: var(--color-gray-true-700);
+    --color-gray-800: var(--color-gray-true-800);
+    --color-gray-900: var(--color-gray-true-900);
+    --color-gray-950: var(--color-gray-true-950);
 
     --color-utility-blue-50: var(--color-blue-950);
     --color-utility-blue-100: var(--color-blue-900);

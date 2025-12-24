@@ -13,6 +13,7 @@ import { Button } from "@/components/base/buttons/button";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
 import { DropdownMenuSimple } from "@/components/marketing/header-navigation/dropdown-header-navigation";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { cx } from "@/utils/cx";
 
 interface HeaderNavItem {
@@ -212,6 +213,7 @@ export const Header = ({
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
+            <AnimatedThemeToggler className="rounded-lg p-2 text-fg-secondary transition hover:bg-primary_hover hover:text-fg-secondary_hover" />
             <Button color="secondary" size={isFloating ? "md" : "lg"}>
               Log in
             </Button>
@@ -221,12 +223,13 @@ export const Header = ({
           </div>
 
           {/* Mobile menu and menu trigger */}
+          <AnimatedThemeToggler className="ml-auto rounded-lg p-2 text-fg-secondary transition hover:bg-primary_hover hover:text-fg-secondary_hover md:hidden" />
           <AriaDialogTrigger>
             <AriaButton
               aria-label="Toggle navigation menu"
               className={({ isFocusVisible, isHovered }) =>
                 cx(
-                  "group ml-auto cursor-pointer rounded-lg p-2 md:hidden",
+                  "group cursor-pointer rounded-lg p-2 md:hidden",
                   isHovered && "bg-primary_hover",
                   isFocusVisible &&
                     "outline-2 outline-focus-ring outline-offset-2"
