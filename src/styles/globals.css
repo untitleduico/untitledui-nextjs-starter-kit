@@ -60,3 +60,21 @@ input[type="number"] {
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
+
+/* Logo marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
