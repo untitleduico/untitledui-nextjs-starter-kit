@@ -4,89 +4,41 @@ import { Check } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Badge } from "@/components/base/badges/badges";
 import { cx } from "@/utils/cx";
-
-const pricingTiers = [
-    {
-        name: "Free",
-        price: "$0",
-        period: "forever",
-        description: "Perfect for trying out Mitable",
-        features: [
-            "3 sessions per day",
-            "Local storage only",
-            "Basic AI summaries",
-            "To-do detection",
-            "Community support",
-        ],
-        cta: "Get Started",
-        ctaColor: "secondary" as const,
-        highlighted: false,
-    },
-    {
-        name: "Pro",
-        price: "$12",
-        period: "/month",
-        description: "For power users and professionals",
-        features: [
-            "Unlimited sessions",
-            "Cloud sync & backup",
-            "Slack & Notion export",
-            "Advanced AI summaries",
-            "Process doc generation",
-            "Priority support",
-        ],
-        cta: "Start Free Trial",
-        ctaColor: "primary" as const,
-        highlighted: true,
-    },
-    {
-        name: "Enterprise",
-        price: "Custom",
-        period: "",
-        description: "For teams and organizations",
-        features: [
-            "Everything in Pro",
-            "Team workspaces",
-            "Admin controls & analytics",
-            "SSO integration",
-            "On-premise deployment",
-            "Dedicated support",
-        ],
-        cta: "Contact Sales",
-        ctaColor: "secondary" as const,
-        highlighted: false,
-    },
-];
+import { siteContent } from "@/config/site-content";
 
 interface PricingSectionProps {
     className?: string;
 }
 
 export const PricingSection = ({ className }: PricingSectionProps) => {
+    const { pricing } = siteContent;
+
     return (
-        <section id="pricing" className={cx("", className)}>
-            <div className="mx-auto max-w-container px-4 py-16 md:px-8 md:py-24">
+        <section id="pricing" className={cx("bg-surface", className)}>
+            <div className="mx-auto max-w-container px-4 py-20 md:px-8 md:py-28 lg:py-32">
                 {/* Section header */}
                 <div className="mb-12 text-center md:mb-16">
-                    <p className="mb-3 text-sm font-semibold text-brand-secondary">Pricing</p>
-                    <h2 className="mb-4 text-display-xs font-semibold tracking-tight text-primary md:text-display-sm">
-                        Simple, transparent pricing
+                    <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brand-500">
+                        {pricing.sectionLabel}
+                    </p>
+                    <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-tight text-ink md:text-4xl lg:text-5xl">
+                        {pricing.headline}
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg text-secondary">
-                        Start free, upgrade when you need more. No hidden fees, cancel anytime.
+                    <p className="mx-auto max-w-2xl text-lg text-grey">
+                        {pricing.subheadline}
                     </p>
                 </div>
 
-                {/* Pricing cards */}
-                <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
-                    {pricingTiers.map((tier) => (
+                {/* Pricing cards - Swiss Utility style */}
+                <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3 md:gap-8">
+                    {pricing.tiers.map((tier) => (
                         <div
                             key={tier.name}
                             className={cx(
-                                "relative flex flex-col rounded-2xl p-6 md:p-8",
+                                "card-swiss relative flex flex-col p-6 md:p-8",
                                 tier.highlighted
-                                    ? "bg-brand-solid ring-2 ring-brand-solid shadow-xl"
-                                    : "bg-primary ring-1 ring-secondary_alt shadow-lg"
+                                    ? "border-2 border-brand-500 shadow-xl"
+                                    : "border border-gray-200/50"
                             )}
                         >
                             {/* Popular badge */}
@@ -95,59 +47,39 @@ export const PricingSection = ({ className }: PricingSectionProps) => {
                                     type="pill-color"
                                     color="brand"
                                     size="sm"
-                                    className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-brand-700"
+                                    className="absolute -top-3 left-1/2 -translate-x-1/2"
                                 >
-                                    Most Popular
+                                    Popular
                                 </Badge>
                             )}
 
-                            {/* Tier name */}
-                            <h3
-                                className={cx(
-                                    "mb-2 text-lg font-semibold",
-                                    tier.highlighted ? "text-white" : "text-primary"
-                                )}
-                            >
+                            {/* Tier name - mono uppercase */}
+                            <h3 className="mb-2 font-mono text-sm font-semibold uppercase tracking-wide text-brand-600">
                                 {tier.name}
                             </h3>
 
                             {/* Price */}
-                            <div className="mb-4 flex items-baseline gap-1">
-                                <span
-                                    className={cx(
-                                        "text-display-sm font-semibold tracking-tight",
-                                        tier.highlighted ? "text-white" : "text-primary"
-                                    )}
-                                >
+                            <div className="mb-2 flex items-baseline gap-1">
+                                <span className="font-display text-4xl font-extrabold tracking-tight text-ink">
                                     {tier.price}
                                 </span>
                                 {tier.period && (
-                                    <span
-                                        className={cx(
-                                            "text-md",
-                                            tier.highlighted ? "text-brand-200" : "text-tertiary"
-                                        )}
-                                    >
+                                    <span className="font-mono text-sm text-grey">
                                         {tier.period}
                                     </span>
                                 )}
                             </div>
 
                             {/* Description */}
-                            <p
-                                className={cx(
-                                    "mb-6 text-md",
-                                    tier.highlighted ? "text-brand-200" : "text-secondary"
-                                )}
-                            >
+                            <p className="mb-6 text-md text-grey">
                                 {tier.description}
                             </p>
 
                             {/* CTA button */}
                             <Button
-                                color={tier.highlighted ? "secondary" : tier.ctaColor}
+                                color={tier.highlighted ? "primary" : "secondary"}
                                 size="lg"
-                                className="mb-6 w-full"
+                                className="btn-pill mb-6 w-full"
                             >
                                 {tier.cta}
                             </Button>
@@ -156,18 +88,18 @@ export const PricingSection = ({ className }: PricingSectionProps) => {
                             <ul className="flex flex-1 flex-col gap-3">
                                 {tier.features.map((feature) => (
                                     <li key={feature} className="flex items-start gap-3">
-                                        <Check
-                                            className={cx(
-                                                "mt-0.5 size-5 shrink-0",
-                                                tier.highlighted ? "text-brand-200" : "text-success-500"
-                                            )}
-                                        />
-                                        <span
-                                            className={cx(
-                                                "text-md",
-                                                tier.highlighted ? "text-white" : "text-secondary"
-                                            )}
-                                        >
+                                        <div className={cx(
+                                            "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full",
+                                            tier.highlighted ? "bg-brand-100" : "bg-gray-100"
+                                        )}>
+                                            <Check
+                                                className={cx(
+                                                    "size-3",
+                                                    tier.highlighted ? "text-brand-600" : "text-gray-600"
+                                                )}
+                                            />
+                                        </div>
+                                        <span className="text-md text-secondary">
                                             {feature}
                                         </span>
                                     </li>

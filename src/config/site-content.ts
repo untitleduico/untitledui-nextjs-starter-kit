@@ -1,175 +1,265 @@
 /**
  * Centralized content configuration for the Mitable website.
- * Edit this file to update text across the entire site.
+ * "Swiss Utility" design - Modernist Clarity. Precision. Tool-focused.
  */
 
 export const siteContent = {
     brand: {
         name: "Mitable",
-        tagline: "Your work, documented automatically",
+        tagline: "Granola for everything else you do on a computer.",
         description:
-            "Mitable watches your screen during work sessions, generates AI summaries, creates process docs, and builds smart to-do lists.",
+            "The AI workspace companion that watches your screen to generate session summaries, process docs, and catch forgotten tasks.",
     },
 
     hero: {
-        badge: "Now in Private Beta",
-        headline: "Your work, documented automatically",
+        badge: "The Memory Layer for Modern Work",
+        headline: "Work in the flow.",
+        headlineAccent: "Leave the receipts to us.",
         subheadline:
-            "Mitable watches your screen during work sessions, generates AI summaries, creates process docs, and builds smart to-do lists. Never scramble for standups or forget to document a process again.",
-        primaryCta: "Download for macOS",
-        secondaryCta: "Watch Demo",
+            "The AI workspace companion that watches your screen to generate session summaries, process docs, and catch forgotten tasks.",
+        tagline: "> GRANOLA FOR EVERYTHING ELSE YOU DO ON A COMPUTER",
+        primaryCta: "Download for Mac",
+        secondaryCta: "Watch the Workflow",
+        // Transformation visual content
+        transformation: {
+            rawInput: {
+                title: "Raw Input",
+                items: [
+                    "12 tabs open",
+                    "3 unread DMs",
+                    "Code uncommitted",
+                ],
+            },
+            smartOutput: {
+                title: "Smart Output",
+                items: [
+                    "Finalized Q3 Deck",
+                    "Sent 4 Client Emails",
+                    "Updated Brand Guide",
+                ],
+            },
+        },
+        // Legacy briefing content for backwards compatibility
+        briefing: {
+            greeting: "Good Afternoon, Alex.",
+            status: "While you were in flow (3h 15m), I took some notes:",
+            items: [
+                { type: "drafted", text: '"Q3 Migration Plan" based on your code.' },
+                { type: "logged", text: "2 hours billed to Client X (Figma)." },
+                { type: "reminder", text: "You left the staging server open." },
+            ],
+            actions: ["Review & Share", "Discard"],
+        },
     },
 
     logoMarquee: {
-        heading: "Trusted by teams at innovative companies",
+        heading: "The memory layer for modern teams:",
     },
 
     problems: {
-        headline: "Sound familiar?",
-        subheadline: "You're not alone. Knowledge workers waste hours every week on work about work.",
+        headline: '"What was I doing?"',
+        subheadline: "Context switching kills momentum. Mitable remembers the context so you don't have to.",
         items: [
             {
-                title: "Manual work logging is tedious",
+                title: "Context vanishes",
                 description:
-                    "Standups, timesheets, and progress updates require manual recall that interrupts your flow.",
+                    "You close a tab and forget what you were researching. The thread is gone forever.",
             },
             {
-                title: "Process documentation is neglected",
+                title: "Time disappears",
                 description:
-                    '"I\'ll document this later" never happens. Tribal knowledge stays locked in your head.',
+                    '"Where did the day go?" You worked hard but can\'t account for any of it.',
             },
             {
-                title: "To-dos slip through the cracks",
+                title: "Documentation debt",
                 description:
-                    "Tasks noticed while working get forgotten. Context from unfinished work disappears.",
+                    '"I\'ll document this later" never happens. Your knowledge stays locked in your head.',
             },
             {
-                title: "Context switching amnesia",
+                title: "Open loops pile up",
                 description:
-                    '"What was I working on before lunch?" You lose momentum every time you return to work.',
+                    "Unfinished tasks, unsent emails, forgotten follow-ups. They slip through the cracks.",
+            },
+        ],
+    },
+
+    useCases: {
+        sectionLabel: "Built For",
+        headline: "Built for makers.",
+        subheadline: "Whether you're designing, coding, or writing — Mitable captures the work you'd otherwise forget.",
+        items: [
+            {
+                icon: "pen-tool",
+                title: "Designers",
+                question: '"Why did I choose this layout?"',
+                value: "Auto-document design iterations with screenshots and context.",
+            },
+            {
+                icon: "terminal",
+                title: "Developers",
+                question: '"How did I fix that bug?"',
+                value: "Turn debugging sessions into searchable tech docs.",
+            },
+            {
+                icon: "book",
+                title: "Writers",
+                question: '"Where did the day go?"',
+                value: "Time attribution and progress tracking for creative work.",
             },
         ],
     },
 
     features: {
-        sectionLabel: "Features",
-        headline: "Everything you need to stay on top of your work",
+        sectionLabel: "Capabilities",
+        headline: "From chaos to clarity.",
         subheadline:
-            "From session logs to process docs to smart to-dos, Mitable captures and organizes your work automatically so you can focus on what matters.",
+            "Start a session. Do the work. Get the summary. No learning curve, no interruptions.",
         items: [
             {
-                title: "AI Session Summaries",
-                description:
-                    "Get instant summaries of what you worked on. Never scramble for standups or forget context after a break.",
+                title: "Intelligent Sessions",
+                role: "SESSIONS",
+                description: "Start a session. Do the work. Get the summary.",
+                quote: "Session captured: 2h 15m of deep work across 4 apps.",
                 highlights: [
-                    "Automatic activity detection",
-                    "Key decisions captured",
-                    "Exportable to Slack, Notion, and more",
+                    "One-click session start",
+                    "Automatic app detection",
+                    "AI-powered summaries",
                 ],
             },
             {
-                title: "Auto-Generated SOPs",
-                description:
-                    "Record any task and get step-by-step documentation with screenshots. Perfect for onboarding and handoffs.",
+                title: "Instant Documentation",
+                role: "DOCS",
+                description: "Never start from a blank page.",
+                quote: "Draft ready: API Migration Guide based on your Figma → Code session.",
                 highlights: [
-                    "Screenshots at each step",
-                    "Editable and shareable",
-                    "Version control built-in",
+                    "Session-to-doc generation",
+                    "Step-by-step process capture",
+                    "Export to Notion, Markdown",
                 ],
             },
             {
-                title: "Smart To-Do Detection",
-                description:
-                    "AI detects unfinished tasks, open tickets, and pending reviews from your screen activity.",
+                title: "Context-Aware To-Dos",
+                role: "TO-DOS",
+                description: "Catches open loops before they slip away.",
+                quote: "Detected: Unsent email draft open for 2 hours.",
                 highlights: [
-                    "Automatic task extraction",
+                    "Unfinished task detection",
+                    "Gentle reminders",
                     "Priority suggestions",
-                    "Integration with task managers",
                 ],
             },
         ],
     },
 
-    howItWorks: {
-        sectionLabel: "How It Works",
-        headline: "Four simple steps to automatic documentation",
-        subheadline: "No complicated setup. No learning curve. Just start a session and let Mitable do the rest.",
-        steps: [
-            {
-                step: "01",
-                title: "Start a Session",
-                description:
-                    "Click start in the WatchPill and select which windows to watch. Set an optional goal for better summaries.",
-            },
-            {
-                step: "02",
-                title: "Work Normally",
-                description:
-                    "Mitable quietly observes in the background. No interruptions, no manual logging required.",
-            },
-            {
-                step: "03",
-                title: "AI Processing",
-                description:
-                    "When you stop, AI analyzes your session to extract key activities, decisions, and action items.",
-            },
-            {
-                step: "04",
-                title: "Get Results",
-                description:
-                    "Session summaries, process docs, and detected to-dos are ready. Review, edit, and share with your team.",
-            },
-        ],
-    },
-
+    // Legacy - kept for backwards compatibility with PlatformsSection
     platforms: {
         headline: "Works everywhere you work",
         subheadline: "No browser extensions. No plugins required. Mitable watches your actual desktop.",
         items: ["VS Code", "Chrome", "Slack", "Notion", "Linear", "Figma", "GitHub", "Terminal"],
     },
 
+    // Legacy - kept for backwards compatibility with HowItWorksSection
+    howItWorks: {
+        sectionLabel: "How It Works",
+        headline: "Four simple steps",
+        subheadline: "No complicated setup. No learning curve. Just start a session and let Mitable do the rest.",
+        steps: [
+            {
+                step: "01",
+                title: "Start a Session",
+                description: "Click start and select which windows to watch.",
+            },
+            {
+                step: "02",
+                title: "Work Normally",
+                description: "Mitable observes quietly. No interruptions.",
+            },
+            {
+                step: "03",
+                title: "AI Processing",
+                description: "When you stop, AI extracts key activities.",
+            },
+            {
+                step: "04",
+                title: "Get Results",
+                description: "Summaries and to-dos, ready to review.",
+            },
+        ],
+    },
+
+    timeline: {
+        sectionLabel: "Perfect Memory",
+        headline: "Perfect memory. Zero effort.",
+        subheadline: "Every session recorded, organized, searchable. Click any moment to see exactly what you were doing.",
+        // Example timeline data with app categories
+        sessions: [
+            { time: "09:00", app: "VS Code", label: "Deep Work", duration: "2h 15m", type: "focus" },
+            { time: "11:15", app: "Slack", label: "Comms", duration: "45m", type: "comms" },
+            { time: "12:00", app: "Figma", label: "Design", duration: "1h 30m", type: "focus" },
+            { time: "13:30", app: "Zoom", label: "Meeting", duration: "30m", type: "comms" },
+        ],
+        expandedSession: {
+            app: "VS Code",
+            details: [
+                "Edited auth.ts (45 mins)",
+                'Browsed StackOverflow: "JWT Best Practices"',
+            ],
+            action: "Generate How-To Doc From This Segment",
+        },
+    },
+
+    // Team section stub (kept for backwards compatibility but not used in Swiss Utility design)
+    team: {
+        sectionLabel: "Team Sync",
+        headline: "When everyone has an assistant,",
+        headlineAccent: "the team stays in sync.",
+        subheadline: "Shared docs, automated team updates, and transparent progress.",
+        features: [
+            "Automatic standup summaries",
+            "Shared documentation library",
+            "Team activity insights",
+            "No surveillance, just support",
+        ],
+    },
+
     privacy: {
         sectionLabel: "Privacy",
-        headline: "Privacy-first by design",
-        subheadline: "Your data stays yours. Always. Mitable is built for you, not for your manager to spy on you.",
+        headline: "Private by design.",
+        subheadline: "We analyze pixels, we don't hoard them.",
         features: [
             {
-                title: "Local-first storage",
-                description: "Your data stays on your device by default. Only sync to cloud if you choose to.",
+                icon: "lock",
+                title: "Local Storage",
+                description: "Your data stays on your device by default.",
             },
             {
-                title: "You control capture",
-                description:
-                    "User-initiated sessions, not surveillance. Pause or stop anytime with a single click.",
+                icon: "eye-off",
+                title: "App Blocklist",
+                description: "Block any app or window from being watched.",
             },
             {
-                title: "App blocklist",
-                description:
-                    "Exclude sensitive apps like banking, passwords, and personal messaging automatically.",
-            },
-            {
-                title: "Encrypted at rest",
-                description: "All captured data is encrypted on your device. Your work stays private and secure.",
+                icon: "trash",
+                title: "Auto-Deletion",
+                description: "Set retention periods. Data expires automatically.",
             },
         ],
     },
 
     pricing: {
         sectionLabel: "Pricing",
-        headline: "Simple, transparent pricing",
-        subheadline: "Start free, upgrade when you need more. No hidden fees, cancel anytime.",
+        headline: "Invest in your attention span.",
+        subheadline: "Start free, upgrade when you need more.",
         tiers: [
             {
                 name: "Free",
                 price: "$0",
-                period: "forever",
-                description: "Perfect for trying out Mitable",
+                period: "",
+                description: "Get started",
                 features: [
-                    "3 sessions per day",
-                    "Local storage only",
-                    "Basic AI summaries",
-                    "To-do detection",
-                    "Community support",
+                    "3 Sessions/day",
+                    "Local storage",
+                    "Smart to-dos",
+                    "Basic summaries",
                 ],
                 cta: "Get Started",
                 highlighted: false,
@@ -178,13 +268,12 @@ export const siteContent = {
                 name: "Pro",
                 price: "$12",
                 period: "/month",
-                description: "For power users and professionals",
+                description: "For serious makers",
                 features: [
                     "Unlimited sessions",
-                    "Cloud sync & backup",
-                    "Slack & Notion export",
-                    "Advanced AI summaries",
-                    "Process doc generation",
+                    "Cloud sync",
+                    "Doc export",
+                    "30-day history",
                     "Priority support",
                 ],
                 cta: "Start Free Trial",
@@ -194,13 +283,12 @@ export const siteContent = {
                 name: "Enterprise",
                 price: "Custom",
                 period: "",
-                description: "For teams and organizations",
+                description: "For teams",
                 features: [
-                    "Everything in Pro",
-                    "Team workspaces",
-                    "Admin controls & analytics",
+                    "Team workspace",
+                    "Shared docs",
                     "SSO integration",
-                    "On-premise deployment",
+                    "On-premise option",
                     "Dedicated support",
                 ],
                 cta: "Contact Sales",
@@ -210,22 +298,23 @@ export const siteContent = {
     },
 
     cta: {
-        headline: "Ready to stop losing context?",
-        subheadline: "Join the private beta and never forget what you worked on again. Free to get started.",
-        primaryCta: "Download for macOS",
+        headline: "Your work, documented automatically.",
+        subheadline: "Join the beta and never lose context again.",
+        primaryCta: "Download for Mac",
         secondaryCta: "Learn More",
-        trustIndicators: ["Free to start", "No credit card required", "Cancel anytime"],
+        trustIndicators: ["Free to start", "No credit card", "Cancel anytime"],
     },
 
     footer: {
-        description: "AI-powered documentation for knowledge workers. Your work, documented automatically.",
-        copyright: `© ${new Date().getFullYear()} Mitable. All rights reserved.`,
+        tagline: "Your work, documented automatically.",
+        description: "The AI workspace companion for makers.",
+        copyright: `© ${new Date().getFullYear()} Mitable Inc.`,
         links: {
             product: [
-                { label: "Features", href: "#features" },
+                { label: "Capabilities", href: "#features" },
+                { label: "Timeline", href: "#timeline" },
                 { label: "Pricing", href: "#pricing" },
                 { label: "Download", href: "#download" },
-                { label: "Changelog", href: "/changelog" },
             ],
             company: [
                 { label: "About", href: "/about" },
@@ -250,6 +339,17 @@ export const siteContent = {
             github: "https://github.com/mitable",
             linkedin: "https://linkedin.com/company/mitable",
         },
+        platforms: ["Mac", "Windows (Coming Soon)"],
+    },
+
+    // Navigation for header
+    navigation: {
+        links: [
+            { label: "Product", href: "#features" },
+            { label: "Manifesto", href: "#manifesto" },
+            { label: "Pricing", href: "#pricing" },
+        ],
+        cta: "Get Mitable",
     },
 };
 

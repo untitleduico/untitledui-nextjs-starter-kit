@@ -1,24 +1,18 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Menu01, X } from "@untitledui/icons";
 import { Button as AriaButton, Dialog as AriaDialog, DialogTrigger as AriaDialogTrigger, Popover as AriaPopover } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { MitableLogo } from "@/components/foundations/logo/mitable-logo";
 import { MitableLogoMinimal } from "@/components/foundations/logo/mitable-logo";
 import { cx } from "@/utils/cx";
+import { siteContent } from "@/config/site-content";
 
 type NavItem = {
     label: string;
     href: string;
 };
-
-const navItems: NavItem[] = [
-    { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "About", href: "#about" },
-];
 
 const MobileNavItem = ({ label, href }: NavItem) => {
     return (
@@ -34,12 +28,14 @@ const MobileNavItem = ({ label, href }: NavItem) => {
 };
 
 const MobileFooter = () => {
+    const { navigation } = siteContent;
+
     return (
         <div className="flex flex-col gap-3 border-t border-secondary px-4 py-6">
-            <Button size="lg" href="#download">
-                Download for macOS
+            <Button size="lg" href="#download" className="rounded-full">
+                {navigation.cta}
             </Button>
-            <Button color="secondary" size="lg" href="#login">
+            <Button color="secondary" size="lg" href="#login" className="rounded-full">
                 Log in
             </Button>
         </div>
@@ -52,12 +48,13 @@ interface MitableHeaderProps {
 
 export const MitableHeader = ({ className }: MitableHeaderProps) => {
     const headerRef = useRef<HTMLElement>(null);
+    const { navigation } = siteContent;
 
     return (
         <header
             ref={headerRef}
             className={cx(
-                "relative flex h-18 w-full items-center justify-center md:h-20",
+                "relative flex h-18 w-full items-center justify-center bg-alabaster md:h-20",
                 "max-md:has-aria-expanded:bg-primary",
                 className,
             )}
@@ -74,7 +71,7 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                         {/* Desktop navigation */}
                         <nav className="max-md:hidden">
                             <ul className="flex items-center gap-1">
-                                {navItems.map((item) => (
+                                {navigation.links.map((item) => (
                                     <li key={item.label}>
                                         <a
                                             href={item.href}
@@ -93,8 +90,8 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                         <Button color="tertiary" size="lg" href="#login">
                             Log in
                         </Button>
-                        <Button color="primary" size="lg" href="#download">
-                            Download
+                        <Button color="primary" size="lg" href="#download" className="rounded-full">
+                            {navigation.cta}
                         </Button>
                     </div>
 
@@ -125,7 +122,7 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                             <AriaDialog className="outline-hidden">
                                 <nav className="w-full bg-primary shadow-lg">
                                     <ul className="flex flex-col gap-0.5 py-5">
-                                        {navItems.map((item) => (
+                                        {navigation.links.map((item) => (
                                             <MobileNavItem key={item.label} {...item} />
                                         ))}
                                     </ul>

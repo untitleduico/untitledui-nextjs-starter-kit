@@ -6,13 +6,13 @@ import {
     LogoMarquee,
     ProblemSection,
     FeaturesSection,
-    HowItWorksSection,
-    PlatformsSection,
+    TimelineSection,
     PrivacySection,
     PricingSection,
     CTASection,
     Footer,
 } from "@/components/landing";
+import { UseCasesSection } from "@/components/landing/use-cases-section";
 
 export const HomeScreen = () => {
     return (
@@ -22,31 +22,31 @@ export const HomeScreen = () => {
 
             {/* Main content */}
             <main className="flex-1">
-                {/* Hero Section */}
+                {/* Hero Section - "Work in the flow. Leave the receipts to us." */}
                 <HeroSection />
 
-                {/* Logo Marquee - Social Proof */}
+                {/* Logo Marquee - "The memory layer for modern teams" */}
                 <LogoMarquee />
 
-                {/* Problem Section */}
+                {/* Problem Section - "What was I doing?" */}
                 <ProblemSection />
 
-                {/* Features Section - Alternating Layout */}
+                {/* Use Cases Section - "Built for makers" */}
+                <UseCasesSection />
+
+                {/* Features Section - Sessions, Docs, To-Dos */}
                 <FeaturesSection />
 
-                {/* How It Works Section */}
-                <HowItWorksSection />
+                {/* Timeline Section - "Perfect Memory. Zero Effort." */}
+                <TimelineSection />
 
-                {/* Platforms Section */}
-                <PlatformsSection />
-
-                {/* Privacy Section */}
+                {/* Privacy Section - "Private by design" */}
                 <PrivacySection />
 
-                {/* Pricing Section */}
+                {/* Pricing Section - "Invest in your attention span" */}
                 <PricingSection />
 
-                {/* CTA Section */}
+                {/* CTA Section - "Your work, documented automatically" */}
                 <CTASection />
             </main>
 
