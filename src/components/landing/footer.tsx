@@ -1,7 +1,6 @@
 "use client";
 
 import { MitableLogo } from "@/components/foundations/logo/mitable-logo";
-import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 import { siteContent } from "@/config/site-content";
 
@@ -9,7 +8,7 @@ const SocialIcon = ({ href, label, children }: { href: string; label: string; ch
     <a
         href={href}
         aria-label={label}
-        className="flex size-10 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-ink"
+        className="flex size-10 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-800 hover:text-white"
     >
         {children}
     </a>
@@ -23,17 +22,17 @@ export const Footer = ({ className }: FooterProps) => {
     const { footer } = siteContent;
 
     return (
-        <footer className={cx("bg-surface", className)}>
+        <footer className={cx("bg-ink", className)}>
             <div className="mx-auto max-w-container px-4 py-12 md:px-8 md:py-16">
                 {/* Main footer content */}
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-6">
                     {/* Logo and description */}
                     <div className="lg:col-span-2">
-                        <MitableLogo className="mb-4" />
-                        <p className="mb-4 font-display text-lg font-semibold text-ink">
+                        <MitableLogo className="mb-4 text-white" />
+                        <p className="mb-4 font-display text-lg font-semibold text-white">
                             {footer.tagline}
                         </p>
-                        <p className="max-w-xs text-md text-grey">
+                        <p className="max-w-xs text-md text-gray-400">
                             {footer.description}
                         </p>
                         {/* Platform badges */}
@@ -42,7 +41,7 @@ export const Footer = ({ className }: FooterProps) => {
                                 {footer.platforms.map((platform) => (
                                     <span
                                         key={platform}
-                                        className="rounded-full bg-gray-100 px-3 py-1 font-mono text-xs text-grey"
+                                        className="rounded-full bg-gray-800 px-3 py-1 font-mono text-xs text-gray-400"
                                     >
                                         {platform}
                                     </span>
@@ -53,60 +52,60 @@ export const Footer = ({ className }: FooterProps) => {
 
                     {/* Links columns */}
                     <div>
-                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-grey">
+                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-gray-500">
                             Product
                         </h3>
                         <ul className="flex flex-col gap-3">
                             {footer.links.product.map((link) => (
                                 <li key={link.label}>
-                                    <Button color="link-gray" size="md" href={link.href}>
+                                    <a href={link.href} className="text-md text-gray-400 transition hover:text-white">
                                         {link.label}
-                                    </Button>
+                                    </a>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-grey">
+                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-gray-500">
                             Company
                         </h3>
                         <ul className="flex flex-col gap-3">
                             {footer.links.company.map((link) => (
                                 <li key={link.label}>
-                                    <Button color="link-gray" size="md" href={link.href}>
+                                    <a href={link.href} className="text-md text-gray-400 transition hover:text-white">
                                         {link.label}
-                                    </Button>
+                                    </a>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-grey">
+                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-gray-500">
                             Resources
                         </h3>
                         <ul className="flex flex-col gap-3">
                             {footer.links.resources.map((link) => (
                                 <li key={link.label}>
-                                    <Button color="link-gray" size="md" href={link.href}>
+                                    <a href={link.href} className="text-md text-gray-400 transition hover:text-white">
                                         {link.label}
-                                    </Button>
+                                    </a>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-grey">
+                        <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-wide text-gray-500">
                             Legal
                         </h3>
                         <ul className="flex flex-col gap-3">
                             {footer.links.legal.map((link) => (
                                 <li key={link.label}>
-                                    <Button color="link-gray" size="md" href={link.href}>
+                                    <a href={link.href} className="text-md text-gray-400 transition hover:text-white">
                                         {link.label}
-                                    </Button>
+                                    </a>
                                 </li>
                             ))}
                         </ul>
@@ -114,8 +113,8 @@ export const Footer = ({ className }: FooterProps) => {
                 </div>
 
                 {/* Bottom section */}
-                <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 md:flex-row">
-                    <p className="font-mono text-xs text-grey">{footer.copyright}</p>
+                <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 md:flex-row">
+                    <p className="font-mono text-xs text-gray-500">{footer.copyright}</p>
 
                     {/* Social icons */}
                     <div className="flex items-center gap-2">

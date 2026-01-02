@@ -19,7 +19,7 @@ const MobileNavItem = ({ label, href }: NavItem) => {
         <li>
             <a
                 href={href}
-                className="flex items-center justify-between px-4 py-3 text-md font-semibold text-primary hover:bg-primary_hover"
+                className="flex items-center justify-between px-4 py-3 text-md font-semibold text-gray-200 hover:bg-gray-800"
             >
                 {label}
             </a>
@@ -31,12 +31,9 @@ const MobileFooter = () => {
     const { navigation } = siteContent;
 
     return (
-        <div className="flex flex-col gap-3 border-t border-secondary px-4 py-6">
+        <div className="flex flex-col gap-3 border-t border-gray-800 px-4 py-6">
             <Button size="lg" href="#download" className="rounded-full">
                 {navigation.cta}
-            </Button>
-            <Button color="secondary" size="lg" href="#login" className="rounded-full">
-                Log in
             </Button>
         </div>
     );
@@ -54,8 +51,8 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
         <header
             ref={headerRef}
             className={cx(
-                "relative flex h-18 w-full items-center justify-center bg-alabaster md:h-20",
-                "max-md:has-aria-expanded:bg-primary",
+                "fixed top-0 left-0 right-0 z-50 flex h-18 w-full items-center justify-center md:h-20",
+                "bg-ink border-b border-gray-800/50",
                 className,
             )}
         >
@@ -64,8 +61,8 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                     <div className="flex flex-1 items-center gap-8">
                         {/* Logo */}
                         <a href="/" className="outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2">
-                            <MitableLogo className="h-8 md:max-lg:hidden" />
-                            <MitableLogoMinimal className="hidden h-8 md:inline-block lg:hidden" />
+                            <MitableLogo className="h-8 text-white md:max-lg:hidden" />
+                            <MitableLogoMinimal className="hidden h-8 text-white md:inline-block lg:hidden" />
                         </a>
 
                         {/* Desktop navigation */}
@@ -75,7 +72,7 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                                     <li key={item.label}>
                                         <a
                                             href={item.href}
-                                            className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-md font-semibold text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-secondary_hover focus:outline-offset-2 focus-visible:outline-2"
+                                            className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-md font-semibold text-gray-300 outline-focus-ring transition duration-100 ease-linear hover:text-white focus:outline-offset-2 focus-visible:outline-2"
                                         >
                                             {item.label}
                                         </a>
@@ -85,11 +82,8 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                         </nav>
                     </div>
 
-                    {/* Desktop CTAs */}
-                    <div className="hidden items-center gap-3 md:flex">
-                        <Button color="tertiary" size="lg" href="#login">
-                            Log in
-                        </Button>
+                    {/* Desktop CTA */}
+                    <div className="hidden items-center md:flex">
                         <Button color="primary" size="lg" href="#download" className="rounded-full">
                             {navigation.cta}
                         </Button>
@@ -102,13 +96,13 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                             className={({ isFocusVisible, isHovered }) =>
                                 cx(
                                     "group ml-auto cursor-pointer rounded-lg p-2 md:hidden",
-                                    isHovered && "bg-primary_hover",
+                                    isHovered && "bg-gray-800",
                                     isFocusVisible && "outline-2 outline-offset-2 outline-focus-ring",
                                 )
                             }
                         >
-                            <Menu01 className="size-6 text-secondary group-aria-expanded:hidden" />
-                            <X className="hidden size-6 text-secondary group-aria-expanded:block" />
+                            <Menu01 className="size-6 text-gray-300 group-aria-expanded:hidden" />
+                            <X className="hidden size-6 text-gray-300 group-aria-expanded:block" />
                         </AriaButton>
 
                         <AriaPopover
@@ -120,7 +114,7 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
                             placement="bottom left"
                         >
                             <AriaDialog className="outline-hidden">
-                                <nav className="w-full bg-primary shadow-lg">
+                                <nav className="w-full bg-ink shadow-lg">
                                     <ul className="flex flex-col gap-0.5 py-5">
                                         {navigation.links.map((item) => (
                                             <MobileNavItem key={item.label} {...item} />

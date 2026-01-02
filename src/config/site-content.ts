@@ -7,16 +7,14 @@ export const siteContent = {
     brand: {
         name: "Mitable",
         tagline: "Granola for everything else you do on a computer.",
-        description:
-            "The AI workspace companion that watches your screen to generate session summaries, process docs, and catch forgotten tasks.",
+        description: "Mitable watches your screen, automating the boring bits of work so you can focus on the fun stuff.",
     },
 
     hero: {
         badge: "The Memory Layer for Modern Work",
-        headline: "Work in the flow.",
-        headlineAccent: "Leave the receipts to us.",
-        subheadline:
-            "The AI workspace companion that watches your screen to generate session summaries, process docs, and catch forgotten tasks.",
+        headline: "Stay in the flow.",
+        headlineAccent: "Leave the chores to us.",
+        subheadline: "Mitable watches your screen, automating the boring bits of work so you can focus on the fun stuff.",
         tagline: "> GRANOLA FOR EVERYTHING ELSE YOU DO ON A COMPUTER",
         primaryCta: "Download for Mac",
         secondaryCta: "Watch the Workflow",
@@ -24,19 +22,11 @@ export const siteContent = {
         transformation: {
             rawInput: {
                 title: "Raw Input",
-                items: [
-                    "12 tabs open",
-                    "3 unread DMs",
-                    "Code uncommitted",
-                ],
+                items: ["12 tabs open", "3 unread DMs", "Code uncommitted"],
             },
             smartOutput: {
                 title: "Smart Output",
-                items: [
-                    "Finalized Q3 Deck",
-                    "Sent 4 Client Emails",
-                    "Updated Brand Guide",
-                ],
+                items: ["Finalized Q3 Deck", "Sent 4 Client Emails", "Updated Brand Guide"],
             },
         },
         // Legacy briefing content for backwards compatibility
@@ -56,31 +46,28 @@ export const siteContent = {
         heading: "The memory layer for modern teams:",
     },
 
-    problems: {
-        headline: '"What was I doing?"',
-        subheadline: "Context switching kills momentum. Mitable remembers the context so you don't have to.",
-        items: [
-            {
-                title: "Context vanishes",
-                description:
-                    "You close a tab and forget what you were researching. The thread is gone forever.",
-            },
-            {
-                title: "Time disappears",
-                description:
-                    '"Where did the day go?" You worked hard but can\'t account for any of it.',
-            },
-            {
-                title: "Documentation debt",
-                description:
-                    '"I\'ll document this later" never happens. Your knowledge stays locked in your head.',
-            },
-            {
-                title: "Open loops pile up",
-                description:
-                    "Unfinished tasks, unsent emails, forgotten follow-ups. They slip through the cracks.",
-            },
-        ],
+    flowComparison: {
+        headline: "Context switching kills momentum.",
+        subheadline: "Stay in the flow. We handle the chores.",
+        without: {
+            title: "WITHOUT MITABLE",
+            steps: [
+                { text: "Finish code", type: "work" },
+                { text: "Switch to Notion", type: "stop" },
+                { text: "Remember what changed", type: "stop" },
+                { text: "Write documentation", type: "stop" },
+                { text: "Switch to Jira", type: "stop" },
+                { text: "Update ticket", type: "stop" },
+            ],
+        },
+        with: {
+            title: "WITH MITABLE",
+            steps: [
+                { text: "Finish code", type: "work" },
+                { text: "Keep coding", type: "work" },
+            ],
+            tagline: "Mitable did the rest.",
+        },
     },
 
     useCases: {
@@ -112,41 +99,28 @@ export const siteContent = {
     features: {
         sectionLabel: "Capabilities",
         headline: "From chaos to clarity.",
-        subheadline:
-            "Start a session. Do the work. Get the summary. No learning curve, no interruptions.",
+        subheadline: "Start a session. Do the work. Get the summary. No learning curve, no interruptions.",
         items: [
             {
                 title: "Intelligent Sessions",
                 role: "SESSIONS",
                 description: "Start a session. Do the work. Get the summary.",
                 quote: "Session captured: 2h 15m of deep work across 4 apps.",
-                highlights: [
-                    "One-click session start",
-                    "Automatic app detection",
-                    "AI-powered summaries",
-                ],
+                highlights: ["One-click session start", "Automatic app detection", "AI-powered summaries"],
             },
             {
                 title: "Instant Documentation",
                 role: "DOCS",
                 description: "Never start from a blank page.",
                 quote: "Draft ready: API Migration Guide based on your Figma → Code session.",
-                highlights: [
-                    "Session-to-doc generation",
-                    "Step-by-step process capture",
-                    "Export to Notion, Markdown",
-                ],
+                highlights: ["Session-to-doc generation", "Step-by-step process capture", "Export to Notion, Markdown"],
             },
             {
                 title: "Context-Aware To-Dos",
                 role: "TO-DOS",
                 description: "Catches open loops before they slip away.",
                 quote: "Detected: Unsent email draft open for 2 hours.",
-                highlights: [
-                    "Unfinished task detection",
-                    "Gentle reminders",
-                    "Priority suggestions",
-                ],
+                highlights: ["Unfinished task detection", "Gentle reminders", "Priority suggestions"],
             },
         ],
     },
@@ -200,10 +174,7 @@ export const siteContent = {
         ],
         expandedSession: {
             app: "VS Code",
-            details: [
-                "Edited auth.ts (45 mins)",
-                'Browsed StackOverflow: "JWT Best Practices"',
-            ],
+            details: ["Edited auth.ts (45 mins)", 'Browsed StackOverflow: "JWT Best Practices"'],
             action: "Generate How-To Doc From This Segment",
         },
     },
@@ -214,12 +185,7 @@ export const siteContent = {
         headline: "When everyone has an assistant,",
         headlineAccent: "the team stays in sync.",
         subheadline: "Shared docs, automated team updates, and transparent progress.",
-        features: [
-            "Automatic standup summaries",
-            "Shared documentation library",
-            "Team activity insights",
-            "No surveillance, just support",
-        ],
+        features: ["Automatic standup summaries", "Shared documentation library", "Team activity insights", "No surveillance, just support"],
     },
 
     privacy: {
@@ -255,12 +221,7 @@ export const siteContent = {
                 price: "$0",
                 period: "",
                 description: "Get started",
-                features: [
-                    "3 Sessions/day",
-                    "Local storage",
-                    "Smart to-dos",
-                    "Basic summaries",
-                ],
+                features: ["3 Sessions/day", "Local storage", "Smart to-dos", "Basic summaries"],
                 cta: "Get Started",
                 highlighted: false,
             },
@@ -269,13 +230,7 @@ export const siteContent = {
                 price: "$12",
                 period: "/month",
                 description: "For serious makers",
-                features: [
-                    "Unlimited sessions",
-                    "Cloud sync",
-                    "Doc export",
-                    "30-day history",
-                    "Priority support",
-                ],
+                features: ["Unlimited sessions", "Cloud sync", "Doc export", "30-day history", "Priority support"],
                 cta: "Start Free Trial",
                 highlighted: true,
             },
@@ -284,13 +239,7 @@ export const siteContent = {
                 price: "Custom",
                 period: "",
                 description: "For teams",
-                features: [
-                    "Team workspace",
-                    "Shared docs",
-                    "SSO integration",
-                    "On-premise option",
-                    "Dedicated support",
-                ],
+                features: ["Team workspace", "Shared docs", "SSO integration", "On-premise option", "Dedicated support"],
                 cta: "Contact Sales",
                 highlighted: false,
             },
@@ -346,7 +295,6 @@ export const siteContent = {
     navigation: {
         links: [
             { label: "Product", href: "#features" },
-            { label: "Manifesto", href: "#manifesto" },
             { label: "Pricing", href: "#pricing" },
         ],
         cta: "Get Mitable",

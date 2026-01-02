@@ -18,17 +18,17 @@ export const FeaturesSection = ({ className }: FeaturesSectionProps) => {
     const { features } = siteContent;
 
     return (
-        <section id="features" className={cx("bg-canvas", className)}>
+        <section id="features" className={cx("bg-ink", className)}>
             <div className="mx-auto max-w-container px-4 py-20 md:px-8 md:py-28 lg:py-32">
                 {/* Section header */}
                 <div className="mb-16 text-center md:mb-20">
-                    <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brand-500">
+                    <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brand-400">
                         {features.sectionLabel}
                     </p>
-                    <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-tight text-ink md:text-4xl lg:text-5xl">
+                    <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
                         {features.headline}
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg text-grey">
+                    <p className="mx-auto max-w-2xl text-lg text-gray-400">
                         {features.subheadline}
                     </p>
                 </div>
@@ -50,20 +50,20 @@ export const FeaturesSection = ({ className }: FeaturesSectionProps) => {
                                 {/* Text Content */}
                                 <div>
                                     {/* Role tag */}
-                                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1.5">
-                                        <Icon className="size-4 text-brand-600" />
-                                        <span className="font-mono text-xs uppercase tracking-wide text-brand-700">
+                                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-900/50 px-3 py-1.5">
+                                        <Icon className="size-4 text-brand-400" />
+                                        <span className="font-mono text-xs uppercase tracking-wide text-brand-400">
                                             {feature.role}
                                         </span>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="mb-3 font-display text-2xl font-bold uppercase tracking-tight text-ink md:text-3xl">
+                                    <h3 className="mb-3 font-display text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
                                         {feature.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="mb-6 text-lg text-grey">
+                                    <p className="mb-6 text-lg text-gray-400">
                                         {feature.description}
                                     </p>
 
@@ -73,10 +73,10 @@ export const FeaturesSection = ({ className }: FeaturesSectionProps) => {
                                             {feature.highlights.map((highlight) => (
                                                 <li
                                                     key={highlight}
-                                                    className="flex items-center gap-3 text-md text-secondary"
+                                                    className="flex items-center gap-3 text-md text-gray-300"
                                                 >
-                                                    <div className="flex size-5 items-center justify-center rounded-full bg-brand-100">
-                                                        <div className="size-2 rounded-full bg-brand-500" />
+                                                    <div className="flex size-5 items-center justify-center rounded-full bg-brand-900">
+                                                        <div className="size-2 rounded-full bg-brand-400" />
                                                     </div>
                                                     {highlight}
                                                 </li>
@@ -86,15 +86,15 @@ export const FeaturesSection = ({ className }: FeaturesSectionProps) => {
                                 </div>
 
                                 {/* Visual Card */}
-                                <div className="card-swiss overflow-hidden border border-gray-200/50 shadow-lg">
+                                <div className="card-swiss overflow-hidden shadow-lg">
                                     {/* Card Header */}
-                                    <div className="flex items-center gap-3 border-b border-gray-100 bg-gray-50/50 px-5 py-3">
+                                    <div className="flex items-center gap-3 border-b border-gray-800 bg-gray-900/50 px-5 py-3">
                                         <div className="flex gap-1.5">
-                                            <div className="size-3 rounded-full bg-gray-300" />
-                                            <div className="size-3 rounded-full bg-gray-300" />
-                                            <div className="size-3 rounded-full bg-gray-300" />
+                                            <div className="size-3 rounded-full bg-gray-600" />
+                                            <div className="size-3 rounded-full bg-gray-600" />
+                                            <div className="size-3 rounded-full bg-gray-600" />
                                         </div>
-                                        <span className="font-mono text-xs text-gray-400">
+                                        <span className="font-mono text-xs text-gray-500">
                                             mitable
                                         </span>
                                     </div>
@@ -102,8 +102,8 @@ export const FeaturesSection = ({ className }: FeaturesSectionProps) => {
                                     {/* Card Content */}
                                     <div className="p-5 md:p-6">
                                         {/* Quote/Output Display */}
-                                        <div className="mb-4 rounded-lg bg-brand-50/50 p-4">
-                                            <p className="font-mono text-sm text-brand-700">
+                                        <div className="mb-4 rounded-lg bg-brand-950/50 p-4">
+                                            <p className="font-mono text-sm text-brand-400">
                                                 {feature.quote}
                                             </p>
                                         </div>
@@ -111,23 +111,23 @@ export const FeaturesSection = ({ className }: FeaturesSectionProps) => {
                                         {/* Timeline Bar Visualization */}
                                         <div className="space-y-3">
                                             <div className="flex items-center justify-between">
-                                                <span className="font-mono text-xs text-gray-400">SESSION ACTIVITY</span>
-                                                <span className="font-mono text-xs text-gray-400">TODAY</span>
+                                                <span className="font-mono text-xs text-gray-500">SESSION ACTIVITY</span>
+                                                <span className="font-mono text-xs text-gray-500">TODAY</span>
                                             </div>
                                             <div className="flex h-3 gap-1 overflow-hidden rounded-full">
                                                 <div className="h-full w-[45%] rounded-full bg-brand-500" />
-                                                <div className="h-full w-[20%] rounded-full bg-gray-300" />
-                                                <div className="h-full w-[25%] rounded-full bg-brand-300" />
-                                                <div className="h-full w-[10%] rounded-full bg-gray-300" />
+                                                <div className="h-full w-[20%] rounded-full bg-gray-700" />
+                                                <div className="h-full w-[25%] rounded-full bg-brand-700" />
+                                                <div className="h-full w-[10%] rounded-full bg-gray-700" />
                                             </div>
                                             <div className="flex justify-between">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="size-2 rounded-full bg-brand-500" />
-                                                    <span className="font-mono text-xs text-gray-500">Deep Work</span>
+                                                    <div className="size-2 rounded-full bg-brand-400" />
+                                                    <span className="font-mono text-xs text-gray-400">Deep Work</span>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <div className="size-2 rounded-full bg-gray-300" />
-                                                    <span className="font-mono text-xs text-gray-500">Comms</span>
+                                                    <div className="size-2 rounded-full bg-gray-600" />
+                                                    <span className="font-mono text-xs text-gray-400">Comms</span>
                                                 </div>
                                             </div>
                                         </div>

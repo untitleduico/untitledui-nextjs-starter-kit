@@ -1,18 +1,19 @@
 "use client";
 
-import { MitableHeader } from "@/components/marketing/header-navigation/mitable-header";
 import {
+    CTASection,
+    FeaturesSection,
+    FlowComparisonSection,
+    Footer,
     HeroSection,
     LogoMarquee,
-    ProblemSection,
-    FeaturesSection,
-    TimelineSection,
-    PrivacySection,
     PricingSection,
-    CTASection,
-    Footer,
+    PrivacySection,
+    TimelineSection,
 } from "@/components/landing";
-import { UseCasesSection } from "@/components/landing/use-cases-section";
+import { MitableHeader } from "@/components/marketing/header-navigation/mitable-header";
+
+// import { UseCasesSection } from "@/components/landing/use-cases-section";
 
 export const HomeScreen = () => {
     return (
@@ -20,19 +21,19 @@ export const HomeScreen = () => {
             {/* Header */}
             <MitableHeader />
 
-            {/* Main content */}
-            <main className="flex-1">
+            {/* Main content - pt accounts for fixed header */}
+            <main className="flex-1 pt-18 md:pt-20">
                 {/* Hero Section - "Work in the flow. Leave the receipts to us." */}
                 <HeroSection />
 
                 {/* Logo Marquee - "The memory layer for modern teams" */}
                 <LogoMarquee />
 
-                {/* Problem Section - "What was I doing?" */}
-                <ProblemSection />
+                {/* Flow Comparison - "Context switching kills momentum" */}
+                {/* <FlowComparisonSection /> */}
 
                 {/* Use Cases Section - "Built for makers" */}
-                <UseCasesSection />
+                {/* <UseCasesSection /> */}
 
                 {/* Features Section - Sessions, Docs, To-Dos */}
                 <FeaturesSection />

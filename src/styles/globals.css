@@ -144,23 +144,28 @@ input[type="search"]::-webkit-search-cancel-button {
     background-color: rgb(244 240 254); /* Violet Tint #F4F0FE */
 }
 
-/* Canvas - warm alabaster background */
+/* Canvas - dark background for dark mode */
 .bg-canvas {
-    background-color: rgb(249 248 246); /* Alabaster/Canvas #F9F8F6 */
+    background-color: rgb(15 15 15); /* Dark Canvas #0F0F0F */
 }
 
 .bg-alabaster {
-    background-color: rgb(249 248 246); /* Alabaster #F9F8F6 */
+    background-color: rgb(15 15 15); /* Dark Alabaster #0F0F0F */
 }
 
-/* Surface - pure white for cards/panels */
+/* Surface - elevated dark surface for cards/panels */
 .bg-surface {
-    background-color: rgb(255 255 255); /* Surface #FFFFFF */
+    background-color: rgb(21 21 21); /* Dark Surface #151515 */
 }
 
-/* Grey text for secondary content */
+/* Surface elevated - slightly lighter for nested cards */
+.bg-surface-elevated {
+    background-color: rgb(28 28 28); /* Elevated Surface #1C1C1C */
+}
+
+/* Grey text for secondary content - lighter for dark mode legibility */
 .text-grey {
-    color: rgb(85 85 85); /* Grey #555555 */
+    color: rgb(160 160 160); /* Light Grey #A0A0A0 */
 }
 
 /* Carbon text - legacy support */
@@ -187,11 +192,12 @@ input[type="search"]::-webkit-search-cancel-button {
     font-weight: 500;
 }
 
-/* Large radius cards - Swiss Utility style */
+/* Large radius cards - Swiss Utility style (dark mode) */
 .card-swiss {
-    background-color: rgb(255 255 255);
+    background-color: rgb(21 21 21); /* Dark card background */
     border-radius: 1.5rem; /* 24px - larger radius for Swiss Utility */
-    box-shadow: 0 4px 6px -1px rgba(15, 15, 15, 0.05), 0 2px 4px -2px rgba(15, 15, 15, 0.03);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(38 38 38); /* Subtle border for definition */
 }
 
 /* Timeline pill bars */
@@ -200,11 +206,12 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 0.5rem;
 }
 
-/* Legacy card support */
+/* Legacy card support (dark mode) */
 .card-paper {
-    background-color: rgb(255 255 255);
+    background-color: rgb(21 21 21);
     border-radius: 1.5rem;
-    box-shadow: 0 4px 6px -1px rgba(15, 15, 15, 0.05), 0 2px 4px -2px rgba(15, 15, 15, 0.03);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(38 38 38);
 }
 
 /* ============================================
@@ -214,7 +221,26 @@ input[type="search"]::-webkit-search-cancel-button {
 /* Thick violet underline for emphasis (RECEIPTS moment) */
 .underline-accent {
     text-decoration: underline;
-    text-decoration-color: rgb(138 97 247);
+    text-decoration-color: rgb(167 139 250); /* Brighter violet for dark mode #A78BFA */
     text-decoration-thickness: 0.15em;
     text-underline-offset: 0.1em;
+}
+
+/* ============================================
+   DARK MODE SPECIFIC UTILITIES
+   ============================================ */
+
+/* Dark mode card inner surfaces */
+.bg-card-inner {
+    background-color: rgb(28 28 28); /* #1C1C1C */
+}
+
+/* Dark mode subtle borders */
+.border-dark {
+    border-color: rgb(38 38 38); /* #262626 */
+}
+
+/* Dark mode hover states */
+.hover-surface:hover {
+    background-color: rgb(38 38 38);
 }

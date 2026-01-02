@@ -17,36 +17,36 @@ export const TimelineSection = ({ className }: TimelineSectionProps) => {
             <div className="mx-auto max-w-container px-4 py-20 md:px-8 md:py-28 lg:py-32">
                 {/* Section header */}
                 <div className="mb-16 text-center md:mb-20">
-                    <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brand-500">
+                    <p className="mb-3 font-mono text-xs uppercase tracking-wide text-brand-400">
                         {timeline.sectionLabel}
                     </p>
-                    <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-tight text-ink md:text-4xl lg:text-5xl">
+                    <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
                         {timeline.headline}
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg text-grey">
+                    <p className="mx-auto max-w-2xl text-lg text-gray-400">
                         {timeline.subheadline}
                     </p>
                 </div>
 
                 {/* Timeline Visual - Swiss Utility / Howie Style */}
                 <div className="mx-auto max-w-4xl">
-                    <div className="card-swiss overflow-hidden border border-gray-200/50 shadow-xl">
+                    <div className="card-swiss overflow-hidden shadow-xl">
                         {/* Timeline Header */}
-                        <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/50 px-6 py-4">
+                        <div className="flex items-center justify-between border-b border-gray-800 bg-gray-900/50 px-6 py-4">
                             <div className="flex items-center gap-3">
                                 <div className="flex gap-1.5">
-                                    <div className="size-3 rounded-full bg-gray-300" />
-                                    <div className="size-3 rounded-full bg-gray-300" />
-                                    <div className="size-3 rounded-full bg-gray-300" />
+                                    <div className="size-3 rounded-full bg-gray-600" />
+                                    <div className="size-3 rounded-full bg-gray-600" />
+                                    <div className="size-3 rounded-full bg-gray-600" />
                                 </div>
-                                <span className="font-mono text-xs text-gray-400">timeline</span>
+                                <span className="font-mono text-xs text-gray-500">timeline</span>
                             </div>
-                            <span className="font-mono text-xs text-gray-400">TODAY</span>
+                            <span className="font-mono text-xs text-gray-500">TODAY</span>
                         </div>
 
                         {/* Time axis with pill bars */}
-                        <div className="border-b border-gray-100 px-6 py-4">
-                            <div className="mb-3 flex items-center justify-between font-mono text-xs text-gray-400">
+                        <div className="border-b border-gray-800 px-6 py-4">
+                            <div className="mb-3 flex items-center justify-between font-mono text-xs text-gray-500">
                                 <span>09:00</span>
                                 <span>10:00</span>
                                 <span>11:00</span>
@@ -69,12 +69,12 @@ export const TimelineSection = ({ className }: TimelineSectionProps) => {
                                             key={index}
                                             className={cx(
                                                 "group relative h-full cursor-pointer rounded-full transition-all hover:opacity-90",
-                                                session.type === "focus" ? "bg-brand-500" : "bg-gray-300"
+                                                session.type === "focus" ? "bg-brand-400" : "bg-gray-700"
                                             )}
                                             style={{ width: `${widthPercent}%` }}
                                         >
                                             {/* Tooltip on hover */}
-                                            <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-ink px-3 py-2 opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+                                            <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-gray-950 border border-gray-700 px-3 py-2 opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
                                                 <span className="font-mono text-xs text-white">
                                                     {session.app} · {session.duration}
                                                 </span>
@@ -95,24 +95,24 @@ export const TimelineSection = ({ className }: TimelineSectionProps) => {
                                         className={cx(
                                             "flex items-center gap-3 rounded-xl p-4 transition-all cursor-pointer",
                                             session.type === "focus"
-                                                ? "bg-brand-50 hover:bg-brand-100"
-                                                : "bg-gray-100 hover:bg-gray-200"
+                                                ? "bg-brand-950/50 hover:bg-brand-950"
+                                                : "bg-gray-800/50 hover:bg-gray-800"
                                         )}
                                     >
                                         <div
                                             className={cx(
                                                 "size-3 rounded-full",
-                                                session.type === "focus" ? "bg-brand-500" : "bg-gray-400"
+                                                session.type === "focus" ? "bg-brand-400" : "bg-gray-500"
                                             )}
                                         />
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between">
-                                                <span className="font-medium text-ink">{session.app}</span>
+                                                <span className="font-medium text-white">{session.app}</span>
                                                 <span className="font-mono text-xs text-gray-500">{session.time}</span>
                                             </div>
                                             <div className="flex items-center justify-between">
-                                                <span className="text-sm text-grey">{session.label}</span>
-                                                <span className="font-mono text-xs text-brand-600">{session.duration}</span>
+                                                <span className="text-sm text-gray-400">{session.label}</span>
+                                                <span className="font-mono text-xs text-brand-400">{session.duration}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -122,40 +122,40 @@ export const TimelineSection = ({ className }: TimelineSectionProps) => {
                             {/* Legend */}
                             <div className="mb-6 flex items-center justify-center gap-6">
                                 <div className="flex items-center gap-2">
-                                    <div className="size-3 rounded-full bg-brand-500" />
-                                    <span className="font-mono text-xs text-gray-500">Deep Work</span>
+                                    <div className="size-3 rounded-full bg-brand-400" />
+                                    <span className="font-mono text-xs text-gray-400">Deep Work</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <div className="size-3 rounded-full bg-gray-300" />
-                                    <span className="font-mono text-xs text-gray-500">Comms</span>
+                                    <div className="size-3 rounded-full bg-gray-600" />
+                                    <span className="font-mono text-xs text-gray-400">Comms</span>
                                 </div>
                             </div>
 
                             {/* Expandable session detail */}
-                            <div className="rounded-xl border border-brand-200 bg-brand-50/50 p-4">
+                            <div className="rounded-xl border border-brand-800 bg-brand-950/50 p-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex size-10 items-center justify-center rounded-lg bg-brand-100">
-                                            <Play className="size-5 text-brand-600" />
+                                        <div className="flex size-10 items-center justify-center rounded-lg bg-brand-900">
+                                            <Play className="size-5 text-brand-400" />
                                         </div>
                                         <div>
-                                            <span className="font-medium text-ink">
+                                            <span className="font-medium text-white">
                                                 {timeline.expandedSession.app} Session
                                             </span>
-                                            <p className="text-sm text-grey">Click to expand details</p>
+                                            <p className="text-sm text-gray-400">Click to expand details</p>
                                         </div>
                                     </div>
-                                    <ChevronRight className="size-5 text-brand-600" />
+                                    <ChevronRight className="size-5 text-brand-400" />
                                 </div>
 
                                 {/* Expanded content */}
-                                <div className="mt-4 space-y-2 border-t border-brand-200/50 pt-4">
+                                <div className="mt-4 space-y-2 border-t border-brand-800/50 pt-4">
                                     {timeline.expandedSession.details.map((detail, index) => (
                                         <div
                                             key={index}
-                                            className="flex items-center gap-3 text-sm text-secondary"
+                                            className="flex items-center gap-3 text-sm text-gray-300"
                                         >
-                                            <div className="size-2 rounded-full bg-brand-500" />
+                                            <div className="size-2 rounded-full bg-brand-400" />
                                             {detail}
                                         </div>
                                     ))}
