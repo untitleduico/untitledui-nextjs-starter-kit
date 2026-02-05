@@ -12,12 +12,11 @@ export const siteContent = {
 
     hero: {
         badge: "The Memory Layer for Modern Work",
-        headline: "Stay in the flow.",
-        headlineAccent: "Leave the chores to us.",
-        subheadline: "Mitable watches your screen, automating the boring bits of work so you can focus on the fun stuff.",
+        headline: "your AI work journal",
+        headlineAccent: "that writes itself",
+        subheadline: "Mitable automatically turns your on-screen work into documents and team updates",
         tagline: "> GRANOLA FOR EVERYTHING ELSE YOU DO ON A COMPUTER",
-        primaryCta: "Download for Mac",
-        secondaryCta: "Watch the Workflow",
+        primaryCta: "Download",
         // Transformation visual content
         transformation: {
             rawInput: {
@@ -99,28 +98,21 @@ export const siteContent = {
     features: {
         sectionLabel: "Capabilities",
         headline: "From chaos to clarity.",
-        subheadline: "Start a session. Do the work. Get the summary. No learning curve, no interruptions.",
+        subheadline: "Start a session. Do the work. Get the summary. No learning curve. No interruptions.",
         items: [
             {
                 title: "Intelligent Sessions",
                 role: "SESSIONS",
-                description: "Start a session. Do the work. Get the summary.",
+                description: "Mitable captures real work as it happens.",
                 quote: "Session captured: 2h 15m of deep work across 4 apps.",
-                highlights: ["One-click session start", "Automatic app detection", "AI-powered summaries"],
+                highlights: ["One-click session start", "Automatic app and window detection", "AI-generated session summaries"],
             },
             {
                 title: "Instant Documentation",
                 role: "DOCS",
-                description: "Never start from a blank page.",
-                quote: "Draft ready: API Migration Guide based on your Figma → Code session.",
-                highlights: ["Session-to-doc generation", "Step-by-step process capture", "Export to Notion, Markdown"],
-            },
-            {
-                title: "Context-Aware To-Dos",
-                role: "TO-DOS",
-                description: "Catches open loops before they slip away.",
-                quote: "Detected: Unsent email draft open for 2 hours.",
-                highlights: ["Unfinished task detection", "Gentle reminders", "Priority suggestions"],
+                description: "Never start from a blank page again.",
+                quote: "Draft ready: API Migration Guide based on your Figma \u2192 Code session.",
+                highlights: ["Proactively identifies documentation opportunities", "Automatically generates SOPs, reports, knowledge articles, and more", "Export docs to Notion and Google Drive"],
             },
         ],
     },
@@ -162,9 +154,9 @@ export const siteContent = {
     },
 
     timeline: {
-        sectionLabel: "Perfect Memory",
-        headline: "Perfect memory. Zero effort.",
-        subheadline: "Every session recorded, organized, searchable. Click any moment to see exactly what you were doing.",
+        sectionLabel: "Cross-App Understanding",
+        headline: "We go beyond the browser",
+        subheadline: "Mitable understands work across your entire desktop including IDEs, desktop apps, and any other windows you allow.",
         // Example timeline data with app categories
         sessions: [
             { time: "09:00", app: "VS Code", label: "Deep Work", duration: "2h 15m", type: "focus" },
@@ -191,29 +183,34 @@ export const siteContent = {
     privacy: {
         sectionLabel: "Privacy",
         headline: "Private by design.",
-        subheadline: "We analyze pixels, we don't hoard them.",
+        subheadline: "Enterprise-grade security, built from the ground up.",
         features: [
             {
                 icon: "lock",
                 title: "Local Storage",
-                description: "Your data stays on your device by default.",
+                description: "Your data stays on your device by default. Nothing leaves your machine without your say-so.",
             },
             {
                 icon: "eye-off",
                 title: "App Blocklist",
-                description: "Block any app or window from being watched.",
+                description: "Block any app or window from being watched. Banking, messaging, whatever you want.",
             },
             {
                 icon: "trash",
                 title: "Auto-Deletion",
-                description: "Set retention periods. Data expires automatically.",
+                description: "Set retention periods. Data expires automatically. You stay in control.",
+            },
+            {
+                icon: "shield",
+                title: "PII Redaction",
+                description: "Automatically blocks sensitive data from summaries and docs.",
             },
         ],
     },
 
     pricing: {
         sectionLabel: "Pricing",
-        headline: "Invest in your attention span.",
+        headline: "Your focus is priceless.",
         subheadline: "Start free, upgrade when you need more.",
         tiers: [
             {
@@ -221,7 +218,7 @@ export const siteContent = {
                 price: "$0",
                 period: "",
                 description: "Get started",
-                features: ["3 Sessions/day", "Local storage", "Smart to-dos", "Basic summaries"],
+                features: ["5 Sessions/month", "Local storage", "Smart summaries", "24/7 Access to Founders"],
                 cta: "Get Started",
                 highlighted: false,
             },
@@ -230,7 +227,7 @@ export const siteContent = {
                 price: "$12",
                 period: "/month",
                 description: "For serious makers",
-                features: ["Unlimited sessions", "Cloud sync", "Doc export", "30-day history", "Priority support"],
+                features: ["Everything in Free", "Unlimited sessions",  "Doc & artefact export", "30-day history", "Priority support", "24/7 Access to Founders"],
                 cta: "Start Free Trial",
                 highlighted: true,
             },
@@ -239,7 +236,7 @@ export const siteContent = {
                 price: "Custom",
                 period: "",
                 description: "For teams",
-                features: ["Team workspace", "Shared docs", "SSO integration", "On-premise option", "Dedicated support"],
+                features: ["Everything in Pro","Team workspace", "Shared docs & artefacts", "SSO integration", "Dedicated support", "24/7 Access to Founders"],
                 cta: "Contact Sales",
                 highlighted: false,
             },
@@ -248,22 +245,22 @@ export const siteContent = {
 
     cta: {
         headline: "Your work, documented automatically.",
-        subheadline: "Join the beta and never lose context again.",
-        primaryCta: "Download for Mac",
+        subheadline: "Join teams accross the world using Mitable.",
+        primaryCta: "Download",
         secondaryCta: "Learn More",
         trustIndicators: ["Free to start", "No credit card", "Cancel anytime"],
     },
 
     footer: {
-        tagline: "Your work, documented automatically.",
-        description: "The AI workspace companion for makers.",
-        copyright: `© ${new Date().getFullYear()} Mitable Inc.`,
+        tagline: "The work journal that writes itself.",
+        description: "",
+        copyright: `\u00A9 ${new Date().getFullYear()} Mitable Inc.`,
         links: {
             product: [
                 { label: "Capabilities", href: "#features" },
                 { label: "Timeline", href: "#timeline" },
                 { label: "Pricing", href: "#pricing" },
-                { label: "Download", href: "#download" },
+                { label: "Download", href: "/download" },
             ],
             company: [
                 { label: "About", href: "/about" },
@@ -288,7 +285,32 @@ export const siteContent = {
             github: "https://github.com/mitable",
             linkedin: "https://linkedin.com/company/mitable",
         },
-        platforms: ["Mac", "Windows (Coming Soon)"],
+        platforms: ["Mac", "Windows"],
+    },
+
+    downloads: {
+        headline: "Download Mitable",
+        subheadline: "Choose the right version for your platform.",
+        builds: [
+            {
+                platform: "macOS (Apple Silicon)",
+                description: "For M1, M2, M3, and M4 Macs",
+                href: "https://pub-56941275957b42049f3bad9b4bf1daa9.r2.dev/Mitable-0.1.24-arm64.dmg",
+                icon: "apple" as const,
+            },
+            {
+                platform: "macOS (Intel)",
+                description: "For Intel-based Macs",
+                href: "https://pub-56941275957b42049f3bad9b4bf1daa9.r2.dev/Mitable-0.1.24-x64.dmg",
+                icon: "apple" as const,
+            },
+            {
+                platform: "Windows",
+                description: "For Windows 10 and later",
+                href: "https://pub-56941275957b42049f3bad9b4bf1daa9.r2.dev/Mitable-0.1.24-x64.exe",
+                icon: "windows" as const,
+            },
+        ],
     },
 
     // Navigation for header
@@ -297,7 +319,7 @@ export const siteContent = {
             { label: "Product", href: "#features" },
             { label: "Pricing", href: "#pricing" },
         ],
-        cta: "Get Mitable",
+        cta: "Download",
     },
 };
 

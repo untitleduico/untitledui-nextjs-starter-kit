@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 import { siteContent } from "@/config/site-content";
@@ -13,44 +14,106 @@ export const CTASection = ({ className }: CTASectionProps) => {
 
     return (
         <section id="download" className={cx("relative overflow-hidden bg-ink", className)}>
-            <div className="relative mx-auto max-w-container px-4 py-20 md:px-8 md:py-28 lg:py-32">
+            {/* Top divider */}
+            <div className="mx-auto max-w-container">
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
+            </div>
+
+            {/* Background glow */}
+            <div
+                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{
+                    width: "800px",
+                    height: "500px",
+                    background: "radial-gradient(50% 50% at 50% 50%, rgba(138,97,247,0.06) 0%, transparent 100%)",
+                }}
+            />
+
+            <div className="relative mx-auto max-w-container px-4 py-20 md:px-8 md:py-28 lg:py-36">
                 <div className="mx-auto max-w-3xl text-center">
+                    {/* Small WatchPill illustration */}
+                    <motion.div
+                        className="mb-10 flex justify-center"
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <div className="inline-flex items-center gap-3 rounded-full border border-gray-800/60 bg-gray-900/50 px-4 py-2 backdrop-blur-sm">
+                            <div className="relative">
+                                <motion.div
+                                    className="absolute -inset-0.5 rounded-full bg-brand-400/20"
+                                    animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
+                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                />
+                                <div className="relative size-2 rounded-full bg-brand-400" />
+                            </div>
+                            <span className="font-mono text-[11px] uppercase tracking-wider text-gray-400">Ready to record</span>
+                        </div>
+                    </motion.div>
+
                     {/* Headline */}
-                    <h2 className="mb-4 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl lg:text-5xl">
+                    <motion.h2
+                        className="mb-5 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl lg:text-5xl"
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                    >
                         {cta.headline}
-                    </h2>
+                    </motion.h2>
 
                     {/* Subheadline */}
-                    <p className="mb-10 text-lg text-gray-400 md:text-xl">
+                    <motion.p
+                        className="mb-10 text-lg text-gray-400 md:text-xl"
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                    >
                         {cta.subheadline}
-                    </p>
+                    </motion.p>
 
                     {/* CTA Button */}
-                    <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <motion.div
+                        className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                    >
                         <Button
-                            color="secondary"
+                            color="primary"
                             size="xl"
-                            href="#download"
-                            className="btn-pill bg-white text-ink shadow-lg hover:bg-gray-100"
+                            href="/download"
+                            className="btn-pill"
                         >
                             <span className="inline-flex items-center gap-2">
-                                <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                                <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
                                 </svg>
                                 {cta.primaryCta}
                             </span>
                         </Button>
-                    </div>
+                    </motion.div>
 
                     {/* Trust indicators */}
-                    <div className="mt-8 flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-gray-500">
+                    <motion.div
+                        className="mt-8 flex flex-wrap items-center justify-center gap-6"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                    >
                         {cta.trustIndicators.map((indicator) => (
                             <div key={indicator} className="flex items-center gap-2">
-                                <div className="size-1.5 rounded-full bg-brand-500" />
-                                <span className="uppercase tracking-wide">{indicator}</span>
+                                <div className="size-1.5 rounded-full bg-brand-400/50" />
+                                <span className="font-mono text-[11px] uppercase tracking-wider text-gray-500">{indicator}</span>
                             </div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

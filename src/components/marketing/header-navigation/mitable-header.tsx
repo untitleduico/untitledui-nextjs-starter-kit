@@ -32,7 +32,7 @@ const MobileFooter = () => {
 
     return (
         <div className="flex flex-col gap-3 border-t border-gray-800 px-4 py-6">
-            <Button size="lg" href="#download" className="rounded-full">
+            <Button size="lg" href="/download" className="rounded-full">
                 {navigation.cta}
             </Button>
         </div>
@@ -52,7 +52,7 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
             ref={headerRef}
             className={cx(
                 "fixed top-0 left-0 right-0 z-50 flex h-18 w-full items-center justify-center md:h-20",
-                "bg-ink border-b border-gray-800/50",
+                "bg-ink/80 border-b border-gray-800/50 backdrop-blur-xl",
                 className,
             )}
         >
@@ -84,7 +84,7 @@ export const MitableHeader = ({ className }: MitableHeaderProps) => {
 
                     {/* Desktop CTA */}
                     <div className="hidden items-center md:flex">
-                        <Button color="primary" size="lg" href="#download" className="rounded-full">
+                        <Button color="primary" size="lg" href="/download" className="rounded-full">
                             {navigation.cta}
                         </Button>
                     </div>

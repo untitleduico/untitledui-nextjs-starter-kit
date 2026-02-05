@@ -3,7 +3,8 @@
 import { cx } from "@/utils/cx";
 import { siteContent } from "@/config/site-content";
 
-// Famous company logos as simple SVG components
+/* ─── Logo SVG Components ─── */
+
 const VercelLogo = ({ className }: { className?: string }) => (
     <svg className={className} viewBox="0 0 76 65" fill="currentColor">
         <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
@@ -84,10 +85,9 @@ interface LogoMarqueeProps {
 
 export const LogoMarquee = ({ className }: LogoMarqueeProps) => {
     return (
-        <section className={cx("overflow-hidden bg-surface py-12 md:py-16", className)}>
+        <section className={cx("overflow-hidden bg-surface py-10 md:py-14", className)}>
             <div className="mx-auto max-w-container px-4 md:px-8">
-                {/* Heading - mono uppercase */}
-                <p className="mb-8 text-center font-mono text-xs uppercase tracking-wide text-gray-400 md:mb-12">
+                <p className="mb-8 text-center font-mono text-[10px] uppercase tracking-widest text-gray-600 md:mb-10">
                     {siteContent.logoMarquee.heading}
                 </p>
             </div>
@@ -95,27 +95,27 @@ export const LogoMarquee = ({ className }: LogoMarqueeProps) => {
             {/* Marquee container */}
             <div className="relative">
                 {/* Gradient masks */}
-                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#151515] to-transparent md:w-32" />
-                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#151515] to-transparent md:w-32" />
+                <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[#151515] to-transparent md:w-32" />
+                <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[#151515] to-transparent md:w-32" />
 
                 {/* Scrolling logos */}
-                <div className="flex animate-marquee gap-12 md:gap-16">
+                <div className="flex animate-marquee gap-14 md:gap-20">
                     {/* First set */}
                     {logos.map((logo) => (
                         <div
                             key={logo.name}
-                            className="flex shrink-0 items-center justify-center opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:text-brand-400"
+                            className="flex shrink-0 items-center justify-center opacity-30 grayscale transition-all duration-300 hover:opacity-70 hover:grayscale-0"
                         >
-                            <logo.component className="h-6 w-auto text-gray-500 md:h-8" />
+                            <logo.component className="h-5 w-auto text-gray-500 md:h-7" />
                         </div>
                     ))}
                     {/* Duplicate set for seamless loop */}
                     {logos.map((logo) => (
                         <div
                             key={`${logo.name}-dup`}
-                            className="flex shrink-0 items-center justify-center opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 hover:text-brand-400"
+                            className="flex shrink-0 items-center justify-center opacity-30 grayscale transition-all duration-300 hover:opacity-70 hover:grayscale-0"
                         >
-                            <logo.component className="h-6 w-auto text-gray-500 md:h-8" />
+                            <logo.component className="h-5 w-auto text-gray-500 md:h-7" />
                         </div>
                     ))}
                 </div>

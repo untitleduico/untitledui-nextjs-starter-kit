@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo rename:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(xxd:*)",
+      "Bash(npx next build:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(tree:*)"
     ]
   }
 }

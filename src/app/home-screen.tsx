@@ -6,7 +6,6 @@ import {
     FlowComparisonSection,
     Footer,
     HeroSection,
-    LogoMarquee,
     PricingSection,
     PrivacySection,
     TimelineSection,
@@ -17,7 +16,7 @@ import { MitableHeader } from "@/components/marketing/header-navigation/mitable-
 
 export const HomeScreen = () => {
     return (
-        <div className="flex min-h-dvh flex-col">
+        <div className="flex min-h-dvh flex-col bg-ink">
             {/* Header */}
             <MitableHeader />
 
@@ -25,9 +24,6 @@ export const HomeScreen = () => {
             <main className="flex-1 pt-18 md:pt-20">
                 {/* Hero Section - "Work in the flow. Leave the receipts to us." */}
                 <HeroSection />
-
-                {/* Logo Marquee - "The memory layer for modern teams" */}
-                <LogoMarquee />
 
                 {/* Flow Comparison - "Context switching kills momentum" */}
                 {/* <FlowComparisonSection /> */}
