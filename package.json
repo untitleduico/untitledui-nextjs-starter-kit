@@ -8,6 +8,8 @@
         "start": "next start"
     },
     "dependencies": {
+        "@supabase/ssr": "^0.8.0",
+        "@supabase/supabase-js": "^2.95.2",
         "@tailwindcss/postcss": "^4.1.18",
         "@tailwindcss/typography": "^0.5.19",
         "@untitledui/file-icons": "^0.0.8",
