@@ -1,3 +1,3 @@
-import { HomeScreen } from "./home-screen";
+import { DashboardPage } from "./dashboard-page";
 
-export default HomeScreen;
+export default DashboardPage;
