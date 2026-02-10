@@ -17,7 +17,9 @@
       "Bash(npx tsc:*)",
       "Bash(NEXT_PUBLIC_REGION=global npm run build:*)",
       "Bash(NEXT_PUBLIC_REGION=global npx next build:*)",
-      "Bash(NEXT_PUBLIC_REGION=global timeout 20 npm run dev:*)"
+      "Bash(NEXT_PUBLIC_REGION=global timeout 20 npm run dev:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
     ]
   }
 }
