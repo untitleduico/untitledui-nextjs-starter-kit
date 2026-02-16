@@ -60,3 +60,187 @@ input[type="number"] {
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
+
+/* Logo marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* ============================================
+   SWISS UTILITY DESIGN SYSTEM - Typography
+   ============================================ */
+
+/* Font family utilities */
+.font-display {
+    font-family: var(--font-display);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+/* Bold display headings - Swiss Utility style with Manrope 800 */
+.text-display-bold {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+/* Mono labels for data/timestamps - Howie precision style */
+.text-mono-label {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   SWISS UTILITY COLOR UTILITIES
+   ============================================ */
+
+/* Ink - Swiss Utility off-black (softer than pure black) */
+.text-ink {
+    color: rgb(15 15 15); /* Ink #0F0F0F */
+}
+
+.bg-ink {
+    background-color: rgb(15 15 15);
+}
+
+/* Violet text utilities - Mitable brand */
+.text-violet {
+    color: rgb(138 97 247); /* Mitable Violet #8A61F7 */
+}
+
+.text-violet-shade {
+    color: rgb(97 74 148); /* Violet Shade #614A94 */
+}
+
+.bg-violet {
+    background-color: rgb(138 97 247);
+}
+
+.bg-violet-tint {
+    background-color: rgb(244 240 254); /* Violet Tint #F4F0FE */
+}
+
+/* Canvas - dark background for dark mode */
+.bg-canvas {
+    background-color: rgb(15 15 15); /* Dark Canvas #0F0F0F */
+}
+
+.bg-alabaster {
+    background-color: rgb(15 15 15); /* Dark Alabaster #0F0F0F */
+}
+
+/* Surface - elevated dark surface for cards/panels */
+.bg-surface {
+    background-color: rgb(21 21 21); /* Dark Surface #151515 */
+}
+
+/* Surface elevated - slightly lighter for nested cards */
+.bg-surface-elevated {
+    background-color: rgb(28 28 28); /* Elevated Surface #1C1C1C */
+}
+
+/* Grey text for secondary content - lighter for dark mode legibility */
+.text-grey {
+    color: rgb(160 160 160); /* Light Grey #A0A0A0 */
+}
+
+/* Carbon text - legacy support */
+.text-carbon {
+    color: rgb(17 17 17); /* Carbon #111111 */
+}
+
+/* ============================================
+   SWISS UTILITY SHAPE LANGUAGE
+   ============================================ */
+
+/* Stadium/Pill buttons */
+.btn-pill {
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* Stadium tags */
+.tag-stadium {
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Large radius cards - Swiss Utility style (dark mode) */
+.card-swiss {
+    background-color: rgb(21 21 21); /* Dark card background */
+    border-radius: 1.5rem; /* 24px - larger radius for Swiss Utility */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(38 38 38); /* Subtle border for definition */
+}
+
+/* Timeline pill bars */
+.bar-pill {
+    border-radius: 9999px;
+    height: 0.5rem;
+}
+
+/* Legacy card support (dark mode) */
+.card-paper {
+    background-color: rgb(21 21 21);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(38 38 38);
+}
+
+/* ============================================
+   ACCENT UNDERLINE UTILITIES
+   ============================================ */
+
+/* Thick violet underline for emphasis (RECEIPTS moment) */
+.underline-accent {
+    text-decoration: underline;
+    text-decoration-color: rgb(167 139 250); /* Brighter violet for dark mode #A78BFA */
+    text-decoration-thickness: 0.15em;
+    text-underline-offset: 0.1em;
+}
+
+/* ============================================
+   DARK MODE SPECIFIC UTILITIES
+   ============================================ */
+
+/* Dark mode card inner surfaces */
+.bg-card-inner {
+    background-color: rgb(28 28 28); /* #1C1C1C */
+}
+
+/* Dark mode subtle borders */
+.border-dark {
+    border-color: rgb(38 38 38); /* #262626 */
+}
+
+/* Dark mode hover states */
+.hover-surface:hover {
+    background-color: rgb(38 38 38);
+}

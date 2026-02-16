@@ -1,77 +1,54 @@
 "use client";
 
-import { BookOpen01, Check, Copy01, Cube01, HelpCircle } from "@untitledui/icons";
-import { Button } from "@/components/base/buttons/button";
-import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
-import { useClipboard } from "@/hooks/use-clipboard";
+import {
+    CTASection,
+    FeaturesSection,
+    FlowComparisonSection,
+    Footer,
+    HeroSection,
+    PricingSection,
+    PrivacySection,
+    TimelineSection,
+} from "@/components/landing";
+import { MitableHeader } from "@/components/marketing/header-navigation/mitable-header";
+
+// import { UseCasesSection } from "@/components/landing/use-cases-section";
 
 export const HomeScreen = () => {
-    const clipboard = useClipboard();
-
     return (
-        <div className="flex h-dvh flex-col">
-            <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
-                <div className="relative flex size-28 items-center justify-center">
-                    <UntitledLogoMinimal className="size-10" />
-                </div>
+        <div className="flex min-h-dvh flex-col bg-ink">
+            {/* Header */}
+            <MitableHeader />
 
-                <h1 className="max-w-3xl text-center text-display-sm font-semibold text-primary">Untitled UI Next.js starter kit</h1>
+            {/* Main content - pt accounts for fixed header */}
+            <main className="flex-1 pt-18 md:pt-20">
+                {/* Hero Section - "Work in the flow. Leave the receipts to us." */}
+                <HeroSection />
 
-                <p className="mt-2 max-w-xl text-center text-lg text-tertiary">
-                    Get started by using existing components that came with this starter kit or add new ones:
-                </p>
+                {/* Flow Comparison - "Context switching kills momentum" */}
+                {/* <FlowComparisonSection /> */}
 
-                <div className="relative mt-6 flex h-10 items-center rounded-lg border border-secondary bg-secondary">
-                    <code className="px-3 font-mono text-secondary">npx untitledui@latest add</code>
+                {/* Use Cases Section - "Built for makers" */}
+                {/* <UseCasesSection /> */}
 
-                    <hr className="h-10 w-px bg-border-secondary" />
+                {/* Features Section - Sessions, Docs, To-Dos */}
+                <FeaturesSection />
 
-                    <ButtonUtility
-                        color="tertiary"
-                        size="sm"
-                        tooltip="Copy"
-                        className="mx-1"
-                        icon={clipboard.copied ? Check : Copy01}
-                        onClick={() => clipboard.copy("npx untitledui@latest add")}
-                    />
-                </div>
+                {/* Timeline Section - "Perfect Memory. Zero Effort." */}
+                <TimelineSection />
 
-                <div className="mt-6 flex items-center gap-3">
-                    <Button
-                        href="https://www.untitledui.com/react/docs/introduction"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="link-color"
-                        size="lg"
-                        iconLeading={BookOpen01}
-                    >
-                        Docs
-                    </Button>
-                    <div className="h-px w-4 bg-brand-solid" />
-                    <Button
-                        href="https://www.untitledui.com/react/resources/icons"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="link-color"
-                        size="lg"
-                        iconLeading={Cube01}
-                    >
-                        Icons
-                    </Button>
-                    <div className="h-px w-4 bg-brand-solid" />
-                    <Button
-                        href="https://github.com/untitleduico/react/issues"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="link-color"
-                        size="lg"
-                        iconLeading={HelpCircle}
-                    >
-                        Help
-                    </Button>
-                </div>
-            </div>
+                {/* Privacy Section - "Private by design" */}
+                <PrivacySection />
+
+                {/* Pricing Section - "Invest in your attention span" */}
+                <PricingSection />
+
+                {/* CTA Section - "Your work, documented automatically" */}
+                <CTASection />
+            </main>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };

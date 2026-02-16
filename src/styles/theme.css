@@ -1,8 +1,8 @@
 @theme {
-    /* FONT FAMILY */
+    /* FONT FAMILY - Swiss Utility Design */
     --font-body: var(--font-inter, "Inter"), -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    --font-display: var(--font-inter, "Inter"), -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    --font-mono: ui-monospace, "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-display: var(--font-manrope, "Manrope"), -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-mono: var(--font-jetbrains, "JetBrains Mono"), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
     /* FONT SIZE */
     --text-xs: calc(var(--spacing) * 3);
@@ -116,19 +116,25 @@
 
     --color-white: rgb(255 255 255);
     --color-black: rgb(0 0 0);
+    --color-ink: rgb(15 15 15); /* Swiss Utility Ink #0F0F0F - softer than pure black */
 
-    --color-brand-25: rgb(252 250 255);
-    --color-brand-50: rgb(249 245 255);
-    --color-brand-100: rgb(244 235 255);
-    --color-brand-200: rgb(233 215 254);
-    --color-brand-300: rgb(214 187 251);
-    --color-brand-400: rgb(182 146 246);
-    --color-brand-500: rgb(158 119 237);
-    --color-brand-600: rgb(127 86 217);
-    --color-brand-700: rgb(105 65 198);
-    --color-brand-800: rgb(83 56 158);
-    --color-brand-900: rgb(66 48 125);
-    --color-brand-950: rgb(44 28 95);
+    /* These will be inverted in dark mode. */
+    --color-alpha-white: rgb(255 255 255);
+    --color-alpha-black: rgb(0 0 0);
+
+    /* Mitable Violet - Primary Brand Color #8A61F7 */
+    --color-brand-25: rgb(252 251 255);
+    --color-brand-50: rgb(244 240 254);
+    --color-brand-100: rgb(233 225 253);
+    --color-brand-200: rgb(211 195 251);
+    --color-brand-300: rgb(179 155 249);
+    --color-brand-400: rgb(158 127 248);
+    --color-brand-500: rgb(138 97 247);
+    --color-brand-600: rgb(120 75 230);
+    --color-brand-700: rgb(97 74 148);
+    --color-brand-800: rgb(78 59 119);
+    --color-brand-900: rgb(59 45 90);
+    --color-brand-950: rgb(40 30 61);
 
     --color-error-25: rgb(255 251 250);
     --color-error-50: rgb(254 243 242);
@@ -143,31 +149,33 @@
     --color-error-900: rgb(122 39 26);
     --color-error-950: rgb(85 22 12);
 
-    --color-warning-25: rgb(255 252 245);
-    --color-warning-50: rgb(255 250 235);
-    --color-warning-100: rgb(254 240 199);
-    --color-warning-200: rgb(254 223 137);
-    --color-warning-300: rgb(254 200 75);
-    --color-warning-400: rgb(253 176 34);
-    --color-warning-500: rgb(247 144 9);
-    --color-warning-600: rgb(220 104 3);
-    --color-warning-700: rgb(181 71 8);
-    --color-warning-800: rgb(147 55 13);
-    --color-warning-900: rgb(122 46 14);
-    --color-warning-950: rgb(78 29 9);
+    /* Clay - Alert/Warning Color #9F5E4F */
+    --color-warning-25: rgb(253 249 248);
+    --color-warning-50: rgb(251 244 242);
+    --color-warning-100: rgb(247 232 228);
+    --color-warning-200: rgb(239 209 201);
+    --color-warning-300: rgb(223 172 159);
+    --color-warning-400: rgb(201 129 111);
+    --color-warning-500: rgb(159 94 79);
+    --color-warning-600: rgb(133 78 65);
+    --color-warning-700: rgb(111 65 54);
+    --color-warning-800: rgb(89 52 44);
+    --color-warning-900: rgb(74 43 36);
+    --color-warning-950: rgb(45 26 22);
 
-    --color-success-25: rgb(246 254 249);
-    --color-success-50: rgb(236 253 243);
-    --color-success-100: rgb(220 250 230);
-    --color-success-200: rgb(171 239 198);
-    --color-success-300: rgb(117 224 167);
-    --color-success-400: rgb(71 205 137);
-    --color-success-500: rgb(23 178 106);
-    --color-success-600: rgb(7 148 85);
-    --color-success-700: rgb(6 118 71);
-    --color-success-800: rgb(8 93 58);
-    --color-success-900: rgb(7 77 49);
-    --color-success-950: rgb(5 51 33);
+    /* Sage - Success Color #3F6253 */
+    --color-success-25: rgb(247 250 248);
+    --color-success-50: rgb(240 246 243);
+    --color-success-100: rgb(224 237 230);
+    --color-success-200: rgb(193 219 205);
+    --color-success-300: rgb(150 193 170);
+    --color-success-400: rgb(107 161 132);
+    --color-success-500: rgb(63 98 83);
+    --color-success-600: rgb(51 80 68);
+    --color-success-700: rgb(42 66 55);
+    --color-success-800: rgb(35 54 45);
+    --color-success-900: rgb(29 45 37);
+    --color-success-950: rgb(18 28 23);
 
     --color-gray-25: rgb(253 253 253);
     --color-gray-50: rgb(250 250 250);
