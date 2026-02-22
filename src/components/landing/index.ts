@@ -1,6 +1,7 @@
 export { HeroSection } from "./hero-section";
 export { LogoMarquee } from "./logo-marquee";
 export { FlowComparisonSection } from "./flow-comparison-section";
+export { ProblemSection } from "./problem-section";
 export { FeaturesSection } from "./features-section";
 export { TimelineSection } from "./timeline-section";
 export { UseCasesSection } from "./use-cases-section";

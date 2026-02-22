@@ -87,7 +87,7 @@ The positioning shifts from "Productivity Tool" to **"The World's First AI Chief
 |  |  [ Timeline View ]                                                |  |
 |  |  09:00       10:00       11:00       12:00       01:00            |  |
 |  |  |-----------|-----------|-----------|-----------|                |  |
-|  |  [ VS Code (Deep Work) ] [ Slack ] [ Zoom ] [ Jira ]              |  |
+|  |  [ VS Code (Deep Work) ] [ Teams ] [ Zoom ] [ Jira ]              |  |
 |  |                                                                   |  |
 |  |  > Click to expand "VS Code" Session                              |  |
 |  |    - Edited auth.ts (45 mins)                                     |  |

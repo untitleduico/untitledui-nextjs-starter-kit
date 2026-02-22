@@ -1,15 +1,24 @@
 "use client";
 
+import { Activity, BarChart01, Mail01, VideoRecorder } from "@untitledui/icons";
 import { motion } from "motion/react";
 import { cx } from "@/utils/cx";
 import { siteContent } from "@/config/site-content";
+
+const problemSolutionIcons = [VideoRecorder, Activity, BarChart01, Mail01] as const;
 
 interface FlowComparisonSectionProps {
     className?: string;
 }
 
+const hasProblemSolutions = (
+    fc: typeof siteContent.flowComparison
+): fc is typeof siteContent.flowComparison & { problemSolutions: Array<{ problem: string; feature: string }> } =>
+    "problemSolutions" in fc && Array.isArray((fc as { problemSolutions?: unknown }).problemSolutions);
+
 export const FlowComparisonSection = ({ className }: FlowComparisonSectionProps) => {
     const { flowComparison } = siteContent;
+    const showProblemSolutions = hasProblemSolutions(flowComparison);
 
     return (
         <section className={cx("relative overflow-hidden bg-ink", className)}>
@@ -28,7 +37,7 @@ export const FlowComparisonSection = ({ className }: FlowComparisonSectionProps)
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        The Problem
+                        {showProblemSolutions ? "Problems we solve" : "The Problem"}
                     </motion.p>
                     <motion.h2
                         className="mb-5 font-display text-3xl font-extrabold uppercase tracking-tight text-white md:text-4xl lg:text-5xl"
@@ -50,7 +59,44 @@ export const FlowComparisonSection = ({ className }: FlowComparisonSectionProps)
                     </motion.p>
                 </div>
 
-                {/* Two-column comparison */}
+                {/* Problem → Solution: Need → Feature with arrows */}
+                {showProblemSolutions ? (
+                    <div className="mx-auto max-w-4xl">
+                        {/* Column headers */}
+                        <div className="mb-4 grid grid-cols-[1fr_auto_1fr] gap-4 px-2 md:gap-6">
+                            <h3 className="font-mono text-xs font-semibold uppercase tracking-widest text-gray-500">Need</h3>
+                            <span className="w-8 shrink-0" aria-hidden />
+                            <h3 className="font-mono text-xs font-semibold uppercase tracking-widest text-brand-400">Feature</h3>
+                        </div>
+                        <div className="space-y-4 rounded-2xl border border-gray-800/60 bg-gray-900/30 p-4 md:p-6 md:space-y-5">
+                            {flowComparison.problemSolutions.map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-6"
+                                    initial={{ opacity: 0, y: 8 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.3, delay: index * 0.06 }}
+                                >
+                                    <p className="min-w-0 text-white">{item.problem}</p>
+                                    <div className="flex shrink-0 items-center justify-center" aria-hidden>
+                                        <svg className="size-6 text-brand-400 md:size-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
+                                    </div>
+                                    <div className="flex shrink-0 items-center gap-2.5 rounded-lg border border-brand-800/40 bg-brand-950/30 px-4 py-2.5">
+                                        {(() => {
+                                            const Icon = problemSolutionIcons[index] ?? Mail01;
+                                            return <Icon className="size-5 text-brand-400" aria-hidden />;
+                                        })()}
+                                        <span className="font-semibold text-brand-400">{item.feature}</span>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                /* Two-column comparison */
                 <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2 lg:gap-8">
                     {/* WITHOUT MITABLE */}
                     <motion.div
@@ -210,6 +256,7 @@ export const FlowComparisonSection = ({ className }: FlowComparisonSectionProps)
                         </div>
                     </motion.div>
                 </div>
+                )}
             </div>
         </section>
     );

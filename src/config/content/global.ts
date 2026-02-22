@@ -185,7 +185,7 @@ export const globalContent = {
         subheadline: "Mitable understands work across your entire desktop including IDEs, desktop apps, and any other windows you allow.",
         sessions: [
             { time: "09:00", app: "VS Code", label: "Deep Work", duration: "2h 15m", type: "focus" },
-            { time: "11:15", app: "Slack", label: "Comms", duration: "45m", type: "comms" },
+            { time: "11:15", app: "Teams", label: "Comms", duration: "45m", type: "comms" },
             { time: "12:00", app: "Figma", label: "Design", duration: "1h 30m", type: "focus" },
             { time: "13:30", app: "Zoom", label: "Meeting", duration: "30m", type: "comms" },
         ],

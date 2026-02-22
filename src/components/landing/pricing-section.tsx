@@ -1,43 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Check } from "@untitledui/icons";
 import { motion } from "motion/react";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 import { siteContent } from "@/config/site-content";
 
-type Region = "US/AUS" | "Nigeria";
-
-const regionPricing: Record<Region, { free: string; pro: string; proPeriod: string; enterprise: string }> = {
-    "US/AUS": { free: "$0", pro: "$20", proPeriod: "/month", enterprise: "Custom" },
-    Nigeria: { free: "\u20A60", pro: "\u20A610,000", proPeriod: "/month", enterprise: "Custom" },
+const regionPricing = {
+    free: "\u20A60",
+    pro: "\u20A610,000",
+    proPeriod: "/month",
+    enterprise: "Custom",
 };
-
-function detectRegion(): Region {
-    try {
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-        if (tz.includes("Lagos") || tz.includes("Africa")) return "Nigeria";
-    } catch {
-        // ignore
-    }
-    return "US/AUS";
-}
-
-function getRegionCookie(): Region | null {
-    if (typeof document === "undefined") return null;
-    const match = document.cookie.match(/(?:^|;\s*)mitable-region=(\w+)/);
-    if (match) {
-        const val = match[1];
-        if (val === "US/AUS" || val === "Nigeria") return val;
-    }
-    return null;
-}
-
-function setRegionCookie(region: Region) {
-    if (typeof document === "undefined") return;
-    document.cookie = `mitable-region=${region};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax`;
-}
 
 interface PricingSectionProps {
     className?: string;
@@ -45,32 +19,20 @@ interface PricingSectionProps {
 
 export const PricingSection = ({ className }: PricingSectionProps) => {
     const { pricing } = siteContent;
-    const [region, setRegion] = useState<Region>("US/AUS");
-
-    useEffect(() => {
-        const saved = getRegionCookie();
-        if (saved) {
-            setRegion(saved);
-        } else {
-            const detected = detectRegion();
-            setRegion(detected);
-            setRegionCookie(detected);
-        }
-    }, []);
-
-    const handleRegionToggle = (r: Region) => {
-        setRegion(r);
-        setRegionCookie(r);
-    };
-
-    const prices = regionPricing[region];
+    const prices = regionPricing;
 
     const getPriceForTier = (tierName: string) => {
         switch (tierName) {
-            case "Free": return { price: prices.free, period: "" };
-            case "Pro": return { price: prices.pro, period: prices.proPeriod };
-            case "Enterprise": return { price: prices.enterprise, period: "" };
-            default: return { price: "", period: "" };
+            case "Free":
+            case "Team":
+                return { price: prices.free, period: "" };
+            case "Pro":
+            case "Business":
+                return { price: prices.pro, period: prices.proPeriod };
+            case "Enterprise":
+                return { price: prices.enterprise, period: "" };
+            default:
+                return { price: "", period: "" };
         }
     };
 
@@ -106,32 +68,6 @@ export const PricingSection = ({ className }: PricingSectionProps) => {
                     >
                         {pricing.subheadline}
                     </motion.p>
-
-                    {/* Region toggle */}
-                    <motion.div
-                        className="mt-8 flex items-center justify-center"
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                    >
-                        <div className="inline-flex items-center rounded-full border border-gray-800/60 bg-gray-900/50 p-1">
-                            {(["US/AUS", "Nigeria"] as const).map((r) => (
-                                <button
-                                    key={r}
-                                    onClick={() => handleRegionToggle(r)}
-                                    className={cx(
-                                        "rounded-full px-5 py-2 font-mono text-xs font-medium uppercase tracking-wider transition-all duration-200",
-                                        region === r
-                                            ? "bg-brand-600 text-white shadow-sm"
-                                            : "text-gray-400 hover:text-white"
-                                    )}
-                                >
-                                    {r}
-                                </button>
-                            ))}
-                        </div>
-                    </motion.div>
                 </div>
 
                 {/* Pricing cards */}

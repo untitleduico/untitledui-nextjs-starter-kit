@@ -19,9 +19,10 @@ export const ngContent = {
 
     hero: {
         badge: "Performance Visibility for Modern Teams",
-        headline: "Know what your team",
-        headlineAccent: "accomplished today",
-        subheadline: "Mitable runs quietly in the background, capturing work as it happens. Get daily summaries of what everyone's been working on.",
+        headline: "Turn days of report writing into ",
+        headlineAccent: "SECONDS",
+        headlineTrailing: " with AI that writes it for you",
+        subheadline: `Mitable is Nigeria's #1 choice for "Real-time insight into how your teams spend their time"`,
         tagline: "> ACCOUNTABILITY WITHOUT THE ADMIN WORK",
         primaryCta: "Get Started",
         transformation: {
@@ -52,19 +53,19 @@ export const ngContent = {
 
     problems: {
         headline: "Managing remote teams is hard.",
-        subheadline: "These visibility gaps are costing your business every day.",
+        subheadline: "Running a business is hard, managing employees is harder",
         items: [
             {
                 title: "No visibility",
-                description: "You ask for updates but never know who's actually working. Without real data, you're managing blind.",
+                description: "Executives assume they understand productivity, but lack real-time visibility into how employees spend their time.",
             },
             {
-                title: "Wasted time on check-ins",
-                description: "Daily standups, progress reports, status meetings — you spend more time asking for updates than getting work done.",
+                title: "Wasted time",
+                description: "Teams spend hours on manual tasks like reports, updates, and status checks—diverting focus from high-impact work.",
             },
             {
-                title: "Accountability gaps",
-                description: "Some team members work 8+ hours, others barely 3. Without tracking, underperformers fly under the radar.",
+                title: "Reviews Based on Perception, Not Performance",
+                description: "Evaluations rely on perception, not data, leading to poorly informed workforce decisions, misallocated talent, and missed opportunities.",
             },
             {
                 title: "Unclear productivity",
@@ -74,27 +75,26 @@ export const ngContent = {
     },
 
     flowComparison: {
-        headline: "Stop chasing status updates.",
-        subheadline: "Get automatic visibility into what your team is working on.",
-        without: {
-            title: "WITHOUT MITABLE",
-            steps: [
-                { text: "Morning standup", type: "stop" },
-                { text: "Ask for updates", type: "stop" },
-                { text: "Chase progress reports", type: "stop" },
-                { text: "Compile weekly summary", type: "stop" },
-                { text: "Guess who's productive", type: "stop" },
-                { text: "Hope for honesty", type: "stop" },
-            ],
-        },
-        with: {
-            title: "WITH MITABLE",
-            steps: [
-                { text: "Open dashboard", type: "work" },
-                { text: "See everything", type: "work" },
-            ],
-            tagline: "Real-time visibility, zero interruptions.",
-        },
+        headline: "How Mitable solves your biggest challenges",
+        subheadline: "From visibility gaps to data-driven decisions.",
+        problemSolutions: [
+            {
+                problem: "Get a full understanding of your business to make better decisions",
+                feature: "Session recording",
+            },
+            {
+                problem: "Know exactly how your team spends their time without constant check-ins",
+                feature: "Activity tracking & time attribution",
+            },
+            {
+                problem: "Base reviews and promotions on evidence, not perception",
+                feature: "Performance insights & reports",
+            },
+            {
+                problem: "Improve employee efficiency by cutting down the time spent writing reports",
+                feature: "Automated daily summaries",
+            },
+        ],
     },
 
     useCases: {
@@ -192,7 +192,7 @@ export const ngContent = {
         subheadline: "Real-time visibility into your team's activities across all applications.",
         sessions: [
             { time: "09:00", app: "VS Code", label: "Development", duration: "3h 20m", type: "focus" },
-            { time: "12:20", app: "Slack", label: "Communication", duration: "45m", type: "comms" },
+            { time: "12:20", app: "Teams", label: "Communication", duration: "45m", type: "comms" },
             { time: "13:05", app: "Figma", label: "Design Review", duration: "1h 15m", type: "focus" },
             { time: "14:20", app: "Zoom", label: "Client Call", duration: "1h", type: "comms" },
         ],

@@ -20,12 +20,10 @@ const ChromeIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
-const SlackIcon = ({ className }: { className?: string }) => (
-    <svg className={className} viewBox="0 0 54 54" fill="currentColor">
-        <path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" />
-        <path d="M53.76 19.884a5.381 5.381 0 0 0-5.376-5.386 5.381 5.381 0 0 0-5.376 5.386v5.387h5.376a5.381 5.381 0 0 0 5.376-5.387m-14.336 0V5.52A5.381 5.381 0 0 0 34.048.133a5.381 5.381 0 0 0-5.376 5.387v14.364a5.381 5.381 0 0 0 5.376 5.387 5.381 5.381 0 0 0 5.376-5.387" />
-        <path d="M34.048 54a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386h-5.376v5.386A5.381 5.381 0 0 0 34.048 54m0-14.365h14.336a5.381 5.381 0 0 0 5.376-5.386 5.381 5.381 0 0 0-5.376-5.387H34.048a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386" />
-        <path d="M0 34.249a5.381 5.381 0 0 0 5.376 5.386 5.381 5.381 0 0 0 5.376-5.386v-5.387H5.376A5.381 5.381 0 0 0 0 34.25m14.336-.001v14.364A5.381 5.381 0 0 0 19.712 54a5.381 5.381 0 0 0 5.376-5.387V34.25a5.381 5.381 0 0 0-5.376-5.387 5.381 5.381 0 0 0-5.376 5.387" />
+/* Microsoft Teams-style icon (T in rounded box) */
+const TeamsIcon = ({ className }: { className?: string }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5zm0 2h14v14H5V5zm3 2h8v2H8V7zm1.5 1.5v7h2v-7h-2z" />
     </svg>
 );
 
@@ -75,7 +73,7 @@ const TerminalIcon = ({ className }: { className?: string }) => (
 const platforms = [
     { name: "VS Code", icon: VSCodeIcon },
     { name: "Chrome", icon: ChromeIcon },
-    { name: "Slack", icon: SlackIcon },
+    { name: "Teams", icon: TeamsIcon },
     { name: "Notion", icon: NotionIcon },
     { name: "Linear", icon: LinearIcon },
     { name: "Figma", icon: FigmaIcon },

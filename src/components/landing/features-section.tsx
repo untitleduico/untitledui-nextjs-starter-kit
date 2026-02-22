@@ -33,7 +33,7 @@ const SessionsMockup = () => (
             {[
                 { app: "VS Code", time: "2h 15m", color: "bg-brand-400", w: "w-[60%]" },
                 { app: "Figma", time: "1h 30m", color: "bg-purple-400", w: "w-[40%]" },
-                { app: "Slack", time: "45m", color: "bg-gray-500", w: "w-[20%]" },
+                { app: "Teams", time: "45m", color: "bg-gray-500", w: "w-[20%]" },
                 { app: "Zoom", time: "30m", color: "bg-gray-600", w: "w-[15%]" },
             ].map((s) => (
                 <div key={s.app} className="flex items-center gap-3">

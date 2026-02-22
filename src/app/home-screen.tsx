@@ -8,6 +8,7 @@ import {
     HeroSection,
     PricingSection,
     PrivacySection,
+    ProblemSection,
     TimelineSection,
 } from "@/components/landing";
 import { MitableHeader } from "@/components/marketing/header-navigation/mitable-header";
@@ -25,8 +26,11 @@ export const HomeScreen = () => {
                 {/* Hero Section - "Work in the flow. Leave the receipts to us." */}
                 <HeroSection />
 
+                {/* Problems Section - "Managing remote teams is hard" */}
+                <ProblemSection />
+
                 {/* Flow Comparison - "Context switching kills momentum" */}
-                {/* <FlowComparisonSection /> */}
+                <FlowComparisonSection />
 
                 {/* Use Cases Section - "Built for makers" */}
                 {/* <UseCasesSection /> */}

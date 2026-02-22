@@ -63,6 +63,13 @@ export const baseContent = {
                 { label: "Terms", href: "/terms" },
                 { label: "Security", href: "/security" },
             ],
+            support: [
+                { label: "Support", href: "#support" },
+                { label: "FAQs", href: "#faqs" },
+                { label: "Data and security", href: "/data-and-security.pdf" },
+                { label: "Contact", href: "/contact" },
+                { label: "Socials", href: "#socials" },
+            ],
         },
         social: {
             twitter: "https://twitter.com/mitable",
@@ -82,7 +89,7 @@ export const baseContent = {
 
     // Platforms list (shared across regions)
     platforms: {
-        items: ["VS Code", "Chrome", "Slack", "Notion", "Linear", "Figma", "GitHub", "Terminal"],
+        items: ["VS Code", "Chrome", "Teams", "Notion", "Linear", "Figma", "GitHub", "Terminal"],
     },
 };
 

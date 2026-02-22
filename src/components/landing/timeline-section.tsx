@@ -9,7 +9,8 @@ import { siteContent } from "@/config/site-content";
 const appColors: Record<string, { bar: string; bg: string; text: string }> = {
     "VS Code": { bar: "bg-brand-400", bg: "bg-brand-950/50", text: "text-brand-400" },
     Figma: { bar: "bg-purple-400", bg: "bg-purple-950/50", text: "text-purple-400" },
-    Slack: { bar: "bg-amber-400", bg: "bg-amber-950/50", text: "text-amber-400" },
+    Teams: { bar: "bg-emerald-400", bg: "bg-emerald-950/50", text: "text-emerald-400" },
+    Teams: { bar: "bg-emerald-400", bg: "bg-emerald-950/50", text: "text-emerald-400" },
     Zoom: { bar: "bg-blue-400", bg: "bg-blue-950/50", text: "text-blue-400" },
 };
 
