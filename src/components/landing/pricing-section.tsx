@@ -8,6 +8,8 @@ import { siteContent } from "@/config/site-content";
 
 const regionPricing = {
     free: "\u20A60",
+    sme: "\u20A615,000",
+    smePeriod: "/month",
     pro: "\u20A610,000",
     proPeriod: "/month",
     enterprise: "Custom",
@@ -26,6 +28,8 @@ export const PricingSection = ({ className }: PricingSectionProps) => {
             case "Free":
             case "Team":
                 return { price: prices.free, period: "" };
+            case "SME's":
+                return { price: prices.sme, period: prices.smePeriod };
             case "Pro":
             case "Business":
                 return { price: prices.pro, period: prices.proPeriod };

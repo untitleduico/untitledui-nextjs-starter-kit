@@ -145,9 +145,9 @@ export const ngContent = {
             {
                 title: "Daily Summaries",
                 role: "REPORTS",
-                description: "Automatic end-of-day reports sent to managers.",
-                quote: "Daily report ready: 8 team members, 47h total logged, 12 deliverables.",
-                highlights: ["Automated daily/weekly reports", "Flagging of low activity", "Export to Excel and PDF"],
+                description: "Automatic end-of-day reports in your preferred format. Generate once, drop into your Word template—no reformatting.",
+                quote: "Daily report ready: 8 team members, 47h total logged. Exported to my Word template in one click.",
+                highlights: ["Automated daily/weekly reports", "Use your own Word template", "Export to Excel and PDF"],
             },
         ],
     },
@@ -245,8 +245,8 @@ export const ngContent = {
         subheadline: "Transparent pricing. No hidden costs. Pay per seat.",
         tiers: [
             {
-                name: "Team",
-                price: "₦5,000",
+                name: "SME's",
+                price: "₦15,000",
                 period: "/user/month",
                 description: "For small teams",
                 features: ["Up to 10 users", "Daily activity summaries", "Basic app tracking", "Email reports", "Email support"],
@@ -279,7 +279,7 @@ export const ngContent = {
         subheadline: "Join hundreds of Nigerian companies using Mitable for performance visibility.",
         primaryCta: "Get Started",
         secondaryCta: "Book a Demo",
-        trustIndicators: ["14-day free trial", "No credit card required", "Deploy in minutes"],
+        trustIndicators: ["14-day free trial", "No debit card required", "Deploy in minutes"],
     },
 
     footer: {

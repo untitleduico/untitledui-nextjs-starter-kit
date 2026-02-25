@@ -88,7 +88,7 @@ export const HeroSection = ({ className }: HeroSectionProps) => {
 
                     {/* ── Subheadline ── */}
                     <motion.p
-                        className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-400 md:text-xl"
+                        className="mt-6 max-w-2xl text-center text-sm leading-relaxed text-gray-400 md:whitespace-nowrap md:text-base"
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}

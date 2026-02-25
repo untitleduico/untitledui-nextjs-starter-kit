@@ -65,10 +65,9 @@ export const baseContent = {
             ],
             support: [
                 { label: "Support", href: "#support" },
-                { label: "FAQs", href: "#faqs" },
+                { label: "FAQs", href: "/faqs" },
                 { label: "Data and security", href: "/data-and-security.pdf" },
                 { label: "Contact", href: "/contact" },
-                { label: "Socials", href: "#socials" },
             ],
         },
         social: {
@@ -90,6 +89,43 @@ export const baseContent = {
     // Platforms list (shared across regions)
     platforms: {
         items: ["VS Code", "Chrome", "Teams", "Notion", "Linear", "Figma", "GitHub", "Terminal"],
+    },
+
+    faqs: {
+        sectionLabel: "FAQs",
+        headline: "Frequently asked questions",
+        items: [
+            {
+                question: "What applications can Mitable see?",
+                answer:
+                    "Mitable understands everything happening on your screen across desktop apps, browsers, and operating system tools.",
+            },
+            {
+                question: "Can I prevent Mitable from accessing certain applications?",
+                answer:
+                    "Yes. You can add certain applications to your blocklist and Mitable will ignore it completely.",
+            },
+            {
+                question: "How accurate is Mitable's screen understanding?",
+                answer:
+                    "Mitable delivers up to 99.9% accuracy based on rigorous benchmark testing.",
+            },
+            {
+                question: "What types of documents can Mitable generate?",
+                answer:
+                    "Mitable can instantly create SOPs, knowledge articles, troubleshooting guides, reports, and auto-fill your custom templates.",
+            },
+            {
+                question: "Can I upload previously created documents into Mitable?",
+                answer:
+                    "Yes. You can upload your existing documents and Mitable will use them to learn your format and standards.",
+            },
+            {
+                question: "How can I evaluate my team's performance using Mitable?",
+                answer:
+                    "Mitable gives you real-time visibility into where time is spent, what tools are used, and how work gets done.",
+            },
+        ],
     },
 };
 

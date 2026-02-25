@@ -55,36 +55,47 @@ export const Footer = ({ className }: FooterProps) => {
                         )}
                     </div>
 
-                    {/* Links columns: Product and Support */}
-                    {(["product", "support"] as const).map((category) => (
-                        <div key={category}>
-                            <h3 className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-widest text-gray-600">
-                                {category}
-                            </h3>
-                            <ul className="flex flex-col gap-2.5">
-                                {footer.links[category].map((link) => (
-                                    <li key={link.label}>
-                                        <a href={link.href} className="text-sm text-gray-500 transition-colors duration-200 hover:text-white">
-                                            {link.label}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    {/* Product column only */}
+                    <div>
+                        <h3 className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-widest text-gray-600">
+                            product
+                        </h3>
+                        <ul className="flex flex-col gap-2.5">
+                            {footer.links.product.map((link) => (
+                                <li key={link.label}>
+                                    <a href={link.href} className="text-sm text-gray-500 transition-colors duration-200 hover:text-white">
+                                        {link.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
+                {/* Support links: horizontal row at bottom */}
+                <nav className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-gray-800/40 pt-8">
+                    {footer.links.support.map((link) => (
+                        <a
+                            key={link.label}
+                            href={link.href}
+                            className="text-sm text-gray-500 transition-colors duration-200 hover:text-white"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
+                </nav>
+
                 {/* Bottom section */}
-                <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-800/40 pt-8 md:flex-row">
+                <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-gray-800/40 pt-6 md:flex-row">
                     <p className="font-mono text-[10px] uppercase tracking-wider text-gray-600">{footer.copyright}</p>
 
                     {/* Social icons */}
                     <div className="flex items-center gap-1" id="socials" aria-label="Socials">
-                        {/* <SocialIcon href={footer.social.twitter} label="Twitter">
+                        <SocialIcon href={footer.social.twitter} label="X (Twitter)">
                             <svg className="size-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                             </svg>
-                        </SocialIcon> */}
+                        </SocialIcon>
                         {/* <SocialIcon href={footer.social.github} label="GitHub">
                             <svg className="size-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path

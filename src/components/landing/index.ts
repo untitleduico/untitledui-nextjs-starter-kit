@@ -6,6 +6,7 @@ export { FeaturesSection } from "./features-section";
 export { TimelineSection } from "./timeline-section";
 export { UseCasesSection } from "./use-cases-section";
 export { PrivacySection } from "./privacy-section";
+export { FaqsSection } from "./faqs-section";
 export { PricingSection } from "./pricing-section";
 export { CTASection } from "./cta-section";
 export { Footer } from "./footer";
