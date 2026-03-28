@@ -11,7 +11,7 @@
         "@tailwindcss/postcss": "^4.2.2",
         "@tailwindcss/typography": "^0.5.19",
         "@untitledui/file-icons": "^0.0.9",
-        "@untitledui/icons": "^0.0.21",
+        "@untitledui/icons": "^0.0.22",
         "input-otp": "^1.4.2",
         "motion": "^12.38.0",
         "next": "16.2.0",
