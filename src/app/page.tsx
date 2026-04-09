@@ -1,3 +1,3 @@
-import { HomeScreen } from "./home-screen";
+import { Settings12 } from "./settings-12";
 
-export default HomeScreen;
+export default Settings12;
