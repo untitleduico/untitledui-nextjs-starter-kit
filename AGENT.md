@@ -815,11 +815,3 @@ Use background color variables to manage all fill colors for elements in your de
 | bg-success-secondary    | Secondary success state background color for components such as featured icons.                                                                                                               |
 | bg-success-solid        | Default solid (dark) success state background color for components such as featured icons and metric items.                                                                                   |
 <!-- @embed:end -->
-
-## Additional Agent Instructions
-
-See [AGENT.md](AGENT.md) for additional project context and agent-specific instructions.
-
-## Session Instructions
-
-**IMPORTANT**: At the start of every session and before taking any action, read [claude/codebase-context.md](claude/codebase-context.md). Re-read it before acting if it may have been modified during the session. It contains session rules, communication preferences, token architecture guidelines, and file modification rules that override default behavior.
