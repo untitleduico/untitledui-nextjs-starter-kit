@@ -30,9 +30,10 @@ The goal is system compliance.
 When making decisions, use the following order:
 
 1. DESIGN.md
-2. TOKENS.md
-3. COMPONENTS.md
-4. PATTERNS.md
+2. TASTE.md
+3. TOKENS.md
+4. COMPONENTS.md
+5. PATTERNS.md
 
 If a conflict exists:
 
@@ -47,9 +48,10 @@ Before generating any UI:
 Read:
 
 1. DESIGN.md
-2. TOKENS.md
-3. COMPONENTS.md
-4. PATTERNS.md
+2. TASTE.md
+3. TOKENS.md
+4. COMPONENTS.md
+5. PATTERNS.md
 
 Do not skip documents.
 

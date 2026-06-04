@@ -1,3 +1,10 @@
+---
+name: Untitled UI Design Language
+version: 0.1.0
+description: Design language documentation for interfaces built with Untitled UI. Intended for use by designers, engineers, and AI agents.
+status: draft
+---
+
 # DESIGN.md
 
 ## Overview
@@ -449,3 +456,189 @@ When evaluating design decisions, apply the following order:
 If a decision improves aesthetics but reduces consistency, choose consistency.
 
 If a decision improves uniqueness but reduces clarity, choose clarity.
+
+---
+
+# Responsive Behavior
+
+## Breakpoints
+
+The system targets the following breakpoints:
+
+| Name | Value  | Primary use                    |
+|------|--------|-------------------------------|
+| xxs  | 320px  | Small mobile                  |
+| xs   | 600px  | Mobile landscape / small tablet |
+| sm   | 640px  | Standard mobile threshold     |
+| md   | 768px  | Tablet                        |
+| lg   | 1024px | Desktop                       |
+| xl   | 1280px | Wide desktop                  |
+
+Maximum container width: 1280px.
+
+---
+
+## Responsive Principles
+
+### Mobile-first
+
+Layouts should be designed starting from the smallest viewport and progressively enhanced.
+
+---
+
+### Content before chrome
+
+On smaller screens, navigation and secondary UI should yield to primary content.
+
+---
+
+### Touch targets
+
+Interactive elements must meet a minimum touch target of 44×44px on mobile viewports.
+
+---
+
+## Navigation Behavior
+
+On desktop: sidebar navigation is preferred for application interfaces.
+
+On mobile: navigation should collapse into an overlay drawer or bottom navigation.
+
+---
+
+## Layout Adjustments
+
+### Sidebars
+
+Hide on mobile. Replace with overlay drawer or collapsed navigation.
+
+### Tables
+
+On narrow viewports:
+
+* hide non-critical columns
+* consider switching to a card-based list layout
+
+### Modals
+
+On mobile, full-screen sheets are preferred over centered overlay modals.
+
+---
+
+## Typography Adjustments
+
+Display-scale text should reduce in size on mobile viewports.
+
+Body text size remains constant across breakpoints.
+
+---
+
+# Known Gaps
+
+This document deliberately acknowledges what is not yet fully defined.
+
+---
+
+## Not yet documented
+
+### Motion timing values
+
+Specific duration and easing values for animations are not yet formally documented.
+
+Current guidance: use `transition duration-100 ease-linear` for hover states and small transitions.
+
+A complete motion token system is a future iteration.
+
+---
+
+### Icon size scale
+
+The icon size scale is currently defined informally as `size-4` (16px), `size-5` (20px), `size-6` (24px).
+
+A formal icon token system has not been established.
+
+---
+
+### Dark mode specifics
+
+Dark mode color overrides exist in the implementation but are not documented as explicit design rules here.
+
+Dark mode behavior is defined by the CSS variable overrides in `src/styles/theme.css`.
+
+---
+
+### Data visualization
+
+Chart colors, graph styles, and data visualization patterns are not documented.
+
+---
+
+### Marketing and landing page patterns
+
+This documentation focuses on product and application UI.
+
+Marketing-specific patterns (hero sections, pricing tables, testimonials) are out of scope here.
+
+---
+
+## Intentional constraints
+
+### Single brand accent color
+
+The system intentionally uses one brand accent color.
+
+Multiple competing accent colors are explicitly rejected.
+
+---
+
+### No custom shadows beyond the defined scale
+
+Shadow values beyond the six-step scale (`shadow-xs` through `shadow-2xl`) are not permitted.
+
+---
+
+### Disabled states through opacity, not color
+
+Disabled states use `opacity-50` and `cursor-not-allowed` rather than custom disabled color tokens.
+
+This was an intentional change in v8 of the system. See `knowledge/DECISIONS.md`.
+
+---
+
+# Iteration Guide
+
+## When to update this document
+
+Update this document when:
+
+* a new design decision is agreed upon
+* an existing rule is found to be incorrect or insufficient
+* a new pattern emerges that needs to be captured
+
+---
+
+## What requires a documentation update
+
+* Adding new components or component categories
+* Adding new page patterns
+* Changing token usage rules
+* Changing accessibility requirements
+* Deprecating existing patterns or tokens
+
+---
+
+## What does not require a documentation update
+
+* Minor spacing refinements within approved scales
+* Bug fixes that do not change documented behavior
+* Visual polish that does not change intent
+
+---
+
+## Capturing decisions
+
+Significant design decisions — especially trade-offs and rejections — should be documented in:
+
+`knowledge/DECISIONS.md`
+
+This preserves reasoning for future contributors and AI agents.

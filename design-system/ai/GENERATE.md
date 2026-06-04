@@ -33,10 +33,11 @@ Before generating any solution:
 Read:
 
 1. DESIGN.md
-2. TOKENS.md
-3. COMPONENTS.md
-4. PATTERNS.md
-5. AGENTS.md
+2. TASTE.md
+3. TOKENS.md
+4. COMPONENTS.md
+5. PATTERNS.md
+6. AGENTS.md
 
 Do not skip documents.
 

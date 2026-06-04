@@ -414,3 +414,152 @@ The system becomes stronger when unnecessary elements are removed.
 When uncertain:
 
 Remove before adding.
+
+---
+
+# Taxonomy Rules
+
+Taxonomy defines the naming conventions and the criteria for when something new is allowed into the system.
+
+This is where the system learns to say no.
+
+---
+
+## Component vs. Pattern vs. Primitive
+
+A **primitive** is a foundational building block that cannot be decomposed further.
+
+Examples: Button, Input, Checkbox, Badge, Avatar.
+
+A **component** is a combination of primitives and logic with a distinct purpose.
+
+Examples: InputGroup, AvatarLabelGroup, DatePicker, Modal.
+
+A **pattern** is a composition of components into a screen-level workflow.
+
+Examples: Form Pattern, Resource List Pattern, Settings Pattern.
+
+When evaluating something new, identify which category it belongs to before deciding how to introduce it.
+
+---
+
+## Naming Rules
+
+Token names follow: `[category]-[semantic-role]`
+
+Examples: `text-primary`, `bg-brand-solid`, `border-error`.
+
+Component variant names follow: `[size]-[color]` or `[color]-[state]`.
+
+Examples: `sm`, `md`, `lg` for sizes. `primary`, `secondary`, `destructive` for intent.
+
+Do not use: descriptive visual names (`text-dark`, `bg-blue`).
+
+Do not use: position-based names (`left-panel`, `top-bar`).
+
+Do not use: version numbers in names (`button-v2`, `card-new`).
+
+---
+
+## When to Say No to a New Component
+
+Before adding a new component, answer these questions:
+
+1. Can an existing component solve this?
+2. Can composition of existing components solve this?
+3. Is this actually a pattern rather than a component?
+4. Would this variant be used in at least three different contexts?
+5. Would this create a naming conflict or conceptual overlap?
+
+If the answer to question 4 is no, the solution should be an inline implementation, not a new component.
+
+If the answer to question 5 is yes, reconsider the scope before creating.
+
+---
+
+## When to Say No to a New Token
+
+Before adding a new token:
+
+1. Does an existing token express this intent?
+2. Is this a raw value being dressed up as a token?
+3. Is this a one-off exception or a systematic need?
+
+If the answer to question 1 is yes, use the existing token.
+
+If the answer to question 2 is yes, reject the new token.
+
+If the answer to question 3 is "one-off exception," use an inline value and document why.
+
+---
+
+# Rejected Patterns
+
+This section documents patterns and approaches that were evaluated and explicitly rejected.
+
+Knowing what was rejected prevents the same mistakes from being reintroduced.
+
+---
+
+## Rejected: Multiple accent colors per product section
+
+**What it was:**
+Using different accent colors for different product areas or modules (billing = orange, analytics = blue, settings = neutral).
+
+**Why rejected:**
+Color in this system carries semantic meaning, not section identity. Orange means warning. Blue means information. Introducing section-specific accent colors would create ambiguity: is orange here a warning or a billing module indicator?
+
+**Rule:**
+NEVER introduce section-specific accent colors. All brand interaction uses the single brand accent color.
+
+---
+
+## Rejected: Disabled state color tokens
+
+**What it was:**
+Dedicated color tokens for disabled states: `text-disabled`, `bg-disabled_subtle`, `ring-disabled`.
+
+**Why rejected:**
+Required per-component token mapping, created maintenance burden, and was inconsistently applied. Opacity-based disabled states are simpler, more consistent, and visually equivalent.
+
+**Rule:**
+NEVER use `text-disabled` or similar tokens. Apply `opacity-50 cursor-not-allowed` instead.
+
+---
+
+## Rejected: Decorative motion
+
+**What it was:**
+Entrance animations, hover parallax effects, loading animations designed primarily to demonstrate technical sophistication or create delight.
+
+**Why rejected:**
+The system serves work. Motion that exists to impress or entertain distracts from the task. It also creates accessibility problems (prefers-reduced-motion) and performance overhead.
+
+**Rule:**
+NEVER add motion that cannot be justified by "this clarifies a state change" or "this communicates causality." If removing the animation would not confuse the user, it should be removed.
+
+---
+
+## Rejected: Card-inside-card layouts
+
+**What it was:**
+Nesting cards within cards to create visual grouping inside already-grouped content (e.g., a card inside a settings card inside a page).
+
+**Why rejected:**
+Creates visual noise, increases cognitive load, and often signals a structure problem that should be solved through spacing and typography rather than additional containers.
+
+**Rule:**
+Do not nest cards more than one level deep. If you need grouping inside a card, use spacing, dividers, or typography hierarchy — not another card.
+
+---
+
+## Rejected: Sharp industrial corners
+
+**What it was:**
+Using `rounded-none` or `rounded-xs` as the default component radius.
+
+**Why rejected:**
+Creates a mechanical, cold visual personality inconsistent with the target feeling of "calm and professional." The product should feel approachable, not austere.
+
+**Rule:**
+NEVER use sharp corners as a default. Default radius is `rounded-lg` (8px).
