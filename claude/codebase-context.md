@@ -89,3 +89,27 @@ For dark mode, override **only** the Level 2 token inside `.dark-mode {}`:
 ```
 
 The same pattern applies for `bg-`, `border-`, `ring-`, and `outline-` tokens.
+
+---
+
+## 5. Tailwind `--spacing` Variable
+
+`--spacing` is a **built-in Tailwind CSS v4 variable** — it is not defined anywhere in the project source.
+
+**Value:** `--spacing: 0.25rem` (= 4px)
+
+It is the base unit of the entire Tailwind spacing scale (e.g. `p-4` = `1rem` = `--spacing * 4`). Tailwind v4 exposes it as a CSS custom property so custom tokens can be built relative to it.
+
+**Usage in this project** (`src/styles/theme.css`): all typography size and line-height tokens are derived from it:
+
+```css
+--text-xs:              calc(var(--spacing) * 3);    /* 0.75rem  = 12px */
+--text-xs--line-height: calc(var(--spacing) * 4.5);  /* 1.125rem = 18px */
+--text-sm:              calc(var(--spacing) * 3.5);  /* 0.875rem = 14px */
+--text-md:              calc(var(--spacing) * 4);    /* 1rem     = 16px */
+--text-lg:              calc(var(--spacing) * 4.5);  /* 1.125rem = 18px */
+--text-xl:              calc(var(--spacing) * 5);    /* 1.25rem  = 20px */
+/* …and all display-* sizes follow the same pattern */
+```
+
+To override the entire spacing scale project-wide, set `--spacing` once inside `@theme {}` in `src/styles/theme.css`.
