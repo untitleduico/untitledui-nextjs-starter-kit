@@ -3,7 +3,7 @@
 This is an **Untitled UI React** component library project built with:
 
 - **React 19** with TypeScript
-- **Tailwind CSS v4.2** for styling
+- **Tailwind CSS v4.3** for styling
 - **React Aria Components** as the foundation for accessibility and behavior
 
 ## Key Architecture Principles
@@ -133,9 +133,9 @@ interface ButtonProps extends CommonProps, HTMLButtonElement {
 
 ## Styling Guidelines
 
-### Tailwind CSS v4.2
+### Tailwind CSS v4.3
 
-- Uses the latest Tailwind CSS v4.2 features
+- Uses the latest Tailwind CSS v4.3 features
 - Custom design tokens defined in theme configuration
 - Consistent spacing, colors, and typography scales
 
@@ -813,3 +813,13 @@ Use background color variables to manage all fill colors for elements in your de
 | bg-success-primary      | Primary success state background color for components.                                                                                                                                        |
 | bg-success-secondary    | Secondary success state background color for components such as featured icons.                                                                                                               |
 | bg-success-solid        | Default solid (dark) success state background color for components such as featured icons and metric items.                                                                                   |
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

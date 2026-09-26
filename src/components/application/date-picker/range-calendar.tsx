@@ -16,6 +16,7 @@ import {
     RangeCalendarStateContext,
     useSlottedContext,
 } from "react-aria-components";
+import type { ButtonProps } from "@/components/base/buttons/button";
 import { Button } from "@/components/base/buttons/button";
 import { InputDateBase } from "@/components/base/input/input-date";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
@@ -61,8 +62,8 @@ export const RangePresetButton = ({ value, className, children, ...props }: Rang
         <button
             {...props}
             className={cx(
-                "cursor-pointer rounded-md px-3 py-2 text-left text-sm font-medium outline-focus-ring transition duration-100 ease-linear focus-visible:outline-2 focus-visible:outline-offset-2",
-                isSelected ? "bg-active text-secondary_hover hover:bg-secondary_hover" : "text-secondary hover:bg-primary_hover hover:text-secondary_hover",
+                "cursor-pointer rounded-md px-3 py-2 text-left text-sm font-medium text-white outline-focus-ring transition duration-100 ease-linear focus-visible:outline-2 focus-visible:outline-offset-2",
+                isSelected ? "bg-secondary text-secondary_hover hover:bg-secondary_hover" : "text-secondary hover:bg-primary_hover hover:text-secondary_hover",
                 className,
             )}
         >
@@ -71,7 +72,11 @@ export const RangePresetButton = ({ value, className, children, ...props }: Rang
     );
 };
 
-const MobilePresetButton = ({ value, children, ...props }: HTMLAttributes<HTMLButtonElement> & { value: { start: DateValue; end: DateValue } }) => {
+interface MobilePresetButtonProps extends Omit<ButtonProps, "value" | "slot" | "size" | "color" | "onClick"> {
+    value: { start: DateValue; end: DateValue };
+}
+
+const MobilePresetButton = ({ value, children, ...props }: MobilePresetButtonProps) => {
     const context = useContext(RangeCalendarStateContext);
 
     return (
@@ -113,7 +118,7 @@ export const RangeCalendar = ({ presets, visibleDuration, showOutOfRangeDates = 
         <ContextWrapper>
             <AriaRangeCalendar
                 {...props}
-                className={(state) => cx("flex items-start", typeof props.className === "function" ? props.className(state) : props.className)}
+                className={(state) => cx("flex", typeof props.className === "function" ? props.className(state) : props.className)}
                 visibleDuration={{
                     months: visibleDurationMonths,
                 }}
