@@ -106,6 +106,7 @@ export const InputNumberBase = ({
                 placeholder={placeholder}
                 className={cx(
                     "m-0 w-full bg-transparent text-primary ring-0 outline-hidden placeholder:text-placeholder autofill:rounded-lg autofill:text-primary disabled:cursor-not-allowed",
+                    orientation === "horizontal" && "text-center",
                     styles[inputSize],
                     context?.inputClassName,
                     inputClassName,
